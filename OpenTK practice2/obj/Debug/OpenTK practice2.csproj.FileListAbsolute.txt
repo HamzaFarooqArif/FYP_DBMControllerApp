@@ -1,0 +1,14 @@
+c:\users\acer\documents\visual studio 2015\Projects\OpenTK practice2\OpenTK practice2\bin\Debug\OpenTK practice2.exe.config
+c:\users\acer\documents\visual studio 2015\Projects\OpenTK practice2\OpenTK practice2\obj\Debug\OpenTK practice2.csprojResolveAssemblyReference.cache
+c:\users\acer\documents\visual studio 2015\Projects\OpenTK practice2\OpenTK practice2\obj\Debug\OpenTK_practice2.Properties.Resources.resources
+c:\users\acer\documents\visual studio 2015\Projects\OpenTK practice2\OpenTK practice2\obj\Debug\OpenTK practice2.csproj.GenerateResource.Cache
+c:\users\acer\documents\visual studio 2015\Projects\OpenTK practice2\OpenTK practice2\bin\Debug\OpenTK practice2.exe
+c:\users\acer\documents\visual studio 2015\Projects\OpenTK practice2\OpenTK practice2\bin\Debug\OpenTK practice2.pdb
+c:\users\acer\documents\visual studio 2015\Projects\OpenTK practice2\OpenTK practice2\bin\Debug\OpenTK.dll
+c:\users\acer\documents\visual studio 2015\Projects\OpenTK practice2\OpenTK practice2\bin\Debug\OpenTK.pdb
+c:\users\acer\documents\visual studio 2015\Projects\OpenTK practice2\OpenTK practice2\bin\Debug\OpenTK.xml
+c:\users\acer\documents\visual studio 2015\Projects\OpenTK practice2\OpenTK practice2\obj\Debug\OpenTK practice2.exe
+c:\users\acer\documents\visual studio 2015\Projects\OpenTK practice2\OpenTK practice2\obj\Debug\OpenTK practice2.pdb
+C:\Users\Acer\documents\visual studio 2015\Projects\OpenTK practice2\OpenTK practice2\obj\Debug\OpenTK_practice2.Form1.resources
+C:\Users\Acer\documents\visual studio 2015\Projects\OpenTK practice2\OpenTK practice2\bin\Debug\DirectShowLib-2005.dll
+C:\Users\Acer\documents\visual studio 2015\Projects\OpenTK practice2\OpenTK practice2\bin\Debug\geometry3Sharp.dll
