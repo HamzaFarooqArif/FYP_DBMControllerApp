@@ -12,3 +12,19 @@ c:\users\acer\documents\visual studio 2015\Projects\OpenTK practice2\OpenTK prac
 C:\Users\Acer\documents\visual studio 2015\Projects\OpenTK practice2\OpenTK practice2\obj\Debug\OpenTK_practice2.Form1.resources
 C:\Users\Acer\documents\visual studio 2015\Projects\OpenTK practice2\OpenTK practice2\bin\Debug\DirectShowLib-2005.dll
 C:\Users\Acer\documents\visual studio 2015\Projects\OpenTK practice2\OpenTK practice2\bin\Debug\geometry3Sharp.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\OpenTK practice2\bin\Debug\OpenTK practice2.exe.config
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\OpenTK practice2\bin\Debug\OpenTK practice2.exe
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\OpenTK practice2\bin\Debug\OpenTK practice2.pdb
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\OpenTK practice2\bin\Debug\DirectShowLib-2005.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\OpenTK practice2\bin\Debug\geometry3Sharp.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\OpenTK practice2\bin\Debug\OpenTK.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\OpenTK practice2\bin\Debug\OpenTK.pdb
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\OpenTK practice2\bin\Debug\OpenTK.xml
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\OpenTK practice2\obj\Debug\OpenTK practice2.csprojResolveAssemblyReference.cache
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\OpenTK practice2\obj\Debug\OpenTK_practice2.Form1.resources
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\OpenTK practice2\obj\Debug\OpenTK_practice2.Properties.Resources.resources
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\OpenTK practice2\obj\Debug\OpenTK practice2.csproj.GenerateResource.Cache
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\OpenTK practice2\obj\Debug\OpenTK practice2.exe
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\OpenTK practice2\obj\Debug\OpenTK practice2.pdb
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\OpenTK practice2\bin\Debug\MathNet.Numerics.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\OpenTK practice2\bin\Debug\MathNet.Numerics.xml

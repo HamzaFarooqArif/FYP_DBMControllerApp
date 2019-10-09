@@ -12,6 +12,8 @@ namespace OpenTK_practice2
 {
     class demo3d
     {
+        public static double angle = 0.0;
+
         public static double rotateCAx = 0.0;
         public static double rotateCAy = 0.0;
         public static double rotateCAz = 0.0;
@@ -51,9 +53,12 @@ namespace OpenTK_practice2
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.Translate(0.0f, 0.0f, 45.0f);
 
+            //GL.Rotate((float)angle, (float)trackbar1Val/360, (float)trackbar2Val /360, (float)trackbar3Val /360);
             GL.Rotate((float)xRot, getAxis(0));
             GL.Rotate((float)yRot, getAxis(1));
             GL.Rotate((float)zRot, getAxis(2));
+
+            GL.Rotate(angle, 0.0f, 1.0f, 0.0f);
 
             //GL.Rotate(xRot, 1.0f, 0.0f, 0.0f);
             //GL.Rotate(yRot, 0.0f, 1.0f, 0.0f);
@@ -185,7 +190,9 @@ namespace OpenTK_practice2
 
             GL.End();
 
-            window.SwapBuffers();    
+            window.SwapBuffers();
+
+            angle += 20;
         }
 
         void loaded(object o, EventArgs e)

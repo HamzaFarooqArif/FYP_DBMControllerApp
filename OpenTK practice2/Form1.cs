@@ -78,14 +78,44 @@ namespace OpenTK_practice2
 
                 double angle = (Math.PI/180) * trackBar2.Value;
 
-                demo3d.rotateCAx = trackBar1.Value;
-                demo3d.rotateCAy = trackBar2.Value;
-                demo3d.rotateCAz = trackBar3.Value;
+                //demo3d.rotateCAx = trackBar1.Value;
+                //demo3d.rotateCAy = trackBar2.Value;
+                //demo3d.rotateCAz = trackBar3.Value;
 
                 demo3d.zRot = rotZ;
                 demo3d.xRot = rotX;
                 demo3d.yRot = rotY;
             }
+        }
+
+        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void trackBar2_Scroll(object sender, EventArgs e)
+        {
+
+        }
+
+        private void trackBar3_Scroll(object sender, EventArgs e)
+        {
+
+        }
+
+        private void trackBar4_Scroll(object sender, EventArgs e)
+        {
+            demo3d.xRot = trackBar4.Value;
+        }
+
+        private void trackBar5_Scroll(object sender, EventArgs e)
+        {
+            demo3d.yRot = trackBar5.Value;
+        }
+
+        private void trackBar6_Scroll(object sender, EventArgs e)
+        {
+            demo3d.zRot = trackBar6.Value;
         }
     }
 }
