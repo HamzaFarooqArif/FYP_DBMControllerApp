@@ -12,7 +12,9 @@ namespace OpenTK_practice2
 {
     class demo3d
     {
-        public static double angle = 0.0;
+        public static double calibX = 0.0;
+        public static double calibY = 0.0;
+        public static double calibZ = 0.0;
 
         public static double rotateCAx = 0.0;
         public static double rotateCAy = 0.0;
@@ -21,7 +23,7 @@ namespace OpenTK_practice2
         public static double xRot = 0.0;
         public static double yRot = 0.0;
         public static double zRot = 0.0;
-        
+
         GameWindow window;
         public demo3d(GameWindow window)
         {
@@ -53,12 +55,19 @@ namespace OpenTK_practice2
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.Translate(0.0f, 0.0f, 45.0f);
 
-            //GL.Rotate((float)angle, (float)trackbar1Val/360, (float)trackbar2Val /360, (float)trackbar3Val /360);
-            GL.Rotate((float)xRot, getAxis(0));
-            GL.Rotate((float)yRot, getAxis(1));
-            GL.Rotate((float)zRot, getAxis(2));
+            GL.Rotate((float)rotateCAx, 1.0f, 0.0f, 0.0f);
+            GL.Rotate((float)rotateCAy, 0.0f, 1.0f, 0.0f);
+            GL.Rotate((float)rotateCAz, 0.0f, 0.0f, 1.0f);
 
-            GL.Rotate(angle, 0.0f, 1.0f, 0.0f);
+            GL.Rotate(xRot, 1.0f, 0.0f, 0.0f);
+            GL.Rotate(yRot, 0.0f, 1.0f, 0.0f);
+            GL.Rotate(zRot, 0.0f, 0.0f, 1.0f);
+
+            calibX = rotateCAx + xRot - 180;
+            calibY = rotateCAy + yRot;
+            calibZ = rotateCAz + zRot;
+
+            if (calibX < -180) calibX += 360;
 
             //GL.Rotate(xRot, 1.0f, 0.0f, 0.0f);
             //GL.Rotate(yRot, 0.0f, 1.0f, 0.0f);
@@ -192,7 +201,8 @@ namespace OpenTK_practice2
 
             window.SwapBuffers();
 
-            angle += 20;
+            xRot += 10;
+            //if(xRot > )
         }
 
         void loaded(object o, EventArgs e)
@@ -203,9 +213,9 @@ namespace OpenTK_practice2
 
         Vector3 getAxis(int id)
         {
-            double angX = (Math.PI / 180) * rotateCAx;
-            double angY = (Math.PI / 180) * rotateCAy;
-            double angZ = (Math.PI / 180) * rotateCAz;
+            double angX = (Math.PI / 180) * 0;
+            double angY = (Math.PI / 180) * 0;
+            double angZ = (Math.PI / 180) * 0;
             Vector3 result = new Vector3();
 
             if (id == 0)

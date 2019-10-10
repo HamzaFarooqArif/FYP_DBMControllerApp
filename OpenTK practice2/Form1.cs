@@ -65,27 +65,23 @@ namespace OpenTK_practice2
         {
             string[] data = text.Split('\t');
             
-            
             if(data.Length == 4 && !data[1].Equals("nan") && !data[2].Equals("nan") && !data[3].Equals("nan"))
             {
                 textBox1.Text = text;
-                //demo3d.zRot = trackBar3.Value - double.Parse(data[1], System.Globalization.CultureInfo.InvariantCulture);
-                //demo3d.xRot = trackBar1.Value + 90 - double.Parse(data[3], System.Globalization.CultureInfo.InvariantCulture);
-                //demo3d.yRot = trackBar2.Value - double.Parse(data[2], System.Globalization.CultureInfo.InvariantCulture);
-                double rotX = (90 - double.Parse(data[3], System.Globalization.CultureInfo.InvariantCulture));
+
+                double rotX = (- double.Parse(data[3], System.Globalization.CultureInfo.InvariantCulture));
                 double rotY = (-double.Parse(data[2], System.Globalization.CultureInfo.InvariantCulture));
                 double rotZ = -double.Parse(data[1], System.Globalization.CultureInfo.InvariantCulture);
-
-                double angle = (Math.PI/180) * trackBar2.Value;
-
-                //demo3d.rotateCAx = trackBar1.Value;
-                //demo3d.rotateCAy = trackBar2.Value;
-                //demo3d.rotateCAz = trackBar3.Value;
 
                 demo3d.zRot = rotZ;
                 demo3d.xRot = rotX;
                 demo3d.yRot = rotY;
+
+                textBox2.Text = demo3d.calibX.ToString();
+                textBox3.Text = demo3d.calibY.ToString();
+                textBox4.Text = demo3d.calibZ.ToString();
             }
+            
         }
 
         private void trackBar1_ValueChanged(object sender, EventArgs e)
@@ -105,17 +101,17 @@ namespace OpenTK_practice2
 
         private void trackBar4_Scroll(object sender, EventArgs e)
         {
-            demo3d.xRot = trackBar4.Value;
+            demo3d.rotateCAx = trackBar4.Value;
         }
 
         private void trackBar5_Scroll(object sender, EventArgs e)
         {
-            demo3d.yRot = trackBar5.Value;
+            demo3d.rotateCAy = trackBar5.Value;
         }
 
         private void trackBar6_Scroll(object sender, EventArgs e)
         {
-            demo3d.zRot = trackBar6.Value;
+            demo3d.rotateCAz = trackBar6.Value;
         }
     }
 }
