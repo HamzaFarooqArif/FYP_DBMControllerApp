@@ -16,7 +16,7 @@ namespace DBMControllerApp_TK
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CameraProperties());
+            Application.Run(Form1.getInstance());
         }
     }
 }
