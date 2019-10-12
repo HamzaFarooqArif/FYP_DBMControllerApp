@@ -33,8 +33,23 @@ namespace DBMControllerApp_TK
         
         public CameraUtility(int idx)
         {
-            capture = new VideoCapture(idx);
-            this.idx = idx;
+            bool duplicateExists = false;
+            foreach(CameraUtility cu in _instances)
+            {
+                if(cu.idx == idx)
+                {
+                    capture = cu.capture;
+                    duplicateExists = true;
+                    this.idx = _instances.Count;
+                    break;
+                }
+            }
+            if(!duplicateExists)
+            {
+                capture = new VideoCapture(idx);
+                this.idx = idx;
+            }
+            
         }
         public List<string> getCameraList()
         {

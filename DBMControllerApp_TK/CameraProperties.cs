@@ -26,6 +26,8 @@ namespace DBMControllerApp_TK
             CvInvoke.UseOpenCL = false;
             cb_1.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_1.DataSource = CameraUtility.getInstance(0).getCameraList();
+            cb_2.DropDownStyle = ComboBoxStyle.DropDownList;
+            cb_2.DataSource = CameraUtility.getInstance(0).getCameraList();
             Application.Idle += processFrame;
         }
 
@@ -37,7 +39,7 @@ namespace DBMControllerApp_TK
             }
             if (camStart1)
             {
-                CameraUtility.getInstance(1).processFrame();
+                CameraUtility.getInstance(cb_2.SelectedIndex).processFrame();
             }
 
         }
@@ -56,7 +58,18 @@ namespace DBMControllerApp_TK
         {
             if(camStart0)
             {
-                CameraUtility.getInstance(0).isPreview = !CameraUtility.getInstance(0).isPreview;
+                CameraUtility.getInstance(cb_1.SelectedIndex).isPreview = !CameraUtility.getInstance(cb_1.SelectedIndex).isPreview;
+            }
+            else
+            {
+                MessageBox.Show("Please Start the device first");
+            }
+        }
+        private void btn_Preview2_Click(object sender, EventArgs e)
+        {
+            if (camStart1)
+            {
+                CameraUtility.getInstance(cb_2.SelectedIndex).isPreview = !CameraUtility.getInstance(cb_2.SelectedIndex).isPreview;
             }
             else
             {
@@ -75,5 +88,27 @@ namespace DBMControllerApp_TK
             else MessageBox.Show("Please Select a valid capture device");
             
         }
+        private void btn_Capture2_Click(object sender, EventArgs e)
+        {
+            if (cb_2.Items.Count > 0)
+            {
+                camStart1 = true;
+                cb_2.Enabled = false;
+                btn_Capture2.Enabled = false;
+            }
+            else MessageBox.Show("Please Select a valid capture device");
+        }
+
+        private void tableLayoutPanel8_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel7_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        
     }
 }
