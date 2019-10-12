@@ -24,6 +24,7 @@ namespace DBMControllerApp_TK
             InitializeComponent();
 
             CvInvoke.UseOpenCL = false;
+            cb_1.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_1.DataSource = CameraUtility.getInstance(0).getCameraList();
             Application.Idle += processFrame;
         }
@@ -68,6 +69,8 @@ namespace DBMControllerApp_TK
             if (cb_1.Items.Count > 0)
             {
                 camStart0 = true;
+                cb_1.Enabled = false;
+                btn_Capture1.Enabled = false;
             }
             else MessageBox.Show("Please Select a valid capture device");
             
