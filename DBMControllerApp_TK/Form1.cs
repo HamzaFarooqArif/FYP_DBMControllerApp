@@ -40,7 +40,7 @@ namespace DBMControllerApp_TK
             cb_camList1.DataSource = getCameraList();
             cb_camList2.DataSource = getCameraList();
 
-
+            
         }
         
         private void btn_Capture1_Click(object sender, EventArgs e)
@@ -159,6 +159,12 @@ namespace DBMControllerApp_TK
             {
                 Cam_FilterProp.getInstance(1).Show();
             }
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            capture0.Dispose();
+            capture1.Dispose();
         }
     }
 }

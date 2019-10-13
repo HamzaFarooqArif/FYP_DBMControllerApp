@@ -38,8 +38,9 @@ namespace DBMControllerApp_TK
             Form1.capture0.Retrieve(frame, 0);
             Image<Bgr, byte> abc = frame.ToImage<Bgr, byte>();
             imageBox1.Image = abc;
-
             
         }
+
+
     }
 }

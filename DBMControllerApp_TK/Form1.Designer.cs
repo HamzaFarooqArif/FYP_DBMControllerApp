@@ -39,8 +39,8 @@
             this.tb_fps2 = new System.Windows.Forms.TextBox();
             this.cb_camList2 = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btn_filter1 = new System.Windows.Forms.Button();
             this.btn_filter2 = new System.Windows.Forms.Button();
+            this.btn_filter1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -159,16 +159,6 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // btn_filter1
-            // 
-            this.btn_filter1.Location = new System.Drawing.Point(29, 30);
-            this.btn_filter1.Name = "btn_filter1";
-            this.btn_filter1.Size = new System.Drawing.Size(100, 23);
-            this.btn_filter1.TabIndex = 0;
-            this.btn_filter1.Text = "Cam1FilterProp";
-            this.btn_filter1.UseVisualStyleBackColor = true;
-            this.btn_filter1.Click += new System.EventHandler(this.btn_filter1_Click);
-            // 
             // btn_filter2
             // 
             this.btn_filter2.Location = new System.Drawing.Point(148, 30);
@@ -179,6 +169,16 @@
             this.btn_filter2.UseVisualStyleBackColor = true;
             this.btn_filter2.Click += new System.EventHandler(this.btn_filter2_Click);
             // 
+            // btn_filter1
+            // 
+            this.btn_filter1.Location = new System.Drawing.Point(29, 30);
+            this.btn_filter1.Name = "btn_filter1";
+            this.btn_filter1.Size = new System.Drawing.Size(100, 23);
+            this.btn_filter1.TabIndex = 0;
+            this.btn_filter1.Text = "Cam1FilterProp";
+            this.btn_filter1.UseVisualStyleBackColor = true;
+            this.btn_filter1.Click += new System.EventHandler(this.btn_filter1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -187,6 +187,7 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "DBM";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
