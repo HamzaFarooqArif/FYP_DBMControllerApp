@@ -33,14 +33,17 @@
             this.btn_Capture1 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn_preview2 = new System.Windows.Forms.Button();
+            this.tbn_preview1 = new System.Windows.Forms.Button();
             this.btn_Capture2 = new System.Windows.Forms.Button();
             this.tb_fps2 = new System.Windows.Forms.TextBox();
             this.cb_camList2 = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tbn_preview1 = new System.Windows.Forms.Button();
-            this.btn_preview2 = new System.Windows.Forms.Button();
+            this.btn_filter1 = new System.Windows.Forms.Button();
+            this.btn_filter2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tb_fps1
@@ -77,7 +80,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(275, 240);
+            this.tabControl1.Size = new System.Drawing.Size(400, 280);
             this.tabControl1.TabIndex = 3;
             // 
             // tabPage1
@@ -93,10 +96,30 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(267, 214);
+            this.tabPage1.Size = new System.Drawing.Size(392, 254);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btn_preview2
+            // 
+            this.btn_preview2.Location = new System.Drawing.Point(140, 88);
+            this.btn_preview2.Name = "btn_preview2";
+            this.btn_preview2.Size = new System.Drawing.Size(75, 23);
+            this.btn_preview2.TabIndex = 7;
+            this.btn_preview2.Text = "Preview";
+            this.btn_preview2.UseVisualStyleBackColor = true;
+            this.btn_preview2.Click += new System.EventHandler(this.btn_preview2_Click);
+            // 
+            // tbn_preview1
+            // 
+            this.tbn_preview1.Location = new System.Drawing.Point(8, 88);
+            this.tbn_preview1.Name = "tbn_preview1";
+            this.tbn_preview1.Size = new System.Drawing.Size(75, 23);
+            this.tbn_preview1.TabIndex = 6;
+            this.tbn_preview1.Text = "Preview";
+            this.tbn_preview1.UseVisualStyleBackColor = true;
+            this.tbn_preview1.Click += new System.EventHandler(this.tbn_preview1_Click);
             // 
             // btn_Capture2
             // 
@@ -126,45 +149,48 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btn_filter2);
+            this.tabPage2.Controls.Add(this.btn_filter1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(267, 214);
+            this.tabPage2.Size = new System.Drawing.Size(392, 254);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tbn_preview1
+            // btn_filter1
             // 
-            this.tbn_preview1.Location = new System.Drawing.Point(8, 88);
-            this.tbn_preview1.Name = "tbn_preview1";
-            this.tbn_preview1.Size = new System.Drawing.Size(75, 23);
-            this.tbn_preview1.TabIndex = 6;
-            this.tbn_preview1.Text = "Preview";
-            this.tbn_preview1.UseVisualStyleBackColor = true;
-            this.tbn_preview1.Click += new System.EventHandler(this.tbn_preview1_Click);
+            this.btn_filter1.Location = new System.Drawing.Point(29, 30);
+            this.btn_filter1.Name = "btn_filter1";
+            this.btn_filter1.Size = new System.Drawing.Size(100, 23);
+            this.btn_filter1.TabIndex = 0;
+            this.btn_filter1.Text = "Cam1FilterProp";
+            this.btn_filter1.UseVisualStyleBackColor = true;
+            this.btn_filter1.Click += new System.EventHandler(this.btn_filter1_Click);
             // 
-            // btn_preview2
+            // btn_filter2
             // 
-            this.btn_preview2.Location = new System.Drawing.Point(140, 88);
-            this.btn_preview2.Name = "btn_preview2";
-            this.btn_preview2.Size = new System.Drawing.Size(75, 23);
-            this.btn_preview2.TabIndex = 7;
-            this.btn_preview2.Text = "Preview";
-            this.btn_preview2.UseVisualStyleBackColor = true;
-            this.btn_preview2.Click += new System.EventHandler(this.btn_preview2_Click);
+            this.btn_filter2.Location = new System.Drawing.Point(148, 30);
+            this.btn_filter2.Name = "btn_filter2";
+            this.btn_filter2.Size = new System.Drawing.Size(100, 23);
+            this.btn_filter2.TabIndex = 1;
+            this.btn_filter2.Text = "Cam2FilterProp";
+            this.btn_filter2.UseVisualStyleBackColor = true;
+            this.btn_filter2.Click += new System.EventHandler(this.btn_filter2_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(275, 240);
+            this.ClientSize = new System.Drawing.Size(400, 280);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "DBM";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -182,6 +208,8 @@
         private System.Windows.Forms.ComboBox cb_camList2;
         private System.Windows.Forms.Button btn_preview2;
         private System.Windows.Forms.Button tbn_preview1;
+        private System.Windows.Forms.Button btn_filter1;
+        private System.Windows.Forms.Button btn_filter2;
     }
 }
 

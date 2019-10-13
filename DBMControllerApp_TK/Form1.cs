@@ -12,6 +12,7 @@ using Emgu;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using DirectShowLib;
+using ColorMine;
 
 namespace DBMControllerApp_TK
 {
@@ -38,6 +39,8 @@ namespace DBMControllerApp_TK
             cb_camList2.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_camList1.DataSource = getCameraList();
             cb_camList2.DataSource = getCameraList();
+
+
         }
         
         private void btn_Capture1_Click(object sender, EventArgs e)
@@ -121,6 +124,40 @@ namespace DBMControllerApp_TK
             else
             {
                 Cam2_Preview.getInstance().Show();
+            }
+        }
+
+        private void btn_filter1_Click(object sender, EventArgs e)
+        {
+            if (cb_camList1.Enabled == true)
+            {
+                MessageBox.Show("Start the capture device first");
+                return;
+            }
+            if (Cam_FilterProp.getInstance(0).Visible)
+            {
+                Cam_FilterProp.getInstance(0).Hide();
+            }
+            else
+            {
+                Cam_FilterProp.getInstance(0).Show();
+            }
+        }
+
+        private void btn_filter2_Click(object sender, EventArgs e)
+        {
+            if (cb_camList2.Enabled == true)
+            {
+                MessageBox.Show("Start the capture device first");
+                return;
+            }
+            if (Cam_FilterProp.getInstance(1).Visible)
+            {
+                Cam_FilterProp.getInstance(1).Hide();
+            }
+            else
+            {
+                Cam_FilterProp.getInstance(1).Show();
             }
         }
     }
