@@ -22,11 +22,6 @@ C:\Users\Acer\Desktop\impApp\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\v
 C:\Users\Acer\Desktop\impApp\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\DirectShowLib-2005.dll
 C:\Users\Acer\Desktop\impApp\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.Cam1_Preview.resources
 C:\Users\Acer\Desktop\impApp\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.Cam2_Preview.resources
-C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\concrt140.dll
-C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\cvextern.dll
-C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\msvcp140.dll
-C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\opencv_ffmpeg410.dll
-C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\vcruntime140.dll
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\DBMControllerApp_TK.exe.config
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\DBMControllerApp_TK.exe
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\DBMControllerApp_TK.pdb
@@ -45,3 +40,29 @@ C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMContr
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.pdb
 C:\Users\Acer\documents\visual studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\ColorMine.dll
 C:\Users\Acer\documents\visual studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.Cam_FilterProp.resources
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\x64\concrt140.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\x64\cvextern.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\x64\msvcp140.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\x64\opencv_videoio_ffmpeg411_64.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\x64\vcruntime140.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\x86\concrt140.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\x86\cvextern.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\x86\msvcp140.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\x86\opencv_videoio_ffmpeg411.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\x86\vcruntime140.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\DirectShowLib.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\Emgu.CV.UI.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\Emgu.CV.World.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\DirectShowLib.pdb
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\de\ZedGraph.resources.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\es\ZedGraph.resources.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\fr\ZedGraph.resources.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\hu\ZedGraph.resources.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\it\ZedGraph.resources.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\ja\ZedGraph.resources.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\pt\ZedGraph.resources.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\ru\ZedGraph.resources.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\sk\ZedGraph.resources.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\sv\ZedGraph.resources.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\tr\ZedGraph.resources.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\zh-tw\ZedGraph.resources.dll
