@@ -58,6 +58,8 @@ namespace DBMControllerApp_TK
             trk_HueL.Value = (int)lower.H;
             trk_SatL.Value = (int)lower.S;
             trk_ValL.Value = (int)lower.V;
+
+            updateColorBox();
         }
 
         private void Cam1_FilterProp_Load(object sender, EventArgs e)
@@ -71,6 +73,7 @@ namespace DBMControllerApp_TK
             {
                 upper.H = trk_HueU.Value;
                 tb_HueU.Text = upper.H.ToString();
+                updateColorBox();
             }
         }
 
@@ -80,6 +83,7 @@ namespace DBMControllerApp_TK
             {
                 upper.H = Int32.Parse(tb_HueU.Text);
                 trk_HueU.Value = (int)upper.H;
+                updateColorBox();
             }
         }
 
@@ -89,6 +93,7 @@ namespace DBMControllerApp_TK
             {
                 upper.S = trk_SatU.Value;
                 tb_SatU.Text = upper.S.ToString();
+                updateColorBox();
             }
         }
 
@@ -98,6 +103,7 @@ namespace DBMControllerApp_TK
             {
                 upper.S = Int32.Parse(tb_SatU.Text);
                 trk_SatU.Value = (int)upper.S;
+                updateColorBox();
             }
         }
 
@@ -107,6 +113,7 @@ namespace DBMControllerApp_TK
             {
                 upper.V = trk_ValU.Value;
                 tb_ValU.Text = upper.V.ToString();
+                updateColorBox();
             }
         }
 
@@ -116,6 +123,7 @@ namespace DBMControllerApp_TK
             {
                 upper.V = Int32.Parse(tb_ValU.Text);
                 trk_ValU.Value = (int)upper.V;
+                updateColorBox();
             }
         }
 
@@ -125,6 +133,7 @@ namespace DBMControllerApp_TK
             {
                 lower.H = trk_HueL.Value;
                 tb_HueL.Text = lower.H.ToString();
+                updateColorBox();
             }
         }
 
@@ -134,6 +143,7 @@ namespace DBMControllerApp_TK
             {
                 lower.H = Int32.Parse(tb_HueL.Text);
                 trk_HueL.Value = (int)lower.H;
+                updateColorBox();
             }
         }
 
@@ -143,6 +153,7 @@ namespace DBMControllerApp_TK
             {
                 lower.S = trk_SatL.Value;
                 tb_SatL.Text = lower.S.ToString();
+                updateColorBox();
             }
         }
 
@@ -152,6 +163,7 @@ namespace DBMControllerApp_TK
             {
                 lower.S = Int32.Parse(tb_SatL.Text);
                 trk_SatL.Value = (int)lower.S;
+                updateColorBox();
             }
         }
 
@@ -161,6 +173,7 @@ namespace DBMControllerApp_TK
             {
                 lower.V = trk_ValL.Value;
                 tb_ValL.Text = lower.V.ToString();
+                updateColorBox();
             }
         }
 
@@ -170,7 +183,37 @@ namespace DBMControllerApp_TK
             {
                 lower.V = Int32.Parse(tb_ValL.Text);
                 trk_ValL.Value = (int)lower.V;
+                updateColorBox();
             }
+        }
+
+        private void updateColorBox()
+        {
+            Hsv upperActual = new Hsv();
+            Hsv lowerActual = new Hsv();
+
+            upperActual.H = (upper.H/255)*360;
+            upperActual.S = upper.S / 255;
+            upperActual.V = upper.V / 255;
+
+            lowerActual.H = (lower.H / 255) * 360;
+            lowerActual.S = lower.S / 255;
+            lowerActual.V = lower.V / 255;
+
+            Rgb uRGB = upperActual.To<Rgb>();
+            Color bgColorU = Color.FromArgb((int)uRGB.R, (int)uRGB.G, (int)uRGB.B);
+            rtb_U.BackColor = bgColorU;
+
+            Rgb lRGB = lowerActual.To<Rgb>();
+            Color bgColorL = Color.FromArgb((int)lRGB.R, (int)lRGB.G, (int)lRGB.B);
+            rtb_L.BackColor = bgColorL;
+
+            //Rgb lRGB = lower.To<Rgb>();
+            //if ((int)lRGB.R < 256 && (int)lRGB.G < 256 && (int)lRGB.B < 256)
+            //{
+            //    Color bgColorL = Color.FromArgb((int)lRGB.R, (int)lRGB.G, (int)lRGB.B);
+            //    rtb_L.BackColor = bgColorL;
+            //}
         }
     }
 }

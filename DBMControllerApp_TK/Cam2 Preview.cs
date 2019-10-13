@@ -18,7 +18,7 @@ namespace DBMControllerApp_TK
     public partial class Cam2_Preview : Form
     {
         private static Cam2_Preview instance;
-
+        private Mat frame;
         public static Cam2_Preview getInstance()
         {
             if (instance == null)
@@ -30,14 +30,16 @@ namespace DBMControllerApp_TK
         public Cam2_Preview()
         {
             InitializeComponent();
+
+            frame = new Mat();
         }
 
         public void processFrame(object sender, EventArgs arg)
         {
-            Mat frame = new Mat();
             Form1.capture1.Retrieve(frame, 0);
             Image<Bgr, byte> abc = frame.ToImage<Bgr, byte>();
             imageBox1.Image = abc;
+
         }
     }
 }

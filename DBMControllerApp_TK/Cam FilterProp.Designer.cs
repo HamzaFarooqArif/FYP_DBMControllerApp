@@ -34,14 +34,14 @@
             this.tb_HueU = new System.Windows.Forms.TextBox();
             this.tb_SatU = new System.Windows.Forms.TextBox();
             this.tb_ValU = new System.Windows.Forms.TextBox();
-            this.trb_U = new System.Windows.Forms.RichTextBox();
+            this.rtb_U = new System.Windows.Forms.RichTextBox();
             this.trk_HueL = new System.Windows.Forms.TrackBar();
             this.trk_SatL = new System.Windows.Forms.TrackBar();
             this.trk_ValL = new System.Windows.Forms.TrackBar();
             this.tb_HueL = new System.Windows.Forms.TextBox();
             this.tb_SatL = new System.Windows.Forms.TextBox();
             this.tb_ValL = new System.Windows.Forms.TextBox();
-            this.trb_L = new System.Windows.Forms.RichTextBox();
+            this.rtb_L = new System.Windows.Forms.RichTextBox();
             this.lbl_Heading = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trk_HueU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_SatU)).BeginInit();
@@ -102,13 +102,13 @@
             this.tb_ValU.TabIndex = 5;
             this.tb_ValU.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_ValU_KeyDown);
             // 
-            // trb_U
+            // rtb_U
             // 
-            this.trb_U.Location = new System.Drawing.Point(170, 16);
-            this.trb_U.Name = "trb_U";
-            this.trb_U.Size = new System.Drawing.Size(100, 96);
-            this.trb_U.TabIndex = 6;
-            this.trb_U.Text = "";
+            this.rtb_U.Location = new System.Drawing.Point(170, 16);
+            this.rtb_U.Name = "rtb_U";
+            this.rtb_U.Size = new System.Drawing.Size(100, 96);
+            this.rtb_U.TabIndex = 6;
+            this.rtb_U.Text = "";
             // 
             // trk_HueL
             // 
@@ -161,13 +161,13 @@
             this.tb_ValL.TabIndex = 12;
             this.tb_ValL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_ValL_KeyDown);
             // 
-            // trb_L
+            // rtb_L
             // 
-            this.trb_L.Location = new System.Drawing.Point(170, 148);
-            this.trb_L.Name = "trb_L";
-            this.trb_L.Size = new System.Drawing.Size(100, 96);
-            this.trb_L.TabIndex = 13;
-            this.trb_L.Text = "";
+            this.rtb_L.Location = new System.Drawing.Point(170, 148);
+            this.rtb_L.Name = "rtb_L";
+            this.rtb_L.Size = new System.Drawing.Size(100, 96);
+            this.rtb_L.TabIndex = 13;
+            this.rtb_L.Text = "";
             // 
             // lbl_Heading
             // 
@@ -184,14 +184,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(399, 349);
             this.Controls.Add(this.lbl_Heading);
-            this.Controls.Add(this.trb_L);
+            this.Controls.Add(this.rtb_L);
             this.Controls.Add(this.tb_ValL);
             this.Controls.Add(this.tb_SatL);
             this.Controls.Add(this.tb_HueL);
             this.Controls.Add(this.trk_ValL);
             this.Controls.Add(this.trk_SatL);
             this.Controls.Add(this.trk_HueL);
-            this.Controls.Add(this.trb_U);
+            this.Controls.Add(this.rtb_U);
             this.Controls.Add(this.tb_ValU);
             this.Controls.Add(this.tb_SatU);
             this.Controls.Add(this.tb_HueU);
@@ -220,14 +220,14 @@
         private System.Windows.Forms.TextBox tb_HueU;
         private System.Windows.Forms.TextBox tb_SatU;
         private System.Windows.Forms.TextBox tb_ValU;
-        private System.Windows.Forms.RichTextBox trb_U;
+        private System.Windows.Forms.RichTextBox rtb_U;
         private System.Windows.Forms.TrackBar trk_HueL;
         private System.Windows.Forms.TrackBar trk_SatL;
         private System.Windows.Forms.TrackBar trk_ValL;
         private System.Windows.Forms.TextBox tb_HueL;
         private System.Windows.Forms.TextBox tb_SatL;
         private System.Windows.Forms.TextBox tb_ValL;
-        private System.Windows.Forms.RichTextBox trb_L;
+        private System.Windows.Forms.RichTextBox rtb_L;
         private System.Windows.Forms.Label lbl_Heading;
     }
 }
