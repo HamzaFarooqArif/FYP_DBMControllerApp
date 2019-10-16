@@ -65,7 +65,6 @@ namespace DBMControllerApp_TK
                 lower.V = CentralClass.getInstance().lower2.V;
             }
 
-
             tb_HueU.Text = upper.H.ToString();
             tb_SatU.Text = upper.S.ToString();
             tb_ValU.Text = upper.V.ToString();
