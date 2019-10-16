@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using ColorMine;
 using ColorMine.ColorSpaces;
+using DBMControllerApp_TK.Utilities;
 
 namespace DBMControllerApp_TK
 {
@@ -42,6 +43,28 @@ namespace DBMControllerApp_TK
 
             upper = new Hsv();
             lower = new Hsv();
+
+            if(formIdx == 0)
+            {
+                upper.H = CentralClass.getInstance().upper1.H;
+                upper.S = CentralClass.getInstance().upper1.S;
+                upper.V = CentralClass.getInstance().upper1.V;
+
+                lower.H = CentralClass.getInstance().lower1.H;
+                lower.S = CentralClass.getInstance().lower1.S;
+                lower.V = CentralClass.getInstance().lower1.V;
+            }
+            else if (formIdx == 1)
+            {
+                upper.H = CentralClass.getInstance().upper2.H;
+                upper.S = CentralClass.getInstance().upper2.S;
+                upper.V = CentralClass.getInstance().upper2.V;
+
+                lower.H = CentralClass.getInstance().lower2.H;
+                lower.S = CentralClass.getInstance().lower2.S;
+                lower.V = CentralClass.getInstance().lower2.V;
+            }
+
 
             tb_HueU.Text = upper.H.ToString();
             tb_SatU.Text = upper.S.ToString();
@@ -207,13 +230,17 @@ namespace DBMControllerApp_TK
             Rgb lRGB = lowerActual.To<Rgb>();
             Color bgColorL = Color.FromArgb((int)lRGB.R, (int)lRGB.G, (int)lRGB.B);
             rtb_L.BackColor = bgColorL;
-
-            //Rgb lRGB = lower.To<Rgb>();
-            //if ((int)lRGB.R < 256 && (int)lRGB.G < 256 && (int)lRGB.B < 256)
-            //{
-            //    Color bgColorL = Color.FromArgb((int)lRGB.R, (int)lRGB.G, (int)lRGB.B);
-            //    rtb_L.BackColor = bgColorL;
-            //}
+            
+            if(formIdx == 0)
+            {
+                CentralClass.getInstance().upper1 = upper;
+                CentralClass.getInstance().lower1 = lower;
+            }
+            else if (formIdx == 1)
+            {
+                CentralClass.getInstance().upper2 = upper;
+                CentralClass.getInstance().lower2 = lower;
+            }
         }
     }
 }

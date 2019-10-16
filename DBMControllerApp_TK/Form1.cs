@@ -13,6 +13,8 @@ using Emgu.CV;
 using Emgu.CV.Structure;
 using DirectShowLib;
 using ColorMine;
+using System.Configuration;
+using DBMControllerApp_TK.Utilities;
 
 namespace DBMControllerApp_TK
 {
@@ -39,7 +41,6 @@ namespace DBMControllerApp_TK
             cb_camList2.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_camList1.DataSource = getCameraList();
             cb_camList2.DataSource = getCameraList();
-
             
         }
         
@@ -95,7 +96,7 @@ namespace DBMControllerApp_TK
 
         private void tbn_preview1_Click(object sender, EventArgs e)
         {
-            if(cb_camList1.Enabled == true)
+            if (cb_camList1.Enabled == true)
             {
                 MessageBox.Show("Start the capture device first");
                 return;
@@ -108,6 +109,8 @@ namespace DBMControllerApp_TK
             {
                 Cam1_Preview.getInstance().Show();
             }
+
+            
         }
 
         private void btn_preview2_Click(object sender, EventArgs e)
@@ -163,8 +166,41 @@ namespace DBMControllerApp_TK
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            capture0.Dispose();
-            capture1.Dispose();
+            if(capture0 != null) capture0.Dispose();
+            if (capture1 != null) capture1.Dispose();
+        }
+
+        private void btn_Save_Click(object sender, EventArgs e)
+        {
+            AddOrUpdateAppSettings("upper1H", "123");
+
+            //ConfigurationManager.AppSettings.Remove("upper1H");
+            //ConfigurationManager.AppSettings.Add("upper1H", CentralClass.getInstance().upper1.H.ToString());
+            
+            MessageBox.Show(ConfigurationManager.AppSettings["upper1H"]); 
+        }
+
+        public void AddOrUpdateAppSettings(string key, string value)
+        {
+            try
+            {
+                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                var settings = configFile.AppSettings.Settings;
+                if (settings[key] == null)
+                {
+                    settings.Add(key, value);
+                }
+                else
+                {
+                    settings[key].Value = value;
+                }
+                configFile.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+            }
+            catch (ConfigurationErrorsException)
+            {
+                Console.WriteLine("Error writing app settings");
+            }
         }
     }
 }

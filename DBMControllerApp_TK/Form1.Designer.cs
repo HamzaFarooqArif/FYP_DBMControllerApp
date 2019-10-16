@@ -41,6 +41,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btn_filter2 = new System.Windows.Forms.Button();
             this.btn_filter1 = new System.Windows.Forms.Button();
+            this.btn_Save = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -85,6 +86,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btn_Save);
             this.tabPage1.Controls.Add(this.btn_preview2);
             this.tabPage1.Controls.Add(this.tbn_preview1);
             this.tabPage1.Controls.Add(this.btn_Capture2);
@@ -179,6 +181,16 @@
             this.btn_filter1.UseVisualStyleBackColor = true;
             this.btn_filter1.Click += new System.EventHandler(this.btn_filter1_Click);
             // 
+            // btn_Save
+            // 
+            this.btn_Save.Location = new System.Drawing.Point(309, 223);
+            this.btn_Save.Name = "btn_Save";
+            this.btn_Save.Size = new System.Drawing.Size(75, 23);
+            this.btn_Save.TabIndex = 8;
+            this.btn_Save.Text = "Save Settings";
+            this.btn_Save.UseVisualStyleBackColor = true;
+            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -211,6 +223,7 @@
         private System.Windows.Forms.Button tbn_preview1;
         private System.Windows.Forms.Button btn_filter1;
         private System.Windows.Forms.Button btn_filter2;
+        private System.Windows.Forms.Button btn_Save;
     }
 }
 
