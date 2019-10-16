@@ -12,11 +12,15 @@ namespace DBMControllerApp_TK.Utilities
     class CentralClass
     {
         public static CentralClass instance;
+
         public Hsv upper1;
         public Hsv lower1;
         public Hsv upper2;
         public Hsv lower2;
 
+        public int boardWidth;
+        public int boardHeight;
+        public bool showBoard;
         public static CentralClass getInstance()
         {
             if(instance == null)
@@ -28,6 +32,9 @@ namespace DBMControllerApp_TK.Utilities
 
         public CentralClass()
         {
+            boardWidth = 480;
+            boardHeight = 320;
+            showBoard = false;
             upper1 = new Hsv();
             lower1 = new Hsv();
             upper2 = new Hsv();

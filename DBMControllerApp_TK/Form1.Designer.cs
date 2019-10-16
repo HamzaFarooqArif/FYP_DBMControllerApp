@@ -33,6 +33,7 @@
             this.btn_Capture1 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn_Save = new System.Windows.Forms.Button();
             this.btn_preview2 = new System.Windows.Forms.Button();
             this.tbn_preview1 = new System.Windows.Forms.Button();
             this.btn_Capture2 = new System.Windows.Forms.Button();
@@ -41,7 +42,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btn_filter2 = new System.Windows.Forms.Button();
             this.btn_filter1 = new System.Windows.Forms.Button();
-            this.btn_Save = new System.Windows.Forms.Button();
+            this.btn_Board = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -103,6 +104,16 @@
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btn_Save
+            // 
+            this.btn_Save.Location = new System.Drawing.Point(309, 223);
+            this.btn_Save.Name = "btn_Save";
+            this.btn_Save.Size = new System.Drawing.Size(75, 23);
+            this.btn_Save.TabIndex = 8;
+            this.btn_Save.Text = "Save Settings";
+            this.btn_Save.UseVisualStyleBackColor = true;
+            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
+            // 
             // btn_preview2
             // 
             this.btn_preview2.Location = new System.Drawing.Point(140, 88);
@@ -151,6 +162,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btn_Board);
             this.tabPage2.Controls.Add(this.btn_filter2);
             this.tabPage2.Controls.Add(this.btn_filter1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -181,15 +193,15 @@
             this.btn_filter1.UseVisualStyleBackColor = true;
             this.btn_filter1.Click += new System.EventHandler(this.btn_filter1_Click);
             // 
-            // btn_Save
+            // btn_Board
             // 
-            this.btn_Save.Location = new System.Drawing.Point(309, 223);
-            this.btn_Save.Name = "btn_Save";
-            this.btn_Save.Size = new System.Drawing.Size(75, 23);
-            this.btn_Save.TabIndex = 8;
-            this.btn_Save.Text = "Save Settings";
-            this.btn_Save.UseVisualStyleBackColor = true;
-            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
+            this.btn_Board.Location = new System.Drawing.Point(99, 71);
+            this.btn_Board.Name = "btn_Board";
+            this.btn_Board.Size = new System.Drawing.Size(75, 23);
+            this.btn_Board.TabIndex = 2;
+            this.btn_Board.Text = "Show Board";
+            this.btn_Board.UseVisualStyleBackColor = true;
+            this.btn_Board.Click += new System.EventHandler(this.btn_Board_Click);
             // 
             // Form1
             // 
@@ -224,6 +236,7 @@
         private System.Windows.Forms.Button btn_filter1;
         private System.Windows.Forms.Button btn_filter2;
         private System.Windows.Forms.Button btn_Save;
+        private System.Windows.Forms.Button btn_Board;
     }
 }
 

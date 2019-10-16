@@ -41,7 +41,8 @@ namespace DBMControllerApp_TK
             cb_camList2.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_camList1.DataSource = getCameraList();
             cb_camList2.DataSource = getCameraList();
-            
+
+            Application.Idle += idleEvent;
         }
         
         private void btn_Capture1_Click(object sender, EventArgs e)
@@ -201,6 +202,41 @@ namespace DBMControllerApp_TK
             {
                 Console.WriteLine("Error writing app settings");
             }
+        }
+        private void idleEvent(object sender, EventArgs arg)
+        {
+            int boardWidth = CentralClass.getInstance().boardWidth;
+            int boardHeight = CentralClass.getInstance().boardHeight;
+            
+            Image<Gray, byte> boardFrame = new Image<Gray, byte>(boardWidth, boardHeight);
+            Point line1p1 = new Point((int)((float)boardWidth * (float)0.1), (int)((float)boardHeight * (float)0.1));
+            Point line1p2 = new Point(boardWidth, boardHeight);
+            Point line2p1 = new Point((int)((float)boardWidth * (float)0.9), (int)((float)boardHeight * (float)0.1));
+            Point line2p2 = new Point(0, boardHeight);
+
+            line1p2 = MouseUtility.getInstance(0).rotate(line1p2, line1p1, (float)11.5 - MouseUtility.getInstance(0).getAngleFromPercent(MouseUtility.getInstance(0).position));
+            line2p2 = MouseUtility.getInstance(1).rotate(line2p2, line2p1, (float)-11.5 + MouseUtility.getInstance(1).getAngleFromPercent(MouseUtility.getInstance(1).position));
+
+            CvInvoke.Circle(boardFrame, line1p1, 1, new MCvScalar(255, 255, 255), 2);
+            CvInvoke.Circle(boardFrame, line1p2, 1, new MCvScalar(255, 255, 255), 2);
+            CvInvoke.Circle(boardFrame, line2p1, 1, new MCvScalar(255, 255, 255), 2);
+            CvInvoke.Circle(boardFrame, line2p2, 1, new MCvScalar(255, 255, 255), 2);
+            CvInvoke.Line(boardFrame, line1p1, line1p2, new MCvScalar(255, 255, 255));
+            CvInvoke.Line(boardFrame, line2p1, line2p2, new MCvScalar(255, 255, 255));
+
+            if (CentralClass.getInstance().showBoard)
+            {
+                CvInvoke.Imshow("Board", boardFrame);
+            }
+            else
+            {
+                CvInvoke.DestroyWindow("Board");
+            }
+        }
+
+        private void btn_Board_Click(object sender, EventArgs e)
+        {
+            CentralClass.getInstance().showBoard = !CentralClass.getInstance().showBoard;
         }
     }
 }
