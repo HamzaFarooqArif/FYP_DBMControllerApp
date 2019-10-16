@@ -66,3 +66,7 @@ C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMContr
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\sv\ZedGraph.resources.dll
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\tr\ZedGraph.resources.dll
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\Users\Acer\documents\visual studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\OpenTK.dll
+C:\Users\Acer\documents\visual studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\OpenTK.pdb
+C:\Users\Acer\documents\visual studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\OpenTK.xml
+C:\Users\Acer\documents\visual studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.OrientationForm.resources

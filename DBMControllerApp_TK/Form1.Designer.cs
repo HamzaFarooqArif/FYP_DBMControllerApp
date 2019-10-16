@@ -40,12 +40,15 @@
             this.tb_fps2 = new System.Windows.Forms.TextBox();
             this.cb_camList2 = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btn_Board = new System.Windows.Forms.Button();
             this.btn_filter2 = new System.Windows.Forms.Button();
             this.btn_filter1 = new System.Windows.Forms.Button();
-            this.btn_Board = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btn_orientation = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tb_fps1
@@ -78,6 +81,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -173,6 +177,16 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // btn_Board
+            // 
+            this.btn_Board.Location = new System.Drawing.Point(99, 71);
+            this.btn_Board.Name = "btn_Board";
+            this.btn_Board.Size = new System.Drawing.Size(75, 23);
+            this.btn_Board.TabIndex = 2;
+            this.btn_Board.Text = "Show Board";
+            this.btn_Board.UseVisualStyleBackColor = true;
+            this.btn_Board.Click += new System.EventHandler(this.btn_Board_Click);
+            // 
             // btn_filter2
             // 
             this.btn_filter2.Location = new System.Drawing.Point(148, 30);
@@ -193,15 +207,26 @@
             this.btn_filter1.UseVisualStyleBackColor = true;
             this.btn_filter1.Click += new System.EventHandler(this.btn_filter1_Click);
             // 
-            // btn_Board
+            // tabPage3
             // 
-            this.btn_Board.Location = new System.Drawing.Point(99, 71);
-            this.btn_Board.Name = "btn_Board";
-            this.btn_Board.Size = new System.Drawing.Size(75, 23);
-            this.btn_Board.TabIndex = 2;
-            this.btn_Board.Text = "Show Board";
-            this.btn_Board.UseVisualStyleBackColor = true;
-            this.btn_Board.Click += new System.EventHandler(this.btn_Board_Click);
+            this.tabPage3.Controls.Add(this.btn_orientation);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(392, 254);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btn_orientation
+            // 
+            this.btn_orientation.Location = new System.Drawing.Point(102, 99);
+            this.btn_orientation.Name = "btn_orientation";
+            this.btn_orientation.Size = new System.Drawing.Size(114, 23);
+            this.btn_orientation.TabIndex = 0;
+            this.btn_orientation.Text = "Orientation Settings";
+            this.btn_orientation.UseVisualStyleBackColor = true;
+            this.btn_orientation.Click += new System.EventHandler(this.btn_orientation_Click);
             // 
             // Form1
             // 
@@ -216,6 +241,7 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -237,6 +263,8 @@
         private System.Windows.Forms.Button btn_filter2;
         private System.Windows.Forms.Button btn_Save;
         private System.Windows.Forms.Button btn_Board;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button btn_orientation;
     }
 }
 

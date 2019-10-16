@@ -238,5 +238,17 @@ namespace DBMControllerApp_TK
         {
             CentralClass.getInstance().showBoard = !CentralClass.getInstance().showBoard;
         }
+
+        private void btn_orientation_Click(object sender, EventArgs e)
+        {
+            if(OrientationForm.getInstance().Visible)
+            {
+                OrientationForm.getInstance().Hide();
+            }
+            else
+            {
+                OrientationForm.getInstance().Show();
+            }
+        }
     }
 }
