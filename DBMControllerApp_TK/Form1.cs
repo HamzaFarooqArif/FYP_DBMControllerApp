@@ -39,8 +39,12 @@ namespace DBMControllerApp_TK
 
             cb_camList1.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_camList2.DropDownStyle = ComboBoxStyle.DropDownList;
+
             cb_camList1.DataSource = getCameraList();
             cb_camList2.DataSource = getCameraList();
+
+            tb_fps1.Text = Properties.Settings.Default.Cam1FPS.ToString();
+            tb_fps2.Text = Properties.Settings.Default.Cam2FPS.ToString();
 
             Application.Idle += idleEvent;
         }
@@ -173,12 +177,15 @@ namespace DBMControllerApp_TK
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
-            AddOrUpdateAppSettings("upper1H", "123");
-
-            //ConfigurationManager.AppSettings.Remove("upper1H");
-            //ConfigurationManager.AppSettings.Add("upper1H", CentralClass.getInstance().upper1.H.ToString());
+            DialogResult dialog = dialog = MessageBox.Show("Are you sure you want to save settings?", "Save Settings", MessageBoxButtons.YesNo);
+            if (dialog == DialogResult.Yes)
+            {
+                Properties.Settings.Default.Cam1FPS = Int32.Parse(tb_fps1.Text);
+                Properties.Settings.Default.Cam2FPS = Int32.Parse(tb_fps2.Text);
+                Properties.Settings.Default.Save();
+                MessageBox.Show("Settings Saved");
+            }
             
-            MessageBox.Show(ConfigurationManager.AppSettings["upper1H"]); 
         }
 
         public void AddOrUpdateAppSettings(string key, string value)

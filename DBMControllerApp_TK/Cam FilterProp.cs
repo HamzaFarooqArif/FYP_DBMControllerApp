@@ -250,5 +250,39 @@ namespace DBMControllerApp_TK
                 Hide();
             }
         }
+
+        private void btn_SaveSettings_Click(object sender, EventArgs e)
+        {
+            DialogResult dialog = dialog = MessageBox.Show("Are you sure you want to save settings?", "Save Settings", MessageBoxButtons.YesNo);
+            if (dialog == DialogResult.Yes)
+            {
+                if (formIdx == 0)
+                {
+                    Properties.Settings.Default.upper1H = Int32.Parse(tb_HueU.Text);
+                    Properties.Settings.Default.upper1S = Int32.Parse(tb_SatU.Text);
+                    Properties.Settings.Default.upper1V = Int32.Parse(tb_ValU.Text);
+
+                    Properties.Settings.Default.lower1H = Int32.Parse(tb_HueL.Text);
+                    Properties.Settings.Default.lower1S = Int32.Parse(tb_SatL.Text);
+                    Properties.Settings.Default.lower1V = Int32.Parse(tb_ValU.Text);
+
+                    Properties.Settings.Default.Save();
+                }
+                else if(formIdx == 1)
+                {
+                    Properties.Settings.Default.upper2H = Int32.Parse(tb_HueU.Text);
+                    Properties.Settings.Default.upper2S = Int32.Parse(tb_SatU.Text);
+                    Properties.Settings.Default.upper2V = Int32.Parse(tb_ValU.Text);
+
+                    Properties.Settings.Default.lower2H = Int32.Parse(tb_HueL.Text);
+                    Properties.Settings.Default.lower2S = Int32.Parse(tb_SatL.Text);
+                    Properties.Settings.Default.lower2V = Int32.Parse(tb_ValU.Text);
+
+                    Properties.Settings.Default.Save();
+                }
+                
+                MessageBox.Show("Settings Saved");
+            }
+        }
     }
 }

@@ -40,21 +40,21 @@ namespace DBMControllerApp_TK.Utilities
             upper2 = new Hsv();
             lower2 = new Hsv();
 
-            upper1.H = Convert.ToDouble(ConfigurationManager.AppSettings["upper1H"]);
-            upper1.S = Convert.ToDouble(ConfigurationManager.AppSettings["upper1S"]);
-            upper1.V = Convert.ToDouble(ConfigurationManager.AppSettings["upper1V"]);
+            upper1.H = Properties.Settings.Default.upper1H;
+            upper1.S = Properties.Settings.Default.upper1S;
+            upper1.V = Properties.Settings.Default.upper1V;
 
-            lower1.H = Convert.ToDouble(ConfigurationManager.AppSettings["lower1H"]);
-            lower1.S = Convert.ToDouble(ConfigurationManager.AppSettings["lower1S"]);
-            lower1.V = Convert.ToDouble(ConfigurationManager.AppSettings["lower1V"]);
+            lower1.H = Properties.Settings.Default.lower1H;
+            lower1.S = Properties.Settings.Default.lower1S;
+            lower1.V = Properties.Settings.Default.upper1V;
 
-            upper2.H = Convert.ToDouble(ConfigurationManager.AppSettings["upper2H"]);
-            upper2.S = Convert.ToDouble(ConfigurationManager.AppSettings["upper2S"]);
-            upper2.V = Convert.ToDouble(ConfigurationManager.AppSettings["upper2V"]);
+            upper2.H = Properties.Settings.Default.upper2H;
+            upper2.S = Properties.Settings.Default.upper2S;
+            upper2.V = Properties.Settings.Default.upper2V;
 
-            lower2.H = Convert.ToDouble(ConfigurationManager.AppSettings["lower2H"]);
-            lower2.S = Convert.ToDouble(ConfigurationManager.AppSettings["lower2S"]);
-            lower2.V = Convert.ToDouble(ConfigurationManager.AppSettings["lower2V"]);
+            lower2.H = Properties.Settings.Default.lower2H;
+            lower2.S = Properties.Settings.Default.lower2S;
+            lower2.V = Properties.Settings.Default.lower2V;
 
         }
     }

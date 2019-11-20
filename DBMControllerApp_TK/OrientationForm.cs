@@ -31,6 +31,10 @@ namespace DBMControllerApp_TK
         {
             InitializeComponent();
 
+            trk_X.Value = (int)Properties.Settings.Default.Yaw;
+            trk_Y.Value = (int)Properties.Settings.Default.Pitch;
+            trk_Z.Value = (int)Properties.Settings.Default.Roll;
+            
             BindingSource ports = new BindingSource();
             ports.DataSource = SerialPort.GetPortNames().ToList();
             cb_SerialList.DataSource = ports;
@@ -113,6 +117,20 @@ namespace DBMControllerApp_TK
             {
                 e.Cancel = true;
                 Hide();
+            }
+        }
+
+        private void btn_Save_Click(object sender, EventArgs e)
+        {
+            DialogResult dialog = dialog = MessageBox.Show("Are you sure you want to save settings?", "Save Settings", MessageBoxButtons.YesNo);
+            if (dialog == DialogResult.Yes)
+            {
+                Properties.Settings.Default.Yaw = trk_X.Value;
+                Properties.Settings.Default.Pitch = trk_Y.Value;
+                Properties.Settings.Default.Roll = trk_Z.Value;
+                Properties.Settings.Default.Save();
+
+                MessageBox.Show("Settings Saved");
             }
         }
     }

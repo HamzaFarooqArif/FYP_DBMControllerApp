@@ -57,7 +57,7 @@
             this.tb_fps1.Name = "tb_fps1";
             this.tb_fps1.Size = new System.Drawing.Size(100, 20);
             this.tb_fps1.TabIndex = 0;
-            this.tb_fps1.Text = "30";
+            this.tb_fps1.Text = "0";
             // 
             // cb_camList1
             // 
@@ -110,9 +110,9 @@
             // 
             // btn_Save
             // 
-            this.btn_Save.Location = new System.Drawing.Point(309, 223);
+            this.btn_Save.Location = new System.Drawing.Point(286, 223);
             this.btn_Save.Name = "btn_Save";
-            this.btn_Save.Size = new System.Drawing.Size(75, 23);
+            this.btn_Save.Size = new System.Drawing.Size(98, 23);
             this.btn_Save.TabIndex = 8;
             this.btn_Save.Text = "Save Settings";
             this.btn_Save.UseVisualStyleBackColor = true;
@@ -154,7 +154,7 @@
             this.tb_fps2.Name = "tb_fps2";
             this.tb_fps2.Size = new System.Drawing.Size(100, 20);
             this.tb_fps2.TabIndex = 4;
-            this.tb_fps2.Text = "30";
+            this.tb_fps2.Text = "0";
             // 
             // cb_camList2
             // 

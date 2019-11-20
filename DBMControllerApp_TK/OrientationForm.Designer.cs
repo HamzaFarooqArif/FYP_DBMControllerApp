@@ -39,6 +39,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.btn_Save = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trk_X)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_Y)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_Z)).BeginInit();
@@ -117,11 +118,22 @@
             this.textBox4.Size = new System.Drawing.Size(75, 20);
             this.textBox4.TabIndex = 8;
             // 
+            // btn_Save
+            // 
+            this.btn_Save.Location = new System.Drawing.Point(174, 237);
+            this.btn_Save.Name = "btn_Save";
+            this.btn_Save.Size = new System.Drawing.Size(98, 23);
+            this.btn_Save.TabIndex = 9;
+            this.btn_Save.Text = "Save Settings";
+            this.btn_Save.UseVisualStyleBackColor = true;
+            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
+            // 
             // OrientationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 255);
+            this.ClientSize = new System.Drawing.Size(284, 272);
+            this.Controls.Add(this.btn_Save);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
@@ -154,5 +166,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button btn_Save;
     }
 }

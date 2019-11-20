@@ -43,6 +43,7 @@
             this.tb_ValL = new System.Windows.Forms.TextBox();
             this.rtb_L = new System.Windows.Forms.RichTextBox();
             this.lbl_Heading = new System.Windows.Forms.Label();
+            this.btn_SaveSettings = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trk_HueU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_SatU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_ValU)).BeginInit();
@@ -178,11 +179,22 @@
             this.lbl_Heading.TabIndex = 14;
             this.lbl_Heading.Text = "Form Heading";
             // 
+            // btn_SaveSettings
+            // 
+            this.btn_SaveSettings.Location = new System.Drawing.Point(290, 314);
+            this.btn_SaveSettings.Name = "btn_SaveSettings";
+            this.btn_SaveSettings.Size = new System.Drawing.Size(97, 23);
+            this.btn_SaveSettings.TabIndex = 15;
+            this.btn_SaveSettings.Text = "Save Settings";
+            this.btn_SaveSettings.UseVisualStyleBackColor = true;
+            this.btn_SaveSettings.Click += new System.EventHandler(this.btn_SaveSettings_Click);
+            // 
             // Cam_FilterProp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(399, 349);
+            this.Controls.Add(this.btn_SaveSettings);
             this.Controls.Add(this.lbl_Heading);
             this.Controls.Add(this.rtb_L);
             this.Controls.Add(this.tb_ValL);
@@ -230,5 +242,6 @@
         private System.Windows.Forms.TextBox tb_ValL;
         private System.Windows.Forms.RichTextBox rtb_L;
         private System.Windows.Forms.Label lbl_Heading;
+        private System.Windows.Forms.Button btn_SaveSettings;
     }
 }
