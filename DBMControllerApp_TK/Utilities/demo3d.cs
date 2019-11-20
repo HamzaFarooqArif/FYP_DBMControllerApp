@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using System.IO.Ports;
+using DBMControllerApp_TK.Utilities;
 
 namespace DBMControllerApp_TK
 {
@@ -62,12 +63,14 @@ namespace DBMControllerApp_TK
             GL.Rotate(xRot, 1.0f, 0.0f, 0.0f);
             GL.Rotate(yRot, 0.0f, 1.0f, 0.0f);
             GL.Rotate(zRot, 0.0f, 0.0f, 1.0f);
+            
+            calibX = MouseUtility.simplifyAngle(rotateCAx + xRot - 180);
+            calibY = MouseUtility.simplifyAngle(rotateCAy + yRot);
+            calibZ = MouseUtility.simplifyAngle(rotateCAz + zRot);
 
-            calibX = rotateCAx + xRot - 180;
-            calibY = rotateCAy + yRot;
-            calibZ = rotateCAz + zRot;
 
-            if (calibX < -180) calibX += 360;
+
+            //if (calibX < ) calibX += 360;
 
             //GL.Rotate(xRot, 1.0f, 0.0f, 0.0f);
             //GL.Rotate(yRot, 0.0f, 1.0f, 0.0f);

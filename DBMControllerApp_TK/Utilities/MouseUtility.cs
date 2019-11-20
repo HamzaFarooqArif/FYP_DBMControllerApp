@@ -337,5 +337,13 @@ namespace DBMControllerApp_TK.Utilities
         {
             return (value - fromSource) / (toSource - fromSource) * (toTarget - fromTarget) + fromTarget;
         }
+
+        public static double simplifyAngle(double angle)
+        {
+            if (angle >= 360) return angle - 360;
+            if (angle <= -360) return angle + 360;
+            if (angle <= 0) return angle + 360;
+            return angle;
+        }
     }
 }
