@@ -62,6 +62,7 @@
             this.Controls.Add(this.imageBox1);
             this.Name = "Cam1_Preview";
             this.Text = "Cam1_Preview";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Cam1_Preview_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).EndInit();
             this.ResumeLayout(false);
 

@@ -250,5 +250,14 @@ namespace DBMControllerApp_TK
                 OrientationForm.getInstance().Show();
             }
         }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dialog = dialog = MessageBox.Show("Are you sure you want to close the application?", "Exit", MessageBoxButtons.YesNo);
+            if (dialog == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
     }
 }

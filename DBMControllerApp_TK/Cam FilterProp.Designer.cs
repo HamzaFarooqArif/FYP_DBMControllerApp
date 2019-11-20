@@ -200,6 +200,7 @@
             this.Controls.Add(this.trk_HueU);
             this.Name = "Cam_FilterProp";
             this.Text = "Cam_FilterProp";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Cam_FilterProp_FormClosing);
             this.Load += new System.EventHandler(this.Cam1_FilterProp_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trk_HueU)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_SatU)).EndInit();

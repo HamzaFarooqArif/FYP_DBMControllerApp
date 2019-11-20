@@ -106,5 +106,14 @@ namespace DBMControllerApp_TK
         {
             demo3d.rotateCAz = trk_Z.Value;
         }
+
+        private void OrientationForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
+        }
     }
 }

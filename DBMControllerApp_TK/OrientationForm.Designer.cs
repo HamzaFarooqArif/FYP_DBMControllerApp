@@ -133,6 +133,7 @@
             this.Controls.Add(this.btn_Start);
             this.Name = "OrientationForm";
             this.Text = "OrientationForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OrientationForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.trk_X)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_Y)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_Z)).EndInit();

@@ -241,5 +241,14 @@ namespace DBMControllerApp_TK
                 CentralClass.getInstance().lower2 = lower;
             }
         }
+
+        private void Cam_FilterProp_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
+        }
     }
 }

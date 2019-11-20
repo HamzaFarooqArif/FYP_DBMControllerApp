@@ -141,5 +141,14 @@ namespace DBMControllerApp_TK
                 MouseUtility.getInstance(1).idx--;
             }
         }
+
+        private void Cam2_Preview_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
+        }
     }
 }
