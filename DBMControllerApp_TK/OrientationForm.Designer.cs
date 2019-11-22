@@ -44,6 +44,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tb_XOff = new System.Windows.Forms.TextBox();
+            this.tb_YOff = new System.Windows.Forms.TextBox();
+            this.tb_ZOff = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.trk_X)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_Y)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_Z)).BeginInit();
@@ -76,28 +83,28 @@
             // 
             // trk_X
             // 
-            this.trk_X.Location = new System.Drawing.Point(15, 190);
+            this.trk_X.Location = new System.Drawing.Point(29, 209);
             this.trk_X.Maximum = 360;
             this.trk_X.Name = "trk_X";
-            this.trk_X.Size = new System.Drawing.Size(260, 45);
+            this.trk_X.Size = new System.Drawing.Size(174, 45);
             this.trk_X.TabIndex = 3;
             this.trk_X.ValueChanged += new System.EventHandler(this.trk_X_ValueChanged);
             // 
             // trk_Y
             // 
-            this.trk_Y.Location = new System.Drawing.Point(15, 241);
+            this.trk_Y.Location = new System.Drawing.Point(29, 251);
             this.trk_Y.Maximum = 360;
             this.trk_Y.Name = "trk_Y";
-            this.trk_Y.Size = new System.Drawing.Size(260, 45);
+            this.trk_Y.Size = new System.Drawing.Size(174, 45);
             this.trk_Y.TabIndex = 4;
             this.trk_Y.ValueChanged += new System.EventHandler(this.trk_Y_ValueChanged);
             // 
             // trk_Z
             // 
-            this.trk_Z.Location = new System.Drawing.Point(15, 292);
+            this.trk_Z.Location = new System.Drawing.Point(29, 293);
             this.trk_Z.Maximum = 360;
             this.trk_Z.Name = "trk_Z";
-            this.trk_Z.Size = new System.Drawing.Size(260, 45);
+            this.trk_Z.Size = new System.Drawing.Size(174, 45);
             this.trk_Z.TabIndex = 5;
             this.trk_Z.ValueChanged += new System.EventHandler(this.trk_Z_ValueChanged);
             // 
@@ -168,11 +175,78 @@
             this.label4.TabIndex = 13;
             this.label4.Text = "Z";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 209);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(14, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "X";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(9, 251);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(14, 13);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Y";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(9, 292);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(14, 13);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Z";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(9, 193);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(40, 13);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "Offsets";
+            // 
+            // tb_XOff
+            // 
+            this.tb_XOff.Location = new System.Drawing.Point(209, 209);
+            this.tb_XOff.Name = "tb_XOff";
+            this.tb_XOff.Size = new System.Drawing.Size(72, 20);
+            this.tb_XOff.TabIndex = 18;
+            this.tb_XOff.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_XOff_KeyDown);
+            // 
+            // tb_YOff
+            // 
+            this.tb_YOff.Location = new System.Drawing.Point(209, 251);
+            this.tb_YOff.Name = "tb_YOff";
+            this.tb_YOff.Size = new System.Drawing.Size(72, 20);
+            this.tb_YOff.TabIndex = 19;
+            this.tb_YOff.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_YOff_KeyDown);
+            // 
+            // tb_ZOff
+            // 
+            this.tb_ZOff.Location = new System.Drawing.Point(209, 293);
+            this.tb_ZOff.Name = "tb_ZOff";
+            this.tb_ZOff.Size = new System.Drawing.Size(72, 20);
+            this.tb_ZOff.TabIndex = 20;
+            this.tb_ZOff.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_ZOff_KeyDown);
+            // 
             // OrientationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(327, 367);
+            this.ClientSize = new System.Drawing.Size(293, 367);
+            this.Controls.Add(this.tb_ZOff);
+            this.Controls.Add(this.tb_YOff);
+            this.Controls.Add(this.tb_XOff);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -215,5 +289,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox tb_XOff;
+        private System.Windows.Forms.TextBox tb_YOff;
+        private System.Windows.Forms.TextBox tb_ZOff;
     }
 }

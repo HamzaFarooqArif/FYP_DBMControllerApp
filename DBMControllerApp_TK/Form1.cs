@@ -185,7 +185,6 @@ namespace DBMControllerApp_TK
                 Properties.Settings.Default.Save();
                 MessageBox.Show("Settings Saved");
             }
-            
         }
 
         public void AddOrUpdateAppSettings(string key, string value)

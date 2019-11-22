@@ -34,7 +34,11 @@ namespace DBMControllerApp_TK
             trk_X.Value = (int)Properties.Settings.Default.Yaw;
             trk_Y.Value = (int)Properties.Settings.Default.Pitch;
             trk_Z.Value = (int)Properties.Settings.Default.Roll;
-            
+
+            tb_XOff.Text = trk_X.Value.ToString();
+            tb_YOff.Text = trk_Y.Value.ToString();
+            tb_ZOff.Text = trk_Z.Value.ToString();
+
             BindingSource ports = new BindingSource();
             ports.DataSource = SerialPort.GetPortNames().ToList();
             cb_SerialList.DataSource = ports;
@@ -99,16 +103,19 @@ namespace DBMControllerApp_TK
         private void trk_X_ValueChanged(object sender, EventArgs e)
         {
             demo3d.rotateCAx = trk_X.Value;
+            tb_XOff.Text = trk_X.Value.ToString();
         }
 
         private void trk_Y_ValueChanged(object sender, EventArgs e)
         {
             demo3d.rotateCAy = trk_Y.Value;
+            tb_YOff.Text = trk_Y.Value.ToString();
         }
 
         private void trk_Z_ValueChanged(object sender, EventArgs e)
         {
             demo3d.rotateCAz = trk_Z.Value;
+            tb_ZOff.Text = trk_Z.Value.ToString();
         }
 
         private void OrientationForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -131,6 +138,30 @@ namespace DBMControllerApp_TK
                 Properties.Settings.Default.Save();
 
                 MessageBox.Show("Settings Saved");
+            }
+        }
+
+        private void tb_XOff_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode.ToString().Equals("Return"))
+            {
+                trk_X.Value = Int32.Parse(tb_XOff.Text);
+            }
+        }
+
+        private void tb_YOff_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode.ToString().Equals("Return"))
+            {
+                trk_Y.Value = Int32.Parse(tb_YOff.Text);
+            }
+        }
+
+        private void tb_ZOff_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode.ToString().Equals("Return"))
+            {
+                trk_Z.Value = Int32.Parse(tb_ZOff.Text);
             }
         }
     }
