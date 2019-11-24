@@ -50,31 +50,36 @@ namespace DBMControllerApp_TK
             GL.MatrixMode(MatrixMode.Modelview);
         }
 
+        
+
         void renderF(object o, EventArgs e)
         {
             GL.LoadIdentity();
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.Translate(0.0f, 0.0f, 45.0f);
 
-            GL.Rotate((float)rotateCAx, 1.0f, 0.0f, 0.0f);
-            GL.Rotate((float)rotateCAy, 0.0f, 1.0f, 0.0f);
-            GL.Rotate((float)rotateCAz, 0.0f, 0.0f, 1.0f);
+            GL.Rotate(rotateCAx, new Vector3d(1, 0, 0));
+            GL.Rotate(rotateCAy, new Vector3d(0, 1, 0));
+            GL.Rotate(rotateCAz, new Vector3d(0, 0, 1));
 
-            GL.Rotate(xRot, 1.0f, 0.0f, 0.0f);
-            GL.Rotate(yRot, 0.0f, 1.0f, 0.0f);
-            GL.Rotate(zRot, 0.0f, 0.0f, 1.0f);
+            GL.Rotate(xRot, new Vector3d(1, 0, 0));
+            GL.Rotate(yRot, new Vector3d(0, 1, 0));
+            //GL.Rotate(zRot, new Vector3d(0, 0, 1));
+
+            Matrix4 currentModelView;
+            GL.GetFloat(GetPName.ModelviewMatrix, out currentModelView);
+            Quaternion q = currentModelView.ExtractRotation();
+            const double epsi = 0.0001;
+            double y = 2.0 * (q.Y * q.Z + q.W * q.X);
+            double x = q.W * q.W - q.X * q.X - q.Y * q.Y + q.Z * q.Z;
+            double pitch = (Math.Abs(q.X) < epsi && Math.Abs(q.Y) < epsi) ? 2.0 * Math.Atan2(q.X, q.W) : Math.Atan2(y, x);
+            double yaw = Math.Asin(Math.Min(Math.Max(-2.0 * (q.X * q.Z - q.W * q.Y), -1.0), 1.0));
+            double roll = Math.Atan2(2.0 * (q.X * q.Y + q.W * q.Z), q.W * q.W + q.X * q.X - q.Y * q.Y - q.Z * q.Z);
             
-            calibX = MouseUtility.simplifyAngle(rotateCAx + xRot - 180);
-            calibY = MouseUtility.simplifyAngle(rotateCAy + yRot);
-            calibZ = MouseUtility.simplifyAngle(rotateCAz + zRot);
-
-
-
-            //if (calibX < ) calibX += 360;
-
-            //GL.Rotate(xRot, 1.0f, 0.0f, 0.0f);
-            //GL.Rotate(yRot, 0.0f, 1.0f, 0.0f);
-            //GL.Rotate(zRot, 0.0f, 0.0f, 1.0f);
+            Vector3 calibVect = MouseUtility.ToEulerAngles(q);
+            calibX = calibVect.Z;
+            calibY = calibVect.Y;
+            calibZ = calibVect.X;
 
             //Draw Tip------------------------------------------------------------
             float triangleHeight = 30f;

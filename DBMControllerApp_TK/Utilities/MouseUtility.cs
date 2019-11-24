@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using OpenTK;
 
 namespace DBMControllerApp_TK.Utilities
 {
@@ -345,5 +346,200 @@ namespace DBMControllerApp_TK.Utilities
             if (angle <= 0) return angle + 360;
             return angle;
         }
+
+        public static double Map(double value, double fromSource, double toSource, double fromTarget, double toTarget)
+        {
+            return (value - fromSource) / (toSource - fromSource) * (toTarget - fromTarget) + fromTarget;
+        }
+        public static double MapAngleToPoint(double angle, int paramLength)
+        {
+            double result = 0;
+
+            if (0 <= angle && angle <= 90)
+            {
+                result = (int)MouseUtility.Map(angle, 0, 90, 0, paramLength / 2);
+            }
+            else if(90 < angle && angle <= 180)
+            {
+                result = (int)MouseUtility.Map(angle, 90, 180, paramLength / 2, 0);
+            }
+            else if (180 < angle && angle <= 270)
+            {
+                result = (int)MouseUtility.Map(angle, 180, 270, 0, -(paramLength / 2));
+            }
+            else if (270 < angle && angle <= 360)
+            {
+                result = (int)MouseUtility.Map(angle, 270, 360, -(paramLength / 2), 0);
+            }
+
+            return result;
+        }
+
+        public static Point getRotatedPointZ(int x, int y, double angle)
+        {
+            int rX = (int)(x * Math.Cos((Math.PI / 180) * angle)) + (int)(y * Math.Sin((Math.PI / 180) * angle));
+            int rY = (int)(-x * Math.Sin((Math.PI / 180) * angle)) + (int)(y * Math.Cos((Math.PI / 180) * angle));
+
+            return new Point(rX, rY);
+        }
+
+        public static Point getRotatedPointY(int x, int y, double angle)
+        {
+            int rX = (int)(x * Math.Cos((Math.PI / 180) * angle));
+            int rY = y;
+
+            return new Point(rX, rY);
+        }
+
+        public static Point getRotatedPointX(int x, int y, double angle)
+        {
+            int rX = x;
+            int rY = (int)(y * Math.Cos((Math.PI / 180) * angle));
+
+            return new Point(rX, rY);
+        }
+
+        public static Tuple<double ,double ,double> getActualEuler(double coordX, double coordY, double coordZ, double xRot, double yRot, double zRot)
+        {
+            double resultX;
+            double resultY;
+            double resultZ;
+
+            double xRotRadian = coordX * (Math.PI / 180);
+            double yRotRadian = coordY * (Math.PI / 180);
+            double zRotRadian = coordZ * (Math.PI / 180);
+
+            //X-Rotation
+            resultX = xRot;
+            resultY = yRot * Math.Cos(xRotRadian) - zRot * Math.Sin(xRotRadian);
+            resultZ = yRot * Math.Sin(xRotRadian) + zRot * Math.Cos(xRotRadian);
+
+            //Y-Rotation
+            resultX = resultX * Math.Cos(yRotRadian) + resultZ * Math.Sin(yRotRadian);
+            resultY = resultY;
+            resultZ = -resultX * Math.Sin(yRotRadian) + resultZ * Math.Cos(yRotRadian);
+
+            //Z-Rotation
+            resultX = resultX * Math.Cos(zRotRadian) + resultY * Math.Sin(zRotRadian);
+            resultY = -resultX * Math.Sin(zRotRadian) + resultY * Math.Cos(zRotRadian);
+            resultZ = resultZ;
+
+            Tuple<double, double, double> result = new Tuple<double, double, double>(resultX, resultY, resultZ);
+            return result;
+        }
+
+        public static Vector3d rotateX(double x, double y, double z, double angle)
+        {
+            double theta = angle * (Math.PI / 180);
+
+            double newX = x;
+            double newY = y * Math.Cos(theta) - z * Math.Sin(theta);
+            double newZ = y * Math.Sin(theta) + z * Math.Cos(theta);
+
+            Vector3d result = new Vector3d(newX, newY, newZ);
+
+            return result;
+        }
+        public static Vector3d rotateX(Vector3d vector, double angle)
+        {
+            return rotateX(vector.X, vector.Y, vector.Z, angle);
+        }
+
+        public static Vector3d rotateY(double x, double y, double z, double angle)
+        {
+            double theta = angle * (Math.PI / 180);
+
+            double newX = x * Math.Cos(theta) + z * Math.Sin(theta);
+            double newY = y;
+            double newZ = -x * Math.Sin(theta) + z * Math.Cos(theta);
+
+            Vector3d result = new Vector3d(newX, newY, newZ);
+
+            return result;
+        }
+        public static Vector3d rotateY(Vector3d vector, double angle)
+        {
+            return rotateY(vector.X, vector.Y, vector.Z, angle);
+        }
+
+        public static Vector3d rotateZ(double x, double y, double z, double angle)
+        {
+            double theta = angle * (Math.PI / 180);
+
+            double newX = x * Math.Cos(theta) + y * Math.Sin(theta);
+            double newY = -x * Math.Sin(theta) + y * Math.Cos(theta);
+            double newZ = z;
+
+            Vector3d result = new Vector3d(newX, newY, newZ);
+
+            return result;
+        }
+
+        public static Vector3d rotateZ(Vector3d vector, double angle)
+        {
+            return rotateZ(vector.X, vector.Y, vector.Z, angle);
+        }
+
+        public static Tuple<Point, Point> drawVector(Vector3d vector, int boardWidth, int boardHeight)
+        {
+            Point origin = new Point(boardWidth/2, boardHeight/2);
+            Point point = new Point((int)(vector.X + boardWidth / 2), (int)(-vector.Y + boardHeight / 2));
+            return new Tuple<Point, Point>(origin, point);
+        }
+
+        public static Vector3 ToEulerAngles(Quaternion q)
+        {
+            // Store the Euler angles in radians
+            Vector3 pitchYawRoll = new Vector3();
+
+            double sqw = q.W * q.W;
+            double sqx = q.X * q.X;
+            double sqy = q.Y * q.Y;
+            double sqz = q.Z * q.Z;
+
+            // If quaternion is normalised the unit is one, otherwise it is the correction factor
+            double unit = sqx + sqy + sqz + sqw;
+            double test = q.X * q.Y + q.Z * q.W;
+
+            if (test > 0.4999f * unit)                              // 0.4999f OR 0.5f - EPSILON
+            {
+                // Singularity at north pole
+                pitchYawRoll.Y = 2f * (float)Math.Atan2(q.X, q.W);  // Yaw
+                pitchYawRoll.X = (float)Math.PI * 0.5f;                         // Pitch
+                pitchYawRoll.Z = 0f;                                // Roll
+                return pitchYawRoll;
+            }
+            else if (test < -0.4999f * unit)                        // -0.4999f OR -0.5f + EPSILON
+            {
+                // Singularity at south pole
+                pitchYawRoll.Y = -2f * (float)Math.Atan2(q.X, q.W); // Yaw
+                pitchYawRoll.X = -(float)Math.PI * 0.5f;                        // Pitch
+                pitchYawRoll.Z = 0f;                                // Roll
+                return pitchYawRoll;
+            }
+            else
+            {
+                pitchYawRoll.Y = (float)Math.Atan2(2f * q.Y * q.W - 2f * q.X * q.Z, sqx - sqy - sqz + sqw);       // Yaw
+                pitchYawRoll.X = (float)Math.Asin(2f * test / unit);                                             // Pitch
+                pitchYawRoll.Z = (float)Math.Atan2(2f * q.X * q.W - 2f * q.Y * q.Z, -sqx + sqy - sqz + sqw);      // Roll
+            }
+
+            pitchYawRoll.X *= (float)(180 / Math.PI);
+            pitchYawRoll.Y *= (float)(180 / Math.PI);
+            pitchYawRoll.Z *= (float)(180 / Math.PI);
+
+            pitchYawRoll.X = (float)simplifyAngle(pitchYawRoll.X);
+            pitchYawRoll.Y = (float)simplifyAngle(pitchYawRoll.Y);
+            pitchYawRoll.Z = (float)simplifyAngle(pitchYawRoll.Z);
+
+            return pitchYawRoll;
+        }
+
+        //public static Vector3d rotate(Vector3d vector, double angle, Vector3d direction)
+        //{
+        //    direction.Normalize();
+
+
+        //}
     }
 }

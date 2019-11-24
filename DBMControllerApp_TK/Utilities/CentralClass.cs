@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using ColorMine.ColorSpaces;
 using System.Configuration;
+using System.Drawing;
 
 namespace DBMControllerApp_TK.Utilities
 {
@@ -17,6 +18,8 @@ namespace DBMControllerApp_TK.Utilities
         public Hsv lower1;
         public Hsv upper2;
         public Hsv lower2;
+
+        public Point tipOffset; 
 
         public int boardWidth;
         public int boardHeight;
@@ -39,6 +42,7 @@ namespace DBMControllerApp_TK.Utilities
             lower1 = new Hsv();
             upper2 = new Hsv();
             lower2 = new Hsv();
+            tipOffset = new Point(0, 0);
 
             upper1.H = Properties.Settings.Default.upper1H;
             upper1.S = Properties.Settings.Default.upper1S;
@@ -55,7 +59,6 @@ namespace DBMControllerApp_TK.Utilities
             lower2.H = Properties.Settings.Default.lower2H;
             lower2.S = Properties.Settings.Default.lower2S;
             lower2.V = Properties.Settings.Default.lower2V;
-
         }
     }
 }
