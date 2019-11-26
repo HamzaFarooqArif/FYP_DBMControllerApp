@@ -12,6 +12,7 @@ using System.Threading;
 using System.IO.Ports;
 using OpenTK;
 using DirectShowLib;
+using DBMControllerApp_TK.Utilities;
 
 namespace DBMControllerApp_TK
 {
@@ -19,6 +20,7 @@ namespace DBMControllerApp_TK
     {
         private delegate void SetTextDeleg(string text);
         private static OrientationForm instance;
+        GameWindow window;
         public static OrientationForm getInstance()
         {
             if(instance == null)
@@ -47,10 +49,25 @@ namespace DBMControllerApp_TK
             t1.Start();
         }
 
+        public void makeVisible(bool visibility)
+        {
+            if(visibility)
+            {
+                CentralClass.getInstance().showTipOffset = true;
+                CentralClass.getInstance().showDemo3d = true;
+            }
+            else
+            {
+                CentralClass.getInstance().showTipOffset = false;
+                CentralClass.getInstance().showDemo3d = false;
+            }
+        }
+
         void demo()
         {
-            GameWindow window = new GameWindow(500, 500);
+            window = new GameWindow(500, 500);
             demo3d gm = new demo3d(window);
+            
         }
 
         private void btn_Start_Click(object sender, EventArgs e)
@@ -82,21 +99,24 @@ namespace DBMControllerApp_TK
             string[] data = text.Split('\t');
 
 
-            if (data.Length == 4 && !data[1].Equals("nan") && !data[2].Equals("nan") && !data[3].Equals("nan"))
+            if (data.Length == 5 && !data[1].Equals("nan") && !data[2].Equals("nan") && !data[3].Equals("nan") && !data[4].Equals("nan"))
             {
                 textBox1.Text = text;
 
                 double rotX = (-double.Parse(data[3], System.Globalization.CultureInfo.InvariantCulture));
                 double rotY = (-double.Parse(data[2], System.Globalization.CultureInfo.InvariantCulture));
                 double rotZ = -double.Parse(data[1], System.Globalization.CultureInfo.InvariantCulture);
+                double pressure = double.Parse(data[4], System.Globalization.CultureInfo.InvariantCulture);
 
                 demo3d.zRot = rotZ;
                 demo3d.xRot = rotX;
                 demo3d.yRot = rotY;
+                demo3d.pressure = pressure; 
 
                 textBox2.Text = demo3d.calibX.ToString();
                 textBox3.Text = demo3d.calibY.ToString();
                 textBox4.Text = demo3d.calibZ.ToString();
+                textBox5.Text = demo3d.pressure.ToString();
             }
         }
 
@@ -124,6 +144,7 @@ namespace DBMControllerApp_TK
             {
                 e.Cancel = true;
                 Hide();
+                makeVisible(false);
             }
         }
 
@@ -163,6 +184,11 @@ namespace DBMControllerApp_TK
             {
                 trk_Z.Value = Int32.Parse(tb_ZOff.Text);
             }
+        }
+
+        private void OrientationForm_Activated(object sender, EventArgs e)
+        {
+            makeVisible(true);
         }
     }
 }

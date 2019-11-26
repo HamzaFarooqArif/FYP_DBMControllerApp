@@ -1,6 +1,6 @@
 ﻿namespace DBMControllerApp_TK
 {
-    partial class Form1
+    partial class IndexForm
     {
         /// <summary>
         /// Required designer variable.
@@ -45,6 +45,8 @@
             this.btn_filter1 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btn_orientation = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -53,16 +55,16 @@
             // 
             // tb_fps1
             // 
-            this.tb_fps1.Location = new System.Drawing.Point(8, 33);
+            this.tb_fps1.Location = new System.Drawing.Point(41, 36);
             this.tb_fps1.Name = "tb_fps1";
-            this.tb_fps1.Size = new System.Drawing.Size(100, 20);
+            this.tb_fps1.Size = new System.Drawing.Size(88, 20);
             this.tb_fps1.TabIndex = 0;
             this.tb_fps1.Text = "0";
             // 
             // cb_camList1
             // 
             this.cb_camList1.FormattingEnabled = true;
-            this.cb_camList1.Location = new System.Drawing.Point(6, 6);
+            this.cb_camList1.Location = new System.Drawing.Point(8, 6);
             this.cb_camList1.Name = "cb_camList1";
             this.cb_camList1.Size = new System.Drawing.Size(121, 21);
             this.cb_camList1.TabIndex = 1;
@@ -92,6 +94,8 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.btn_Save);
             this.tabPage1.Controls.Add(this.btn_preview2);
             this.tabPage1.Controls.Add(this.tbn_preview1);
@@ -120,7 +124,7 @@
             // 
             // btn_preview2
             // 
-            this.btn_preview2.Location = new System.Drawing.Point(140, 88);
+            this.btn_preview2.Location = new System.Drawing.Point(181, 88);
             this.btn_preview2.Name = "btn_preview2";
             this.btn_preview2.Size = new System.Drawing.Size(75, 23);
             this.btn_preview2.TabIndex = 7;
@@ -130,7 +134,7 @@
             // 
             // tbn_preview1
             // 
-            this.tbn_preview1.Location = new System.Drawing.Point(8, 88);
+            this.tbn_preview1.Location = new System.Drawing.Point(11, 88);
             this.tbn_preview1.Name = "tbn_preview1";
             this.tbn_preview1.Size = new System.Drawing.Size(75, 23);
             this.tbn_preview1.TabIndex = 6;
@@ -140,7 +144,7 @@
             // 
             // btn_Capture2
             // 
-            this.btn_Capture2.Location = new System.Drawing.Point(140, 59);
+            this.btn_Capture2.Location = new System.Drawing.Point(181, 59);
             this.btn_Capture2.Name = "btn_Capture2";
             this.btn_Capture2.Size = new System.Drawing.Size(75, 23);
             this.btn_Capture2.TabIndex = 5;
@@ -150,16 +154,16 @@
             // 
             // tb_fps2
             // 
-            this.tb_fps2.Location = new System.Drawing.Point(140, 33);
+            this.tb_fps2.Location = new System.Drawing.Point(211, 36);
             this.tb_fps2.Name = "tb_fps2";
-            this.tb_fps2.Size = new System.Drawing.Size(100, 20);
+            this.tb_fps2.Size = new System.Drawing.Size(91, 20);
             this.tb_fps2.TabIndex = 4;
             this.tb_fps2.Text = "0";
             // 
             // cb_camList2
             // 
             this.cb_camList2.FormattingEnabled = true;
-            this.cb_camList2.Location = new System.Drawing.Point(140, 6);
+            this.cb_camList2.Location = new System.Drawing.Point(181, 6);
             this.cb_camList2.Name = "cb_camList2";
             this.cb_camList2.Size = new System.Drawing.Size(121, 21);
             this.cb_camList2.TabIndex = 3;
@@ -179,11 +183,11 @@
             // 
             // btn_Board
             // 
-            this.btn_Board.Location = new System.Drawing.Point(99, 71);
+            this.btn_Board.Location = new System.Drawing.Point(79, 70);
             this.btn_Board.Name = "btn_Board";
-            this.btn_Board.Size = new System.Drawing.Size(75, 23);
+            this.btn_Board.Size = new System.Drawing.Size(116, 23);
             this.btn_Board.TabIndex = 2;
-            this.btn_Board.Text = "Show Board";
+            this.btn_Board.Text = "Show Board Toggle";
             this.btn_Board.UseVisualStyleBackColor = true;
             this.btn_Board.Click += new System.EventHandler(this.btn_Board_Click);
             // 
@@ -228,6 +232,24 @@
             this.btn_orientation.UseVisualStyleBackColor = true;
             this.btn_orientation.Click += new System.EventHandler(this.btn_orientation_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(27, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "FPS";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(178, 39);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(27, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "FPS";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -266,6 +288,8 @@
         private System.Windows.Forms.Button btn_Board;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button btn_orientation;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
 

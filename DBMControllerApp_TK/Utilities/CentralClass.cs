@@ -19,7 +19,9 @@ namespace DBMControllerApp_TK.Utilities
         public Hsv upper2;
         public Hsv lower2;
 
-        public Point tipOffset; 
+        public Point tipOffset;
+        public bool showTipOffset;
+        public bool showDemo3d;
 
         public int boardWidth;
         public int boardHeight;
@@ -38,6 +40,8 @@ namespace DBMControllerApp_TK.Utilities
             boardWidth = 480;
             boardHeight = 320;
             showBoard = false;
+            showTipOffset = false;
+            showDemo3d = false;
             upper1 = new Hsv();
             lower1 = new Hsv();
             upper2 = new Hsv();

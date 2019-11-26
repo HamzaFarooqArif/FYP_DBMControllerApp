@@ -20,22 +20,22 @@ using OpenTK;
 
 namespace DBMControllerApp_TK
 {
-    public partial class Form1 : Form
+    public partial class IndexForm : Form
     {
-        private static Form1 instance;
+        private static IndexForm instance;
 
         public static VideoCapture capture0;
         public static VideoCapture capture1;
 
-        public static Form1 getInstance()
+        public static IndexForm getInstance()
         {
             if(instance == null)
             {
-                instance = new Form1();
+                instance = new IndexForm();
             }
             return instance;
         }
-        private Form1()
+        private IndexForm()
         {
             InitializeComponent();
 
@@ -108,16 +108,7 @@ namespace DBMControllerApp_TK
                 MessageBox.Show("Start the capture device first");
                 return;
             }
-            if(Cam1_Preview.getInstance().Visible)
-            {
-                Cam1_Preview.getInstance().Hide();
-            }
-            else
-            {
-                Cam1_Preview.getInstance().Show();
-            }
-
-            
+            Cam1_Preview.getInstance().Show();
         }
 
         private void btn_preview2_Click(object sender, EventArgs e)
@@ -127,14 +118,7 @@ namespace DBMControllerApp_TK
                 MessageBox.Show("Start the capture device first");
                 return;
             }
-            if (Cam2_Preview.getInstance().Visible)
-            {
-                Cam2_Preview.getInstance().Hide();
-            }
-            else
-            {
-                Cam2_Preview.getInstance().Show();
-            }
+            Cam2_Preview.getInstance().Show();
         }
 
         private void btn_filter1_Click(object sender, EventArgs e)
@@ -144,14 +128,7 @@ namespace DBMControllerApp_TK
                 MessageBox.Show("Start the capture device first");
                 return;
             }
-            if (Cam_FilterProp.getInstance(0).Visible)
-            {
-                Cam_FilterProp.getInstance(0).Hide();
-            }
-            else
-            {
-                Cam_FilterProp.getInstance(0).Show();
-            }
+            Cam_FilterProp.getInstance(0).Show();
         }
 
         private void btn_filter2_Click(object sender, EventArgs e)
@@ -161,14 +138,7 @@ namespace DBMControllerApp_TK
                 MessageBox.Show("Start the capture device first");
                 return;
             }
-            if (Cam_FilterProp.getInstance(1).Visible)
-            {
-                Cam_FilterProp.getInstance(1).Hide();
-            }
-            else
-            {
-                Cam_FilterProp.getInstance(1).Show();
-            }
+            Cam_FilterProp.getInstance(1).Show();
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -214,7 +184,6 @@ namespace DBMControllerApp_TK
         private void idleEvent(object sender, EventArgs arg)
         {
             drawBoard();
-            
             drawOrientationPlane();
         }
 
@@ -225,14 +194,7 @@ namespace DBMControllerApp_TK
 
         private void btn_orientation_Click(object sender, EventArgs e)
         {
-            if(OrientationForm.getInstance().Visible)
-            {
-                OrientationForm.getInstance().Hide();
-            }
-            else
-            {
-                OrientationForm.getInstance().Show();
-            }
+            OrientationForm.getInstance().Show();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -300,7 +262,14 @@ namespace DBMControllerApp_TK
             CentralClass.getInstance().tipOffset.X = (int)markerVect.X;
             CentralClass.getInstance().tipOffset.Y = (int)markerVect.Y;
 
-            CvInvoke.Imshow("OrientationPlane", boardFrame);
+            if(CentralClass.getInstance().showTipOffset)
+            {
+                CvInvoke.Imshow("OrientationPlane", boardFrame);
+            }
+            else
+            {
+                CvInvoke.DestroyWindow("OrientationPlane");
+            }
         }
     }
 }

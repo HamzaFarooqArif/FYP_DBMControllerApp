@@ -51,6 +51,8 @@
             this.tb_XOff = new System.Windows.Forms.TextBox();
             this.tb_YOff = new System.Windows.Forms.TextBox();
             this.tb_ZOff = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trk_X)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_Y)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_Z)).BeginInit();
@@ -235,11 +237,29 @@
             this.tb_ZOff.TabIndex = 20;
             this.tb_ZOff.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_ZOff_KeyDown);
             // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(209, 94);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(63, 20);
+            this.textBox5.TabIndex = 21;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(151, 97);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(48, 13);
+            this.label9.TabIndex = 22;
+            this.label9.Text = "Pressure";
+            // 
             // OrientationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(293, 367);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.textBox5);
             this.Controls.Add(this.tb_ZOff);
             this.Controls.Add(this.tb_YOff);
             this.Controls.Add(this.tb_XOff);
@@ -263,6 +283,7 @@
             this.Controls.Add(this.btn_Start);
             this.Name = "OrientationForm";
             this.Text = "OrientationForm";
+            this.Activated += new System.EventHandler(this.OrientationForm_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OrientationForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.trk_X)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_Y)).EndInit();
@@ -296,5 +317,7 @@
         private System.Windows.Forms.TextBox tb_XOff;
         private System.Windows.Forms.TextBox tb_YOff;
         private System.Windows.Forms.TextBox tb_ZOff;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label9;
     }
 }

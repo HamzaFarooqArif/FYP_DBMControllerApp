@@ -37,7 +37,7 @@ namespace DBMControllerApp_TK
 
         public void processFrame(object sender, EventArgs arg)
         {
-            Form1.capture1.Retrieve(frame, 0);
+            IndexForm.capture1.Retrieve(frame, 0);
             Image<Bgr, Byte> frame1 = frame.Clone().ToImage<Bgr, byte>();
             frame1._SmoothGaussian(11);
             Image<Hsv, byte> frame1HSV = frame1.Convert<Hsv, byte>();

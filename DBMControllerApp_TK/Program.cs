@@ -16,7 +16,7 @@ namespace DBMControllerApp_TK
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(Form1.getInstance());
+            Application.Run(IndexForm.getInstance());
         }
     }
 }
