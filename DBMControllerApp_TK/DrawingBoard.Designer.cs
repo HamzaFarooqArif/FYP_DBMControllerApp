@@ -51,6 +51,7 @@
             this.Controls.Add(this.imageBox1);
             this.Name = "DrawingBoard";
             this.Text = "DrawingBoard";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DrawingBoard_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).EndInit();
             this.ResumeLayout(false);
 

@@ -57,6 +57,13 @@ namespace DBMControllerApp_TK.Utilities
             }
         }
 
+        public bool insertPoint(Point p)
+        {
+            return insertPoint(p.X, p.Y);
+        }
+
+
+
         public List<Point> getEndPoints(int rows, int cols, Point p1, Point p2)
         {
             Point p = new Point(-1, -1);
@@ -480,10 +487,10 @@ namespace DBMControllerApp_TK.Utilities
             return rotateZ(vector.X, vector.Y, vector.Z, angle);
         }
 
-        public static Tuple<Point, Point> drawVector(Vector3d vector, int boardWidth, int boardHeight)
+        public static Tuple<Point, Point> drawVector(Vector3d vector, int oX, int oY)
         {
-            Point origin = new Point(boardWidth/2, boardHeight/2);
-            Point point = new Point((int)(vector.X + boardWidth / 2), (int)(-vector.Y + boardHeight / 2));
+            Point origin = new Point(oX, oY);
+            Point point = new Point((int)(vector.X + oX), (int)(-vector.Y + oY));
             return new Tuple<Point, Point>(origin, point);
         }
 
@@ -535,11 +542,20 @@ namespace DBMControllerApp_TK.Utilities
             return pitchYawRoll;
         }
 
-        //public static Vector3d rotate(Vector3d vector, double angle, Vector3d direction)
-        //{
-        //    direction.Normalize();
+        public static Point findIntercept(Point l1p1, Point l1p2, Point l2p1, Point l2p2)
+        {
+            double m1 = (l1p2.Y - l1p1.Y) / (l1p2.X - l1p1.X);
+            double c1 = (l1p2.Y - m1 * l1p2.X);
 
+            double m2 = (l2p2.Y - l2p1.Y) / (l2p2.X - l2p1.X);
+            double c2 = (l2p2.Y - m2 * l2p2.X);
 
-        //}
+            int x = (int)((c2 - c1) / (m1 - m2));
+            int y = (int)(m1 * x + c1);
+
+            Point result = new Point(x, y);
+
+            return result;
+        }
     }
 }

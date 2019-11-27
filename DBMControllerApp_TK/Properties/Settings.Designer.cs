@@ -226,5 +226,77 @@ namespace DBMControllerApp_TK.Properties {
                 this["Roll"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point Cam1_Point1 {
+            get {
+                return ((global::System.Drawing.Point)(this["Cam1_Point1"]));
+            }
+            set {
+                this["Cam1_Point1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point Cam1_Point2 {
+            get {
+                return ((global::System.Drawing.Point)(this["Cam1_Point2"]));
+            }
+            set {
+                this["Cam1_Point2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point Cam1_Point3 {
+            get {
+                return ((global::System.Drawing.Point)(this["Cam1_Point3"]));
+            }
+            set {
+                this["Cam1_Point3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point Cam2_Point1 {
+            get {
+                return ((global::System.Drawing.Point)(this["Cam2_Point1"]));
+            }
+            set {
+                this["Cam2_Point1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point Cam2_Point2 {
+            get {
+                return ((global::System.Drawing.Point)(this["Cam2_Point2"]));
+            }
+            set {
+                this["Cam2_Point2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point Cam2_Point3 {
+            get {
+                return ((global::System.Drawing.Point)(this["Cam2_Point3"]));
+            }
+            set {
+                this["Cam2_Point3"] = value;
+            }
+        }
     }
 }

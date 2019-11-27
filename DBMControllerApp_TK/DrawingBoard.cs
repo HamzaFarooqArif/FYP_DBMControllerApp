@@ -73,5 +73,14 @@ namespace DBMControllerApp_TK
         {
             isTipDown = !isTipDown;
         }
+
+        private void DrawingBoard_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
+        }
     }
 }

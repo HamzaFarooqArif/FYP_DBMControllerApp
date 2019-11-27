@@ -31,8 +31,15 @@ namespace DBMControllerApp_TK
         public Cam2_Preview()
         {
             InitializeComponent();
-
             frame = new Mat();
+
+            placePoints();
+        }
+        private void placePoints()
+        {
+            if (MouseUtility.getInstance(1).points.Length > 0) MouseUtility.getInstance(1).insertPoint(Properties.Settings.Default.Cam2_Point1);
+            if (MouseUtility.getInstance(1).points.Length > 1) MouseUtility.getInstance(1).insertPoint(Properties.Settings.Default.Cam2_Point2);
+            if (MouseUtility.getInstance(1).points.Length > 2) MouseUtility.getInstance(1).insertPoint(Properties.Settings.Default.Cam2_Point3);
         }
 
         public void processFrame(object sender, EventArgs arg)
@@ -148,6 +155,24 @@ namespace DBMControllerApp_TK
             {
                 e.Cancel = true;
                 Hide();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (MouseUtility.getInstance(1).idx < 3)
+            {
+                MessageBox.Show("Insufficient Points!");
+                return;
+            }
+            DialogResult dialog = dialog = MessageBox.Show("Are you sure you want to save settings?", "Save Settings", MessageBoxButtons.YesNo);
+            if (dialog == DialogResult.Yes)
+            {
+                Properties.Settings.Default.Cam2_Point1 = MouseUtility.getInstance(1).points[0];
+                Properties.Settings.Default.Cam2_Point2 = MouseUtility.getInstance(1).points[1];
+                Properties.Settings.Default.Cam2_Point3 = MouseUtility.getInstance(1).points[2];
+                Properties.Settings.Default.Save();
+                MessageBox.Show("Settings Saved");
             }
         }
     }
