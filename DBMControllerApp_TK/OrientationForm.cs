@@ -87,6 +87,10 @@ namespace DBMControllerApp_TK
                 btn_Start.Text = "Start Serial";
                 cb_SerialList.Enabled = true;
             }
+            else
+            {
+                MessageBox.Show("Please select a valid COM port");
+            }
         }
         private void ProcessSerialFrame(object sender, EventArgs arg)
         {

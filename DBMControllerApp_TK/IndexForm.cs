@@ -49,8 +49,21 @@ namespace DBMControllerApp_TK
             tb_fps2.Text = Properties.Settings.Default.Cam2FPS.ToString();
 
             Application.Idle += idleEvent;
+
+            initiateAllForms();
+
         }
-        
+
+        private void initiateAllForms()
+        {
+            Cam1_Preview.getInstance().Hide();
+            Cam2_Preview.getInstance().Hide();
+            Cam_FilterProp.getInstance(0).Hide();
+            Cam_FilterProp.getInstance(1).Hide();
+            OrientationForm.getInstance().Hide();
+            DrawingBoard.getInstance().Hide();
+        }
+
         private void btn_Capture1_Click(object sender, EventArgs e)
         {
             if(cb_camList2.Enabled == false && cb_camList1.SelectedIndex == cb_camList2.SelectedIndex)
