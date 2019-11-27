@@ -92,6 +92,12 @@
     <Compile Include="Cam2 Preview.Designer.cs">
       <DependentUpon>Cam2 Preview.cs</DependentUpon>
     </Compile>
+    <Compile Include="DrawingBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DrawingBoard.Designer.cs">
+      <DependentUpon>DrawingBoard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\demo3d.cs" />
     <Compile Include="IndexForm.cs">
       <SubType>Form</SubType>
@@ -117,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Cam2 Preview.resx">
       <DependentUpon>Cam2 Preview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingBoard.resx">
+      <DependentUpon>DrawingBoard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IndexForm.resx">
       <DependentUpon>IndexForm.cs</DependentUpon>

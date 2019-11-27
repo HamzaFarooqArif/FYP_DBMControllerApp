@@ -271,5 +271,12 @@ namespace DBMControllerApp_TK
                 CvInvoke.DestroyWindow("OrientationPlane");
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DrawingBoard.getInstance().Show();
+        }
+
+        
     }
 }
