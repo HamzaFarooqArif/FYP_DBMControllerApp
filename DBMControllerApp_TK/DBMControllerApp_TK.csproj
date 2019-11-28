@@ -114,6 +114,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\CentralClass.cs" />
+    <Compile Include="Utilities\FileHandling.cs" />
     <Compile Include="Utilities\MouseUtility.cs" />
     <EmbeddedResource Include="Cam FilterProp.resx">
       <DependentUpon>Cam FilterProp.cs</DependentUpon>

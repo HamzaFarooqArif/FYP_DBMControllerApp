@@ -41,8 +41,8 @@ namespace DBMControllerApp_TK
             int boardHeight = CentralClass.getInstance().boardHeight;
             boardFrame = new Image<Bgr, byte>(boardWidth, boardHeight);
 
-            CvInvoke.Line(boardFrame, new Point(0, boardHeight / 2), new Point(boardWidth, boardHeight / 2), new MCvScalar(255, 255, 255));
-            CvInvoke.Line(boardFrame, new Point(boardWidth / 2, 0), new Point(boardWidth / 2, boardHeight), new MCvScalar(255, 255, 255));
+            //CvInvoke.Line(boardFrame, new Point(0, boardHeight / 2), new Point(boardWidth, boardHeight / 2), new MCvScalar(255, 255, 255));
+            //CvInvoke.Line(boardFrame, new Point(boardWidth / 2, 0), new Point(boardWidth / 2, boardHeight), new MCvScalar(255, 255, 255));
 
         }
 
@@ -53,12 +53,10 @@ namespace DBMControllerApp_TK
 
         private void draw()
         {
-            
             if(isTipDown)
             {
                 CvInvoke.Line(boardFrame, previousPosition, currentPosition, new MCvScalar(0, 0, 255), 5);
             }
-
             imageBox1.Image = boardFrame;
         }
 
