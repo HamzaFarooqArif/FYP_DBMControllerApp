@@ -41,9 +41,12 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btn_StartRecord = new System.Windows.Forms.Button();
             this.btn_PlayPause = new System.Windows.Forms.Button();
-            this.btn_Stop = new System.Windows.Forms.Button();
             this.trk_Seek = new System.Windows.Forms.TrackBar();
             this.txt_Seek = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btn_Marker = new System.Windows.Forms.Button();
+            this.btn_duster = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_thickness)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_Seek)).BeginInit();
@@ -138,23 +141,13 @@
             // 
             // btn_PlayPause
             // 
-            this.btn_PlayPause.Location = new System.Drawing.Point(12, 426);
+            this.btn_PlayPause.Location = new System.Drawing.Point(93, 426);
             this.btn_PlayPause.Name = "btn_PlayPause";
             this.btn_PlayPause.Size = new System.Drawing.Size(75, 23);
             this.btn_PlayPause.TabIndex = 13;
-            this.btn_PlayPause.Text = "Start Play";
+            this.btn_PlayPause.Text = "Play";
             this.btn_PlayPause.UseVisualStyleBackColor = true;
             this.btn_PlayPause.Click += new System.EventHandler(this.btn_PlayPause_Click);
-            // 
-            // btn_Stop
-            // 
-            this.btn_Stop.Location = new System.Drawing.Point(93, 426);
-            this.btn_Stop.Name = "btn_Stop";
-            this.btn_Stop.Size = new System.Drawing.Size(75, 23);
-            this.btn_Stop.TabIndex = 14;
-            this.btn_Stop.Text = "Stop";
-            this.btn_Stop.UseVisualStyleBackColor = true;
-            this.btn_Stop.Click += new System.EventHandler(this.btn_Stop_Click);
             // 
             // trk_Seek
             // 
@@ -170,14 +163,57 @@
             this.txt_Seek.Size = new System.Drawing.Size(63, 20);
             this.txt_Seek.TabIndex = 16;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 426);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "Pause";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btn_Marker
+            // 
+            this.btn_Marker.Location = new System.Drawing.Point(310, 373);
+            this.btn_Marker.Name = "btn_Marker";
+            this.btn_Marker.Size = new System.Drawing.Size(75, 23);
+            this.btn_Marker.TabIndex = 18;
+            this.btn_Marker.Text = "Marker";
+            this.btn_Marker.UseVisualStyleBackColor = true;
+            this.btn_Marker.Click += new System.EventHandler(this.btn_Marker_Click);
+            // 
+            // btn_duster
+            // 
+            this.btn_duster.Location = new System.Drawing.Point(407, 373);
+            this.btn_duster.Name = "btn_duster";
+            this.btn_duster.Size = new System.Drawing.Size(75, 23);
+            this.btn_duster.TabIndex = 19;
+            this.btn_duster.Text = "Duster";
+            this.btn_duster.UseVisualStyleBackColor = true;
+            this.btn_duster.Click += new System.EventHandler(this.btn_duster_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(407, 402);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 20;
+            this.button2.Text = "Clear";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // DrawingBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(506, 483);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btn_duster);
+            this.Controls.Add(this.btn_Marker);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.txt_Seek);
             this.Controls.Add(this.trk_Seek);
-            this.Controls.Add(this.btn_Stop);
             this.Controls.Add(this.btn_PlayPause);
             this.Controls.Add(this.btn_StartRecord);
             this.Controls.Add(this.trk_thickness);
@@ -213,8 +249,11 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btn_StartRecord;
         private System.Windows.Forms.Button btn_PlayPause;
-        private System.Windows.Forms.Button btn_Stop;
         private System.Windows.Forms.TrackBar trk_Seek;
         private System.Windows.Forms.TextBox txt_Seek;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_Marker;
+        private System.Windows.Forms.Button btn_duster;
+        private System.Windows.Forms.Button button2;
     }
 }

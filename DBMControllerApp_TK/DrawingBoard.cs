@@ -31,6 +31,7 @@ namespace DBMControllerApp_TK
         private bool isPlaying;
         private bool isPaused;
         private int playingIndex;
+        //private bool isBoardErased;
         public static DrawingBoard getInstance()
         {
             if(instance == null)
@@ -51,7 +52,7 @@ namespace DBMControllerApp_TK
             int boardHeight = CentralClass.getInstance().boardHeight;
             boardFrame = new Image<Bgr, byte>(boardWidth, boardHeight);
             thickness = 5;
-            color = Color.FromArgb(255, 0, 0);
+            color = Color.FromArgb(255, 255, 255);
             currentTick = 0;
             isTicked = false;
             dataFile = FileHandling.getInstance(@"C:\Users\Acer\Desktop\demo.txt");
@@ -59,6 +60,7 @@ namespace DBMControllerApp_TK
             isPlaying = false;
             playingIndex = 0;
             isPaused = false;
+            //isBoardErased = true;
 
             tipUp();
             rtb_Color.BackColor = color;
@@ -83,7 +85,7 @@ namespace DBMControllerApp_TK
 
         private void draw()
         {
-            if(isRecording)
+            if(isRecording && !isPaused)
             {
                 if (isTipDown > -1)
                 {
@@ -92,23 +94,47 @@ namespace DBMControllerApp_TK
                         if (isTipDown == 0)
                         {   
                             CvInvoke.Line(boardFrame, previousPosition, previousPosition, new MCvScalar(color.B, color.G, color.R), thickness);
+                            //if(isBoardErased)
+                            //{
+                            //    jsonObj obj1 = new jsonObj(0, CentralClass.getInstance().boardHeight/2, currentTick, CentralClass.getInstance().boardWidth/2, Color.FromArgb(0, 0, 0), 1);
+                            //    jsonObj obj2 = new jsonObj(CentralClass.getInstance().boardWidth, CentralClass.getInstance().boardHeight / 2, currentTick+1, CentralClass.getInstance().boardWidth/2, Color.FromArgb(0, 0, 0), 1);
+                            //    dataFile.objList.Add(obj1);
+                            //    dataFile.objList.Add(obj2);
+                            //}
+                            //else
+                            //{
+
+                            //}
                             jsonObj objA = new jsonObj(previousPosition.X, previousPosition.Y, currentTick, thickness, color, isTipDown);
                             dataFile.objList.Add(objA);
+                            //isBoardErased = false;
                             isTicked = false;
                             isTipDown = -1;
                         }
                         else
                         {
                             CvInvoke.Line(boardFrame, previousPosition, currentPosition, new MCvScalar(color.B, color.G, color.R), thickness);
+                            //if(isBoardErased)
+                            //{
+                            //    jsonObj obj1 = new jsonObj(0, CentralClass.getInstance().boardHeight / 2, currentTick, CentralClass.getInstance().boardWidth/2, Color.FromArgb(0, 0, 0), 1);
+                            //    jsonObj obj2 = new jsonObj(CentralClass.getInstance().boardWidth, CentralClass.getInstance().boardHeight / 2, currentTick+1, CentralClass.getInstance().boardWidth/2, Color.FromArgb(0, 0, 0), 1);
+                            //    dataFile.objList.Add(obj1);
+                            //    dataFile.objList.Add(obj2);
+                            //}
+                            //else
+                            //{
+
+                            //}
                             jsonObj obj = new jsonObj(currentPosition.X, currentPosition.Y, currentTick, thickness, color, isTipDown);
                             dataFile.objList.Add(obj);
+                            //isBoardErased = false;
                             isTicked = false;
                             previousPosition = currentPosition;
                         }
                     }
                 }
             }
-            else if(isPlaying)
+            else if(isPlaying && !isPaused)
             {
                 if(playingIndex >= dataFile.objList.Count)
                 {
@@ -134,25 +160,13 @@ namespace DBMControllerApp_TK
                     {
                         if (isTicked)
                         {
-                            //if (isTipDown == 1)
-                            //{
-                            //    isTipDown = -1;
-                            //    CvInvoke.Line(boardFrame, previousPosition, previousPosition, new MCvScalar(color.B, color.G, color.R), thickness);
-                            //    isTicked = false;
-                            //}
-                            //else
-                            //{
-                            //    CvInvoke.Line(boardFrame, previousPosition, currentPosition, new MCvScalar(color.B, color.G, color.R), thickness);
-                            //    isTicked = false;
-                            //    previousPosition = currentPosition;
-                            //}
                             CvInvoke.Line(boardFrame, previousPosition, currentPosition, new MCvScalar(obj.color.G, obj.color.B, obj.color.R), obj.thickness);
+                            //isBoardErased = false;
                             isTicked = false;
                             previousPosition = currentPosition;
                         }
                     }
                     playingIndex++;
-                    
                 }
             }
             else
@@ -220,18 +234,23 @@ namespace DBMControllerApp_TK
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            currentTick++;
-            isTicked = true;
+            if (!isPaused)
+            {
+                currentTick++;
+                isTicked = true;
+            }
         }
 
         private void btn_StartRecord_Click(object sender, EventArgs e)
         {
+            
             isRecording = !isRecording;
             isPlaying = false;
             isPaused = false;
             isTipDown = -1;
             if (isRecording)
             {
+                clearBoard();
                 dataFile.objList.Clear();
                 currentTick = 0;
                 timer1.Stop();
@@ -241,7 +260,6 @@ namespace DBMControllerApp_TK
                 
 
                 btn_PlayPause.Enabled = false;
-                btn_Stop.Enabled = false;
                 trk_Seek.Enabled = false;
                 txt_Seek.Enabled = false;
             }
@@ -253,7 +271,6 @@ namespace DBMControllerApp_TK
                 btn_StartRecord.ForeColor = Color.FromArgb(0, 0, 0);
                 
                 btn_PlayPause.Enabled = true;
-                btn_Stop.Enabled = true;
                 trk_Seek.Enabled = true;
                 txt_Seek.Enabled = true;
             }
@@ -273,35 +290,92 @@ namespace DBMControllerApp_TK
         private void btn_PlayPause_Click(object sender, EventArgs e)
         {
             tipUp();
-            if (isPlaying == false)
+            clearBoard();
+            if (!isPlaying)
             {
                 currentTick = 0;
                 timer1.Stop();
                 timer1.Start();
                 dataFile.loadFromFile();
                 isPlaying = true;
+                isPaused = false;
+                btn_PlayPause.Text = "Stop";
             }
-
-            isPaused = !isPaused;
-            if(isPaused)
+            else if(isPlaying)
             {
+                isPlaying = false;
+                isPaused = false;
+                tipUp();
+                playingIndex = 0;
+                btn_StartRecord.Enabled = true;
                 btn_PlayPause.Text = "Play";
-            }
-            else
-            {
-                btn_PlayPause.Text = "Pause";
-                btn_StartRecord.Enabled = false;
+                button1.Text = "Pause";
+                clearBoard();
             }
             
+            
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            playPause();
         }
 
-        private void btn_Stop_Click(object sender, EventArgs e)
+        private void playPause()
         {
-            isPlaying = false;
-            isPaused = false;
-            tipUp();
-            playingIndex = 0;
-            btn_StartRecord.Enabled = true;
+            if (isPlaying || isRecording)
+            {
+                isPaused = !isPaused;
+                isTipDown = -1;
+                if (isPaused)
+                {
+                    button1.Text = "Resume";
+                }
+                else
+                {
+                    button1.Text = "Pause";
+                }
+            }
+        }
+
+        private void btn_Marker_Click(object sender, EventArgs e)
+        {
+            color = Color.FromArgb(255, 255, 255);
+            rtb_Color.BackColor = color;
+            thickness = 5;
+            trk_thickness.Value = thickness;
+            tb_Thickness.Text = thickness.ToString();
+        }
+
+        private void btn_duster_Click(object sender, EventArgs e)
+        {
+            color = Color.FromArgb(0, 0, 0);
+            rtb_Color.BackColor = color;
+            thickness = 50;
+            trk_thickness.Value = thickness;
+            tb_Thickness.Text = thickness.ToString();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //isBoardErased = true;
+            clearBoard();
+        }
+
+        private void clearBoard()
+        {
+            if(!isPaused)
+            {
+                CvInvoke.Line(boardFrame, new Point(0, CentralClass.getInstance().boardHeight / 2), new Point(CentralClass.getInstance().boardWidth, CentralClass.getInstance().boardHeight / 2), new MCvScalar(0, 0, 0), CentralClass.getInstance().boardWidth);
+                if (isRecording)
+                {
+                    jsonObj obj1 = new jsonObj(0, CentralClass.getInstance().boardHeight / 2, currentTick, CentralClass.getInstance().boardWidth, Color.FromArgb(0, 0, 0), 1);
+                    jsonObj obj2 = new jsonObj(CentralClass.getInstance().boardWidth, CentralClass.getInstance().boardHeight / 2, currentTick + 1, CentralClass.getInstance().boardWidth, Color.FromArgb(0, 0, 0), 1);
+                    jsonObj obj3 = new jsonObj(CentralClass.getInstance().boardWidth, CentralClass.getInstance().boardHeight / 2, currentTick + 1, CentralClass.getInstance().boardWidth, Color.FromArgb(0, 0, 0), 0);
+                    dataFile.objList.Add(obj1);
+                    dataFile.objList.Add(obj2);
+                    dataFile.objList.Add(obj3);
+                }
+            }
         }
     }
 }
