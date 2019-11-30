@@ -7,63 +7,59 @@ using System.Threading.Tasks;
 
 namespace DBMControllerApp_TK.Utilities
 {
+    class jsonObj
+    {
+        public int x;
+        public int y;
+        public double time;
+        public int thickness;
+        public string color;
+
+        public jsonObj(int x, int y, double time, int thickness, string color)
+        {
+            this.x = x;
+            this.y = y;
+            this.time = time;
+            this.thickness = thickness;
+            this.color = color;
+        }
+    }
+
     class FileHandling
     {
+        private static FileHandling instance;
+        public List<jsonObj> objList;
         public string fullPath;
-        public StreamReader iFile;
-        public StreamWriter oFile;
-        public List<string> fileText;
-        public static FileHandling instance;
-        public static FileHandling getInstance()
+        public static FileHandling getInstance(string fullPath)
         {
-            if (instance == null) instance = new FileHandling();
+            if (instance == null) instance = new FileHandling(fullPath);
             return instance;
         }
-        
-        private FileHandling()
+        public FileHandling(string fullPath)
         {
-            //fullPath = @"C:\Users\Acer\Desktop\demo.txt";
+            objList = new List<jsonObj>();
+            this.fullPath = fullPath;
         }
-        public bool initialize(string path)
+        public bool loadFromFile()
         {
-            if (!File.Exists(path)) return false;
+            if (!File.Exists(fullPath)) return false;
 
-            fullPath = path;
-            iFile = new StreamReader(fullPath);
-            fileText = new List<string>();
-            int counter = 0;
-            string line;
-
-            while ((line = iFile.ReadLine()) != null)
+            string json;
+            using (StreamReader r = new StreamReader(fullPath))
             {
-                fileText.Add(line);
-                counter++;
+                json = r.ReadToEnd();
+                objList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<jsonObj>>(json);
             }
-            iFile.Close();
+
             return true;
         }
-        public string readLineAtIndex(int idx)
-        {
-            if (idx >= fileText.Count) return "Empty";
-            return fileText[idx];
-        }
-        public string writeLineAtEnd(string str)
-        {
-            oFile = File.AppendText(fullPath);
-            oFile.WriteLine(str);
-            oFile.Close();
-            return str;
-        }
-        public bool refresh()
+        public bool saveToFile()
         {
             if (!File.Exists(fullPath)) return false;
-            initialize(fullPath);
-            return true;
-        }
-        public bool clear()
-        {
-            if (!File.Exists(fullPath)) return false;
-            File.WriteAllText(fullPath, string.Empty);
+
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(objList.ToArray());
+            System.IO.File.WriteAllText(fullPath, json);
+
             return true;
         }
     }

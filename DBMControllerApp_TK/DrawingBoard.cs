@@ -21,6 +21,8 @@ namespace DBMControllerApp_TK
         private Point currentPosition;
         private Point previousPosition;
         private Image<Bgr, Byte> boardFrame;
+        private int thickness;
+        private Color color;
         public static DrawingBoard getInstance()
         {
             if(instance == null)
@@ -40,7 +42,12 @@ namespace DBMControllerApp_TK
             int boardWidth = CentralClass.getInstance().boardWidth;
             int boardHeight = CentralClass.getInstance().boardHeight;
             boardFrame = new Image<Bgr, byte>(boardWidth, boardHeight);
+            thickness = 5;
+            color = Color.FromArgb(255, 0, 0);
 
+            rtb_Color.BackColor = color;
+            tb_Thickness.Text = thickness.ToString();
+            trk_thickness.Value = thickness;
             //CvInvoke.Line(boardFrame, new Point(0, boardHeight / 2), new Point(boardWidth, boardHeight / 2), new MCvScalar(255, 255, 255));
             //CvInvoke.Line(boardFrame, new Point(boardWidth / 2, 0), new Point(boardWidth / 2, boardHeight), new MCvScalar(255, 255, 255));
 
@@ -55,7 +62,7 @@ namespace DBMControllerApp_TK
         {
             if(isTipDown)
             {
-                CvInvoke.Line(boardFrame, previousPosition, currentPosition, new MCvScalar(0, 0, 255), 5);
+                CvInvoke.Line(boardFrame, previousPosition, currentPosition, new MCvScalar(color.B, color.G, color.R), thickness);
             }
             imageBox1.Image = boardFrame;
         }
@@ -65,6 +72,9 @@ namespace DBMControllerApp_TK
             previousPosition = currentPosition;
             currentPosition.X = e.X;
             currentPosition.Y = e.Y;
+
+            tb_Position.Text = currentPosition.ToString();
+            rtb_Color.BackColor = color;
         }
 
         private void imageBox1_Click(object sender, EventArgs e)
@@ -78,6 +88,24 @@ namespace DBMControllerApp_TK
             {
                 e.Cancel = true;
                 Hide();
+            }
+        }
+
+        private void trk_thickness_ValueChanged(object sender, EventArgs e)
+        {
+            if(trk_thickness.Focused)
+            {
+                thickness = trk_thickness.Value;
+                tb_Thickness.Text = thickness.ToString();
+            }
+        }
+
+        private void rtb_Color_Click(object sender, EventArgs e)
+        {
+            if(colorDialog1.ShowDialog()==DialogResult.OK)
+            {
+                color = colorDialog1.Color;
+                rtb_Color.BackColor = color;
             }
         }
     }

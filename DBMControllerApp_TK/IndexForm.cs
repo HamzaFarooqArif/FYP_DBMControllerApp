@@ -52,7 +52,6 @@ namespace DBMControllerApp_TK
 
             initiateAllForms();
         }
-
         private void initiateAllForms()
         {
             Cam1_Preview.getInstance().Hide();
@@ -61,16 +60,6 @@ namespace DBMControllerApp_TK
             Cam_FilterProp.getInstance(1).Hide();
             OrientationForm.getInstance().Hide();
             DrawingBoard.getInstance().Hide();
-
-            //FileHandling.getInstance().initialize(@"C:\Users\Acer\Desktop\demo.txt");
-            //FileHandling.getInstance().clear();
-            //FileHandling.getInstance().writeLineAtEnd("A");
-            //FileHandling.getInstance().writeLineAtEnd("B");
-            //FileHandling.getInstance().writeLineAtEnd("C");
-            //FileHandling.getInstance().refresh();
-            //Console.WriteLine(FileHandling.getInstance().readLineAtIndex(0));
-            //Console.WriteLine(FileHandling.getInstance().readLineAtIndex(1));
-            //Console.WriteLine(FileHandling.getInstance().readLineAtIndex(2));
         }
 
         private void btn_Capture1_Click(object sender, EventArgs e)

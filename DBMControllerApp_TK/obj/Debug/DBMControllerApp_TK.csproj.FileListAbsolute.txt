@@ -71,3 +71,5 @@ C:\Users\Acer\documents\visual studio 2015\Projects\DBMControllerApp_TK\DBMContr
 C:\Users\Acer\documents\visual studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.OrientationForm.resources
 C:\Users\Acer\documents\visual studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.IndexForm.resources
 C:\Users\Acer\documents\visual studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.DrawingBoard.resources
+C:\Users\Acer\documents\visual studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Acer\documents\visual studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\Newtonsoft.Json.xml
