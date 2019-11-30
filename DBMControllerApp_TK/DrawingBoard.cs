@@ -1,6 +1,7 @@
 ﻿using DBMControllerApp_TK.Utilities;
 using Emgu.CV;
 using Emgu.CV.Structure;
+using Emgu.CV.UI;
 using OpenTK;
 using System;
 using System.Collections.Generic;
@@ -48,6 +49,9 @@ namespace DBMControllerApp_TK
             rtb_Color.BackColor = color;
             tb_Thickness.Text = thickness.ToString();
             trk_thickness.Value = thickness;
+
+            imageBox1.FunctionalMode = ImageBox.FunctionalModeOption.Minimum;
+            imageBox1.FunctionalMode = ImageBox.FunctionalModeOption.RightClickMenu;
             //CvInvoke.Line(boardFrame, new Point(0, boardHeight / 2), new Point(boardWidth, boardHeight / 2), new MCvScalar(255, 255, 255));
             //CvInvoke.Line(boardFrame, new Point(boardWidth / 2, 0), new Point(boardWidth / 2, boardHeight), new MCvScalar(255, 255, 255));
 
@@ -77,11 +81,6 @@ namespace DBMControllerApp_TK
             rtb_Color.BackColor = color;
         }
 
-        private void imageBox1_Click(object sender, EventArgs e)
-        {
-            isTipDown = !isTipDown;
-        }
-
         private void DrawingBoard_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
@@ -107,6 +106,16 @@ namespace DBMControllerApp_TK
                 color = colorDialog1.Color;
                 rtb_Color.BackColor = color;
             }
+        }
+
+        private void imageBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            isTipDown = true;
+        }
+
+        private void imageBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            isTipDown = false;
         }
     }
 }

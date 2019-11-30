@@ -49,8 +49,9 @@
             this.imageBox1.Size = new System.Drawing.Size(480, 320);
             this.imageBox1.TabIndex = 3;
             this.imageBox1.TabStop = false;
-            this.imageBox1.Click += new System.EventHandler(this.imageBox1_Click);
+            this.imageBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox1_MouseDown);
             this.imageBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox1_MouseMove);
+            this.imageBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox1_MouseUp);
             // 
             // rtb_Color
             // 
