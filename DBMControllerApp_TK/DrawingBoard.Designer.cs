@@ -38,8 +38,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.trk_thickness = new System.Windows.Forms.TrackBar();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btn_StartRecord = new System.Windows.Forms.Button();
+            this.btn_PlayPause = new System.Windows.Forms.Button();
+            this.btn_Stop = new System.Windows.Forms.Button();
+            this.trk_Seek = new System.Windows.Forms.TrackBar();
+            this.txt_Seek = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_thickness)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trk_Seek)).BeginInit();
             this.SuspendLayout();
             // 
             // imageBox1
@@ -114,11 +121,65 @@
             this.trk_thickness.Value = 1;
             this.trk_thickness.ValueChanged += new System.EventHandler(this.trk_thickness_ValueChanged);
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 50;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // btn_StartRecord
+            // 
+            this.btn_StartRecord.Location = new System.Drawing.Point(12, 397);
+            this.btn_StartRecord.Name = "btn_StartRecord";
+            this.btn_StartRecord.Size = new System.Drawing.Size(99, 23);
+            this.btn_StartRecord.TabIndex = 11;
+            this.btn_StartRecord.Text = "Start Recording";
+            this.btn_StartRecord.UseVisualStyleBackColor = true;
+            this.btn_StartRecord.Click += new System.EventHandler(this.btn_StartRecord_Click);
+            // 
+            // btn_PlayPause
+            // 
+            this.btn_PlayPause.Location = new System.Drawing.Point(12, 426);
+            this.btn_PlayPause.Name = "btn_PlayPause";
+            this.btn_PlayPause.Size = new System.Drawing.Size(75, 23);
+            this.btn_PlayPause.TabIndex = 13;
+            this.btn_PlayPause.Text = "Start Play";
+            this.btn_PlayPause.UseVisualStyleBackColor = true;
+            this.btn_PlayPause.Click += new System.EventHandler(this.btn_PlayPause_Click);
+            // 
+            // btn_Stop
+            // 
+            this.btn_Stop.Location = new System.Drawing.Point(93, 426);
+            this.btn_Stop.Name = "btn_Stop";
+            this.btn_Stop.Size = new System.Drawing.Size(75, 23);
+            this.btn_Stop.TabIndex = 14;
+            this.btn_Stop.Text = "Stop";
+            this.btn_Stop.UseVisualStyleBackColor = true;
+            this.btn_Stop.Click += new System.EventHandler(this.btn_Stop_Click);
+            // 
+            // trk_Seek
+            // 
+            this.trk_Seek.Location = new System.Drawing.Point(12, 451);
+            this.trk_Seek.Name = "trk_Seek";
+            this.trk_Seek.Size = new System.Drawing.Size(413, 45);
+            this.trk_Seek.TabIndex = 15;
+            // 
+            // txt_Seek
+            // 
+            this.txt_Seek.Location = new System.Drawing.Point(431, 451);
+            this.txt_Seek.Name = "txt_Seek";
+            this.txt_Seek.Size = new System.Drawing.Size(63, 20);
+            this.txt_Seek.TabIndex = 16;
+            // 
             // DrawingBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(506, 384);
+            this.ClientSize = new System.Drawing.Size(506, 483);
+            this.Controls.Add(this.txt_Seek);
+            this.Controls.Add(this.trk_Seek);
+            this.Controls.Add(this.btn_Stop);
+            this.Controls.Add(this.btn_PlayPause);
+            this.Controls.Add(this.btn_StartRecord);
             this.Controls.Add(this.trk_thickness);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tb_Position);
@@ -132,6 +193,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DrawingBoard_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_thickness)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trk_Seek)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,5 +210,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TrackBar trk_thickness;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btn_StartRecord;
+        private System.Windows.Forms.Button btn_PlayPause;
+        private System.Windows.Forms.Button btn_Stop;
+        private System.Windows.Forms.TrackBar trk_Seek;
+        private System.Windows.Forms.TextBox txt_Seek;
     }
 }

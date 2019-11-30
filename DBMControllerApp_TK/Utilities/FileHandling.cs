@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace DBMControllerApp_TK.Utilities
 {
@@ -13,15 +14,17 @@ namespace DBMControllerApp_TK.Utilities
         public int y;
         public double time;
         public int thickness;
-        public string color;
+        public Color color;
+        public int isTipDown;
 
-        public jsonObj(int x, int y, double time, int thickness, string color)
+        public jsonObj(int x, int y, double time, int thickness, Color color, int isTipDown)
         {
             this.x = x;
             this.y = y;
             this.time = time;
             this.thickness = thickness;
             this.color = color;
+            this.isTipDown = isTipDown;
         }
     }
 
@@ -33,6 +36,7 @@ namespace DBMControllerApp_TK.Utilities
         public static FileHandling getInstance(string fullPath)
         {
             if (instance == null) instance = new FileHandling(fullPath);
+            instance.loadFromFile();
             return instance;
         }
         public FileHandling(string fullPath)
