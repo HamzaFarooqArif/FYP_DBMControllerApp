@@ -164,6 +164,7 @@ namespace DBMControllerApp_TK
                             //isBoardErased = false;
                             isTicked = false;
                             previousPosition = currentPosition;
+                            tb_Position.Text = currentPosition.ToString();                            
                         }
                     }
                     playingIndex++;
@@ -186,12 +187,14 @@ namespace DBMControllerApp_TK
 
         private void imageBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            
-            currentPosition.X = e.X;
-            currentPosition.Y = e.Y;
+            if(!isPlaying)
+            {
+                currentPosition.X = e.X;
+                currentPosition.Y = e.Y;
 
-            tb_Position.Text = currentPosition.ToString();
-            rtb_Color.BackColor = color;
+                tb_Position.Text = currentPosition.ToString();
+                rtb_Color.BackColor = color;
+            }
         }
 
         private void DrawingBoard_FormClosing(object sender, FormClosingEventArgs e)
