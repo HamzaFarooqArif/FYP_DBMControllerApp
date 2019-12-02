@@ -18,6 +18,7 @@ namespace DBMControllerApp_TK
     public partial class DrawingBoard : Form
     {
         public static DrawingBoard instance;
+
         private int isTipDown;
         private Point currentPosition;
         private Point previousPosition;
@@ -25,13 +26,19 @@ namespace DBMControllerApp_TK
         private bool isTicked;
         private Image<Bgr, Byte> boardFrame;
         private int thickness;
+        private int defaultMarkerThickness;
+        private int defaultDusterThickness;
         private Color color;
+        private Color defaultMarkerColor;
+        private Color defaultDusterColor;
         private FileHandling dataFile;
         private bool isRecording;
         private bool isPlaying;
         private bool isPaused;
         private int playingIndex;
-        //private bool isBoardErased;
+        int boardWidth;
+        int boardHeight;
+
         public static DrawingBoard getInstance()
         {
             if(instance == null)
@@ -43,16 +50,23 @@ namespace DBMControllerApp_TK
         private DrawingBoard()
         {
             InitializeComponent();
+            initializeControls();
+            Application.Idle += idleEvent;
+        }
+
+        private void initializeControls()
+        {
             isTipDown = -1;
             currentPosition = new Point();
-
-            Application.Idle += idleEvent;
-
-            int boardWidth = CentralClass.getInstance().boardWidth;
-            int boardHeight = CentralClass.getInstance().boardHeight;
+            boardWidth = CentralClass.getInstance().boardWidth;
+            boardHeight = CentralClass.getInstance().boardHeight;
             boardFrame = new Image<Bgr, byte>(boardWidth, boardHeight);
-            thickness = 5;
-            color = Color.FromArgb(255, 255, 255);
+            defaultMarkerThickness = 5;
+            defaultDusterThickness = 50;
+            thickness = defaultMarkerThickness;
+            defaultMarkerColor = Color.FromArgb(255, 255, 255);
+            defaultDusterColor = Color.FromArgb(0, 0, 0);
+            color = defaultMarkerColor;
             currentTick = 0;
             isTicked = false;
             dataFile = FileHandling.getInstance(@"C:\Users\Acer\Desktop\demo.txt");
@@ -60,29 +74,23 @@ namespace DBMControllerApp_TK
             isPlaying = false;
             playingIndex = 0;
             isPaused = false;
-            //isBoardErased = true;
 
             tipUp();
             rtb_Color.BackColor = color;
             tb_Thickness.Text = thickness.ToString();
             trk_thickness.Value = thickness;
-
             imageBox1.FunctionalMode = ImageBox.FunctionalModeOption.Minimum;
             imageBox1.FunctionalMode = ImageBox.FunctionalModeOption.RightClickMenu;
-
             dataFile.objList.Clear();
-
             timer1.Start();
-            //CvInvoke.Line(boardFrame, new Point(0, boardHeight / 2), new Point(boardWidth, boardHeight / 2), new MCvScalar(255, 255, 255));
-            //CvInvoke.Line(boardFrame, new Point(boardWidth / 2, 0), new Point(boardWidth / 2, boardHeight), new MCvScalar(255, 255, 255));
 
+            trk_Seek.Enabled = false;
+            txt_Seek.ReadOnly = true;
         }
-
         private void idleEvent(object sender, EventArgs arg)
         {
             draw();
         }
-
         private void draw()
         {
             if(isRecording && !isPaused)
@@ -94,45 +102,22 @@ namespace DBMControllerApp_TK
                         if (isTipDown == 0)
                         {   
                             CvInvoke.Line(boardFrame, previousPosition, previousPosition, new MCvScalar(color.B, color.G, color.R), thickness);
-                            //if(isBoardErased)
-                            //{
-                            //    jsonObj obj1 = new jsonObj(0, CentralClass.getInstance().boardHeight/2, currentTick, CentralClass.getInstance().boardWidth/2, Color.FromArgb(0, 0, 0), 1);
-                            //    jsonObj obj2 = new jsonObj(CentralClass.getInstance().boardWidth, CentralClass.getInstance().boardHeight / 2, currentTick+1, CentralClass.getInstance().boardWidth/2, Color.FromArgb(0, 0, 0), 1);
-                            //    dataFile.objList.Add(obj1);
-                            //    dataFile.objList.Add(obj2);
-                            //}
-                            //else
-                            //{
-
-                            //}
                             jsonObj objA = new jsonObj(previousPosition.X, previousPosition.Y, currentTick, thickness, color, isTipDown);
                             dataFile.objList.Add(objA);
-                            //isBoardErased = false;
                             isTicked = false;
                             isTipDown = -1;
                         }
                         else
                         {
                             CvInvoke.Line(boardFrame, previousPosition, currentPosition, new MCvScalar(color.B, color.G, color.R), thickness);
-                            //if(isBoardErased)
-                            //{
-                            //    jsonObj obj1 = new jsonObj(0, CentralClass.getInstance().boardHeight / 2, currentTick, CentralClass.getInstance().boardWidth/2, Color.FromArgb(0, 0, 0), 1);
-                            //    jsonObj obj2 = new jsonObj(CentralClass.getInstance().boardWidth, CentralClass.getInstance().boardHeight / 2, currentTick+1, CentralClass.getInstance().boardWidth/2, Color.FromArgb(0, 0, 0), 1);
-                            //    dataFile.objList.Add(obj1);
-                            //    dataFile.objList.Add(obj2);
-                            //}
-                            //else
-                            //{
-
-                            //}
                             jsonObj obj = new jsonObj(currentPosition.X, currentPosition.Y, currentTick, thickness, color, isTipDown);
                             dataFile.objList.Add(obj);
-                            //isBoardErased = false;
                             isTicked = false;
                             previousPosition = currentPosition;
                         }
                     }
                 }
+                txt_Seek.Text = currentTick.ToString();
             }
             else if(isPlaying && !isPaused)
             {
@@ -143,11 +128,15 @@ namespace DBMControllerApp_TK
                     currentTick = 0;
                     btn_PlayPause.Text = "Play";
                     btn_StartRecord.Enabled = true;
+                    color = Color.FromArgb(255, 255, 255);
+                    rtb_Color.BackColor = color;
                     tipUp();
                     return;
                 }
                 jsonObj obj = dataFile.objList[playingIndex];
                 currentPosition = new Point(obj.x, obj.y);
+                color = obj.color;
+                rtb_Color.BackColor = obj.color;
                 if (isTipDown == 0)
                 {
                     previousPosition = currentPosition;
@@ -160,15 +149,16 @@ namespace DBMControllerApp_TK
                     {
                         if (isTicked)
                         {
-                            CvInvoke.Line(boardFrame, previousPosition, currentPosition, new MCvScalar(obj.color.G, obj.color.B, obj.color.R), obj.thickness);
-                            //isBoardErased = false;
+                            CvInvoke.Line(boardFrame, previousPosition, currentPosition, new MCvScalar(obj.color.B, obj.color.G, obj.color.R), obj.thickness);
                             isTicked = false;
                             previousPosition = currentPosition;
-                            tb_Position.Text = currentPosition.ToString();                            
+                            tb_Position.Text = currentPosition.ToString();                       
                         }
                     }
                     playingIndex++;
                 }
+                txt_Seek.Text = currentTick.ToString();
+                trk_Seek.Value = currentTick;
             }
             else
             {
@@ -184,7 +174,47 @@ namespace DBMControllerApp_TK
             }
             imageBox1.Image = boardFrame;
         }
-
+        private void tipDown()
+        {
+            isTipDown = 1;
+            previousPosition = currentPosition;
+        }
+        private void tipUp()
+        {
+            isTipDown = 0;
+        }
+        private void playPause()
+        {
+            if (isPlaying || isRecording)
+            {
+                isPaused = !isPaused;
+                isTipDown = -1;
+                if (isPaused)
+                {
+                    button1.Text = "Resume";
+                }
+                else
+                {
+                    button1.Text = "Pause";
+                }
+            }
+        }
+        private void clearBoard()
+        {
+            if (!isPaused)
+            {
+                CvInvoke.Line(boardFrame, new Point(0, CentralClass.getInstance().boardHeight / 2), new Point(CentralClass.getInstance().boardWidth, CentralClass.getInstance().boardHeight / 2), new MCvScalar(0, 0, 0), CentralClass.getInstance().boardWidth);
+                if (isRecording)
+                {
+                    jsonObj obj1 = new jsonObj(0, CentralClass.getInstance().boardHeight / 2, currentTick, CentralClass.getInstance().boardWidth, Color.FromArgb(0, 0, 0), 1);
+                    jsonObj obj2 = new jsonObj(CentralClass.getInstance().boardWidth, CentralClass.getInstance().boardHeight / 2, currentTick + 1, CentralClass.getInstance().boardWidth, Color.FromArgb(0, 0, 0), 1);
+                    jsonObj obj3 = new jsonObj(CentralClass.getInstance().boardWidth, CentralClass.getInstance().boardHeight / 2, currentTick + 1, CentralClass.getInstance().boardWidth, Color.FromArgb(0, 0, 0), 0);
+                    dataFile.objList.Add(obj1);
+                    dataFile.objList.Add(obj2);
+                    dataFile.objList.Add(obj3);
+                }
+            }
+        }
         private void imageBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if(!isPlaying)
@@ -260,11 +290,10 @@ namespace DBMControllerApp_TK
                 timer1.Start();
                 btn_StartRecord.Text = "Stop Recording";
                 btn_StartRecord.ForeColor = Color.FromArgb(255, 0, 0);
+                trk_Seek.Value = currentTick;
                 
-
                 btn_PlayPause.Enabled = false;
                 trk_Seek.Enabled = false;
-                txt_Seek.Enabled = false;
             }
             else
             {
@@ -275,21 +304,8 @@ namespace DBMControllerApp_TK
                 
                 btn_PlayPause.Enabled = true;
                 trk_Seek.Enabled = true;
-                txt_Seek.Enabled = true;
             }
         }
-
-        private void tipDown()
-        {
-            isTipDown = 1;
-            previousPosition = currentPosition;
-        }
-
-        private void tipUp()
-        {
-            isTipDown = 0;
-        }
-
         private void btn_PlayPause_Click(object sender, EventArgs e)
         {
             tipUp();
@@ -303,6 +319,9 @@ namespace DBMControllerApp_TK
                 isPlaying = true;
                 isPaused = false;
                 btn_PlayPause.Text = "Stop";
+                trk_Seek.Enabled = true;
+                trk_Seek.Maximum = (int)dataFile.objList[dataFile.objList.Count() - 1].time;
+                trk_Seek.Value = 0;
             }
             else if(isPlaying)
             {
@@ -314,6 +333,7 @@ namespace DBMControllerApp_TK
                 btn_PlayPause.Text = "Play";
                 button1.Text = "Pause";
                 clearBoard();
+                trk_Seek.Enabled = false;
             }
             
             
@@ -323,28 +343,11 @@ namespace DBMControllerApp_TK
             playPause();
         }
 
-        private void playPause()
-        {
-            if (isPlaying || isRecording)
-            {
-                isPaused = !isPaused;
-                isTipDown = -1;
-                if (isPaused)
-                {
-                    button1.Text = "Resume";
-                }
-                else
-                {
-                    button1.Text = "Pause";
-                }
-            }
-        }
-
         private void btn_Marker_Click(object sender, EventArgs e)
         {
             color = Color.FromArgb(255, 255, 255);
             rtb_Color.BackColor = color;
-            thickness = 5;
+            thickness = defaultMarkerThickness;
             trk_thickness.Value = thickness;
             tb_Thickness.Text = thickness.ToString();
         }
@@ -353,7 +356,7 @@ namespace DBMControllerApp_TK
         {
             color = Color.FromArgb(0, 0, 0);
             rtb_Color.BackColor = color;
-            thickness = 50;
+            thickness = defaultDusterThickness;
             trk_thickness.Value = thickness;
             tb_Thickness.Text = thickness.ToString();
         }
@@ -364,21 +367,6 @@ namespace DBMControllerApp_TK
             clearBoard();
         }
 
-        private void clearBoard()
-        {
-            if(!isPaused)
-            {
-                CvInvoke.Line(boardFrame, new Point(0, CentralClass.getInstance().boardHeight / 2), new Point(CentralClass.getInstance().boardWidth, CentralClass.getInstance().boardHeight / 2), new MCvScalar(0, 0, 0), CentralClass.getInstance().boardWidth);
-                if (isRecording)
-                {
-                    jsonObj obj1 = new jsonObj(0, CentralClass.getInstance().boardHeight / 2, currentTick, CentralClass.getInstance().boardWidth, Color.FromArgb(0, 0, 0), 1);
-                    jsonObj obj2 = new jsonObj(CentralClass.getInstance().boardWidth, CentralClass.getInstance().boardHeight / 2, currentTick + 1, CentralClass.getInstance().boardWidth, Color.FromArgb(0, 0, 0), 1);
-                    jsonObj obj3 = new jsonObj(CentralClass.getInstance().boardWidth, CentralClass.getInstance().boardHeight / 2, currentTick + 1, CentralClass.getInstance().boardWidth, Color.FromArgb(0, 0, 0), 0);
-                    dataFile.objList.Add(obj1);
-                    dataFile.objList.Add(obj2);
-                    dataFile.objList.Add(obj3);
-                }
-            }
-        }
+        
     }
 }
