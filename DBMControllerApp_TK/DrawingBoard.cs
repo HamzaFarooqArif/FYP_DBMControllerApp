@@ -32,6 +32,7 @@ namespace DBMControllerApp_TK
         private Color defaultMarkerColor;
         private Color defaultDusterColor;
         private FileHandling dataFile;
+        private List<jsonObj> rewindObjList;
         private bool isRecording;
         private bool isPlaying;
         private bool isPaused;
@@ -70,6 +71,7 @@ namespace DBMControllerApp_TK
             currentTick = 0;
             isTicked = false;
             dataFile = FileHandling.getInstance(@"C:\Users\Acer\Desktop\demo.txt");
+            rewindObjList = dataFile.optimizeForErase();
             isRecording = false;
             isPlaying = false;
             playingIndex = 0;
@@ -128,6 +130,11 @@ namespace DBMControllerApp_TK
                     currentTick = 0;
                     btn_PlayPause.Text = "Play";
                     btn_StartRecord.Enabled = true;
+                    btn_StartRecord.Enabled = true;
+                    btn_Marker.Enabled = true;
+                    btn_duster.Enabled = true;
+                    button2.Enabled = true;
+                    trk_Seek.Enabled = false;
                     color = Color.FromArgb(255, 255, 255);
                     rtb_Color.BackColor = color;
                     tipUp();
@@ -335,7 +342,48 @@ namespace DBMControllerApp_TK
                 trk_Seek.Enabled = true;
             }
         }
-        private void btn_PlayPause_Click(object sender, EventArgs e)
+
+        private void startStopPlay(bool startPlay)
+        {
+            tipUp();
+            clearBoard();
+            isPlaying = startPlay;
+            if (!isPlaying)
+            {
+                currentTick = 0;
+                timer1.Stop();
+                timer1.Start();
+                dataFile.loadFromFile();
+                //isPlaying = true;
+                isPaused = false;
+                btn_PlayPause.Text = "Stop";
+                trk_Seek.Enabled = true;
+                trk_Seek.Maximum = (int)dataFile.objList[dataFile.objList.Count() - 1].time;
+                trk_Seek.Value = 0;
+                btn_StartRecord.Enabled = false;
+                btn_Marker.Enabled = false;
+                btn_duster.Enabled = false;
+                button2.Enabled = false;
+            }
+            else if (isPlaying)
+            {
+                //isPlaying = false;
+                isPaused = false;
+                tipUp();
+                playingIndex = 0;
+                btn_StartRecord.Enabled = true;
+                btn_PlayPause.Text = "Play";
+                button1.Text = "Pause";
+                clearBoard();
+                trk_Seek.Enabled = false;
+                btn_StartRecord.Enabled = true;
+                btn_Marker.Enabled = true;
+                btn_duster.Enabled = true;
+                button2.Enabled = true;
+            }
+        }
+
+        private void startStopPlay()
         {
             tipUp();
             clearBoard();
@@ -356,7 +404,7 @@ namespace DBMControllerApp_TK
                 btn_duster.Enabled = false;
                 button2.Enabled = false;
             }
-            else if(isPlaying)
+            else if (isPlaying)
             {
                 isPlaying = false;
                 isPaused = false;
@@ -372,8 +420,10 @@ namespace DBMControllerApp_TK
                 btn_duster.Enabled = true;
                 button2.Enabled = true;
             }
-            
-            
+        }
+        private void btn_PlayPause_Click(object sender, EventArgs e)
+        {
+            startStopPlay();
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -411,7 +461,6 @@ namespace DBMControllerApp_TK
             drawForward(getPlayingIndex(currentTick), playingIndex);
             drawBackward(getPlayingIndex(currentTick), playingIndex);
             playingIndex = getPlayingIndex(currentTick);
-               
         }
 
         private void drawForward(int shiftedIndex, int currentIndex)
@@ -458,7 +507,7 @@ namespace DBMControllerApp_TK
             
             for (int i = currentIndex; i > shiftedIndex; i--)
             {
-                jsonObj obj = dataFile.objList[i];
+                jsonObj obj = rewindObjList[i];
                 currentPosition = new Point(obj.x, obj.y);
                 color = defaultDusterColor;
                 rtb_Color.BackColor = color;
@@ -490,7 +539,7 @@ namespace DBMControllerApp_TK
 
         private void trk_Seek_MouseUp(object sender, MouseEventArgs e)
         {
-            playPause(false);
+            //playPause(false);
         }
     }
 }

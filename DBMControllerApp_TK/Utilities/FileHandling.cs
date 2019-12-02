@@ -66,5 +66,28 @@ namespace DBMControllerApp_TK.Utilities
 
             return true;
         }
+        public List<jsonObj> optimizeForErase()
+        {
+            List<jsonObj> result = new List<jsonObj>();
+            for(int i = 0; i < objList.Count; i++)
+            {
+                if(objList[i].isTipDown == 0 && i < objList.Count - 1)
+                {
+                    jsonObj obj1 = objList[i];
+                    jsonObj obj2 = objList[i + 1];
+                    obj1.isTipDown = 1;
+                    obj2.isTipDown = 0;
+                    result.Add(obj1);
+                    result.Add(obj2);
+                    i++;
+                }
+                else
+                {
+                    jsonObj obj = objList[i];
+                    result.Add(obj);
+                }
+            }
+            return result;
+        }
     }
 }
