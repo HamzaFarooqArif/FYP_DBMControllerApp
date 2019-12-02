@@ -117,7 +117,7 @@ namespace DBMControllerApp_TK
                         }
                     }
                 }
-                txt_Seek.Text = currentTick.ToString();
+                txt_Seek.Text = (currentTick * timer1.Interval).ToString();
             }
             else if(isPlaying && !isPaused)
             {
@@ -157,7 +157,7 @@ namespace DBMControllerApp_TK
                     }
                     playingIndex++;
                 }
-                txt_Seek.Text = currentTick.ToString();
+                txt_Seek.Text = (currentTick * timer1.Interval).ToString();
                 trk_Seek.Value = currentTick;
             }
             else
@@ -198,6 +198,35 @@ namespace DBMControllerApp_TK
                     button1.Text = "Pause";
                 }
             }
+        }
+
+        private void playPause(bool setPlay)
+        {
+            if (isPlaying || isRecording)
+            {
+                isPaused = setPlay;
+                isTipDown = -1;
+                if (isPaused)
+                {
+                    button1.Text = "Resume";
+                }
+                else
+                {
+                    button1.Text = "Pause";
+                }
+            }
+        }
+
+        private int getPlayingIndex(int currentTick)
+        {
+            for(int i = 0; i < dataFile.objList.Count; i++)
+            {
+                if(dataFile.objList[i].time >= currentTick)
+                {
+                    return i;
+                }
+            }
+            return 0;
         }
         private void clearBoard()
         {
@@ -322,6 +351,10 @@ namespace DBMControllerApp_TK
                 trk_Seek.Enabled = true;
                 trk_Seek.Maximum = (int)dataFile.objList[dataFile.objList.Count() - 1].time;
                 trk_Seek.Value = 0;
+                btn_StartRecord.Enabled = false;
+                btn_Marker.Enabled = false;
+                btn_duster.Enabled = false;
+                button2.Enabled = false;
             }
             else if(isPlaying)
             {
@@ -334,6 +367,10 @@ namespace DBMControllerApp_TK
                 button1.Text = "Pause";
                 clearBoard();
                 trk_Seek.Enabled = false;
+                btn_StartRecord.Enabled = true;
+                btn_Marker.Enabled = true;
+                btn_duster.Enabled = true;
+                button2.Enabled = true;
             }
             
             
@@ -367,6 +404,93 @@ namespace DBMControllerApp_TK
             clearBoard();
         }
 
-        
+        private void trk_Seek_Scroll(object sender, EventArgs e)
+        {
+            currentTick = trk_Seek.Value;
+            txt_Seek.Text = (currentTick * timer1.Interval).ToString();
+            drawForward(getPlayingIndex(currentTick), playingIndex);
+            drawBackward(getPlayingIndex(currentTick), playingIndex);
+            playingIndex = getPlayingIndex(currentTick);
+               
+        }
+
+        private void drawForward(int shiftedIndex, int currentIndex)
+        {
+            if (shiftedIndex < currentIndex)
+            {
+                //Console.WriteLine("Forwared return");
+                return;
+            }
+            
+            for(int i = currentIndex; i < shiftedIndex; i++)
+            {
+                jsonObj obj = dataFile.objList[i];
+                currentPosition = new Point(obj.x, obj.y);
+                color = obj.color;
+                rtb_Color.BackColor = obj.color;
+                if (isTipDown == 0)
+                {
+                    previousPosition = currentPosition;
+                }
+                isTipDown = obj.isTipDown;
+
+                if (obj.time <= currentTick)
+                {
+                    if (isTipDown > -1)
+                    {
+                        CvInvoke.Line(boardFrame, previousPosition, currentPosition, new MCvScalar(obj.color.B, obj.color.G, obj.color.R), obj.thickness);
+                        previousPosition = currentPosition;
+                        tb_Position.Text = currentPosition.ToString();
+                    }
+                    playingIndex++;
+                }
+                txt_Seek.Text = currentTick.ToString();
+                trk_Seek.Value = currentTick;
+            }
+        }
+        private void drawBackward(int shiftedIndex, int currentIndex)
+        {
+            if (shiftedIndex > currentIndex)
+            {
+                //Console.WriteLine("Back return");
+                return;
+            }
+            
+            for (int i = currentIndex; i > shiftedIndex; i--)
+            {
+                jsonObj obj = dataFile.objList[i];
+                currentPosition = new Point(obj.x, obj.y);
+                color = defaultDusterColor;
+                rtb_Color.BackColor = color;
+                if (isTipDown == 0)
+                {
+                    previousPosition = currentPosition;
+                }
+                isTipDown = obj.isTipDown;
+
+                if (obj.time >= currentTick)
+                {
+                    if (isTipDown > -1)
+                    {
+                        CvInvoke.Line(boardFrame, previousPosition, currentPosition, new MCvScalar(color.B, color.G, color.R), obj.thickness);
+                        previousPosition = currentPosition;
+                        tb_Position.Text = currentPosition.ToString();
+                    }
+                    playingIndex--;
+                }
+                txt_Seek.Text = (currentTick * timer1.Interval).ToString();
+                trk_Seek.Value = currentTick;
+            }
+        }
+
+        private void trk_Seek_MouseDown(object sender, MouseEventArgs e)
+        {
+            playPause(true);
+        }
+
+        private void trk_Seek_MouseUp(object sender, MouseEventArgs e)
+        {
+            playPause(false);
+        }
     }
 }

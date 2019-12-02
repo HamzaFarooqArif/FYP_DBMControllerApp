@@ -155,6 +155,9 @@
             this.trk_Seek.Name = "trk_Seek";
             this.trk_Seek.Size = new System.Drawing.Size(413, 45);
             this.trk_Seek.TabIndex = 15;
+            this.trk_Seek.Scroll += new System.EventHandler(this.trk_Seek_Scroll);
+            this.trk_Seek.MouseDown += new System.Windows.Forms.MouseEventHandler(this.trk_Seek_MouseDown);
+            this.trk_Seek.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trk_Seek_MouseUp);
             // 
             // txt_Seek
             // 
