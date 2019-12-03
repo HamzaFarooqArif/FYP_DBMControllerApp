@@ -20,6 +20,7 @@ namespace DBMControllerApp_TK
     {
         private static Cam2_Preview instance;
         private Mat frame;
+        private bool showFilter;
         public static Cam2_Preview getInstance()
         {
             if (instance == null)
@@ -32,7 +33,7 @@ namespace DBMControllerApp_TK
         {
             InitializeComponent();
             frame = new Mat();
-
+            showFilter = false;
             placePoints();
         }
         private void placePoints()
@@ -48,8 +49,8 @@ namespace DBMControllerApp_TK
             Image<Bgr, Byte> frame1 = frame.Clone().ToImage<Bgr, byte>();
             frame1._SmoothGaussian(11);
             Image<Hsv, byte> frame1HSV = frame1.Convert<Hsv, byte>();
-            CvInvoke.InRange(frame1HSV, new ScalarArray(new MCvScalar(CentralClass.getInstance().lower1.H, CentralClass.getInstance().lower1.S, CentralClass.getInstance().lower1.V)),
-                           new ScalarArray(new MCvScalar(CentralClass.getInstance().upper1.H, CentralClass.getInstance().upper1.S, CentralClass.getInstance().upper1.V)), frame1HSV);
+            CvInvoke.InRange(frame1HSV, new ScalarArray(new MCvScalar(CentralClass.getInstance().lower2.H, CentralClass.getInstance().lower2.S, CentralClass.getInstance().lower2.V)),
+                           new ScalarArray(new MCvScalar(CentralClass.getInstance().upper2.H, CentralClass.getInstance().upper2.S, CentralClass.getInstance().upper2.V)), frame1HSV);
             var element1 = CvInvoke.GetStructuringElement(Emgu.CV.CvEnum.ElementShape.Rectangle, new Size(3, 3), new Point(-1, -1));
             CvInvoke.Erode(frame1HSV, frame1HSV, element1, new Point(-1, -1), 2, Emgu.CV.CvEnum.BorderType.Reflect, default(MCvScalar));
             CvInvoke.Dilate(frame1HSV, frame1HSV, element1, new Point(-1, -1), 2, Emgu.CV.CvEnum.BorderType.Reflect, default(MCvScalar));
@@ -114,9 +115,14 @@ namespace DBMControllerApp_TK
                     }
                 }
             }
-
-            imageBox1.Image = frame;
-
+            if (showFilter)
+            {
+                imageBox1.Image = frame1HSV;
+            }
+            if (!showFilter)
+            {
+                imageBox1.Image = frame;
+            }
         }
 
         private void imageBox1_DoubleClick(object sender, EventArgs e)
@@ -173,6 +179,19 @@ namespace DBMControllerApp_TK
                 Properties.Settings.Default.Cam2_Point3 = MouseUtility.getInstance(1).points[2];
                 Properties.Settings.Default.Save();
                 MessageBox.Show("Settings Saved");
+            }
+        }
+
+        private void btn_filter_Click(object sender, EventArgs e)
+        {
+            showFilter = !showFilter;
+            if (showFilter)
+            {
+                btn_filter.Text = "Hide filter";
+            }
+            else
+            {
+                btn_filter.Text = "Hide filter";
             }
         }
     }

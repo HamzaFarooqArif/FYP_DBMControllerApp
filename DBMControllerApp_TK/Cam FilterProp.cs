@@ -241,7 +241,6 @@ namespace DBMControllerApp_TK
                 CentralClass.getInstance().lower2 = lower;
             }
         }
-
         private void Cam_FilterProp_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
@@ -250,7 +249,6 @@ namespace DBMControllerApp_TK
                 Hide();
             }
         }
-
         private void btn_SaveSettings_Click(object sender, EventArgs e)
         {
             DialogResult dialog = dialog = MessageBox.Show("Are you sure you want to save settings?", "Save Settings", MessageBoxButtons.YesNo);
@@ -264,7 +262,7 @@ namespace DBMControllerApp_TK
 
                     Properties.Settings.Default.lower1H = Int32.Parse(tb_HueL.Text);
                     Properties.Settings.Default.lower1S = Int32.Parse(tb_SatL.Text);
-                    Properties.Settings.Default.lower1V = Int32.Parse(tb_ValU.Text);
+                    Properties.Settings.Default.lower1V = Int32.Parse(tb_ValL.Text);
 
                     Properties.Settings.Default.Save();
                 }
@@ -276,11 +274,10 @@ namespace DBMControllerApp_TK
 
                     Properties.Settings.Default.lower2H = Int32.Parse(tb_HueL.Text);
                     Properties.Settings.Default.lower2S = Int32.Parse(tb_SatL.Text);
-                    Properties.Settings.Default.lower2V = Int32.Parse(tb_ValU.Text);
+                    Properties.Settings.Default.lower2V = Int32.Parse(tb_ValL.Text);
 
                     Properties.Settings.Default.Save();
                 }
-                
                 MessageBox.Show("Settings Saved");
             }
         }

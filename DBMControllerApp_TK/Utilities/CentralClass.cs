@@ -54,7 +54,7 @@ namespace DBMControllerApp_TK.Utilities
 
             lower1.H = Properties.Settings.Default.lower1H;
             lower1.S = Properties.Settings.Default.lower1S;
-            lower1.V = Properties.Settings.Default.upper1V;
+            lower1.V = Properties.Settings.Default.lower1V;
 
             upper2.H = Properties.Settings.Default.upper2H;
             upper2.S = Properties.Settings.Default.upper2S;

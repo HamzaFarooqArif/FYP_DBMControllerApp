@@ -20,6 +20,7 @@ namespace DBMControllerApp_TK
     {
         private static Cam1_Preview instance;
         public Mat frame;
+        private bool showFilter;
         public static Cam1_Preview getInstance()
         {
             if (instance == null)
@@ -32,7 +33,7 @@ namespace DBMControllerApp_TK
         {
             InitializeComponent();
             frame = new Mat();
-
+            showFilter = false;
             placePoints();
 
         }
@@ -116,8 +117,14 @@ namespace DBMControllerApp_TK
                     }
                 }
             }
-            
-            imageBox1.Image = frame;
+            if (showFilter)
+            {
+                imageBox1.Image = frame1HSV;
+            }
+            if (!showFilter)
+            {
+                imageBox1.Image = frame;
+            }
         }
 
         private void imageBox1_DoubleClick(object sender, EventArgs e)
@@ -176,6 +183,19 @@ namespace DBMControllerApp_TK
                 MessageBox.Show("Settings Saved");
             }
             
+        }
+
+        private void btn_filter_Click(object sender, EventArgs e)
+        {
+            showFilter = !showFilter;
+            if (showFilter)
+            {
+                btn_filter.Text = "Hide filter";
+            }
+            else
+            {
+                btn_filter.Text = "Hide filter";
+            }
         }
     }
 }

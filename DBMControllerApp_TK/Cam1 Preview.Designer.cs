@@ -32,6 +32,7 @@
             this.imageBox1 = new Emgu.CV.UI.ImageBox();
             this.btn_Undo = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
+            this.btn_filter = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,11 +65,22 @@
             this.btn_save.UseVisualStyleBackColor = true;
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
+            // btn_filter
+            // 
+            this.btn_filter.Location = new System.Drawing.Point(12, 468);
+            this.btn_filter.Name = "btn_filter";
+            this.btn_filter.Size = new System.Drawing.Size(75, 23);
+            this.btn_filter.TabIndex = 5;
+            this.btn_filter.Text = "Show Filter";
+            this.btn_filter.UseVisualStyleBackColor = true;
+            this.btn_filter.Click += new System.EventHandler(this.btn_filter_Click);
+            // 
             // Cam1_Preview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(630, 495);
+            this.Controls.Add(this.btn_filter);
             this.Controls.Add(this.btn_save);
             this.Controls.Add(this.btn_Undo);
             this.Controls.Add(this.imageBox1);
@@ -85,5 +97,6 @@
         private Emgu.CV.UI.ImageBox imageBox1;
         private System.Windows.Forms.Button btn_Undo;
         private System.Windows.Forms.Button btn_save;
+        private System.Windows.Forms.Button btn_filter;
     }
 }
