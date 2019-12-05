@@ -47,6 +47,7 @@
             this.btn_Marker = new System.Windows.Forms.Button();
             this.btn_duster = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.btn_Enable = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_thickness)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_Seek)).BeginInit();
@@ -180,7 +181,7 @@
             // 
             this.btn_Marker.Location = new System.Drawing.Point(310, 373);
             this.btn_Marker.Name = "btn_Marker";
-            this.btn_Marker.Size = new System.Drawing.Size(75, 23);
+            this.btn_Marker.Size = new System.Drawing.Size(83, 23);
             this.btn_Marker.TabIndex = 18;
             this.btn_Marker.Text = "Marker";
             this.btn_Marker.UseVisualStyleBackColor = true;
@@ -206,11 +207,22 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // btn_Enable
+            // 
+            this.btn_Enable.Location = new System.Drawing.Point(310, 402);
+            this.btn_Enable.Name = "btn_Enable";
+            this.btn_Enable.Size = new System.Drawing.Size(83, 40);
+            this.btn_Enable.TabIndex = 21;
+            this.btn_Enable.Text = "Enable Device Input";
+            this.btn_Enable.UseVisualStyleBackColor = true;
+            this.btn_Enable.Click += new System.EventHandler(this.btn_Enable_Click);
+            // 
             // DrawingBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(506, 483);
+            this.Controls.Add(this.btn_Enable);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btn_duster);
             this.Controls.Add(this.btn_Marker);
@@ -258,5 +270,6 @@
         private System.Windows.Forms.Button btn_Marker;
         private System.Windows.Forms.Button btn_duster;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_Enable;
     }
 }

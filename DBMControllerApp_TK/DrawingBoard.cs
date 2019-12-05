@@ -36,6 +36,7 @@ namespace DBMControllerApp_TK
         private bool isRecording;
         private bool isPlaying;
         private bool isPaused;
+        private bool enableHardware;
         private int playingIndex;
         int boardWidth;
         int boardHeight;
@@ -76,6 +77,7 @@ namespace DBMControllerApp_TK
             isPlaying = false;
             playingIndex = 0;
             isPaused = false;
+            enableHardware = false;
 
             tipUp();
             rtb_Color.BackColor = color;
@@ -134,6 +136,7 @@ namespace DBMControllerApp_TK
                     btn_Marker.Enabled = true;
                     btn_duster.Enabled = true;
                     button2.Enabled = true;
+                    btn_Enable.Enabled = true;
                     trk_Seek.Enabled = false;
                     color = Color.FromArgb(255, 255, 255);
                     rtb_Color.BackColor = color;
@@ -253,16 +256,18 @@ namespace DBMControllerApp_TK
         }
         private void imageBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if(!isPlaying)
+            if(!enableHardware)
             {
-                currentPosition.X = e.X;
-                currentPosition.Y = e.Y;
+                if (!isPlaying)
+                {
+                    currentPosition.X = e.X;
+                    currentPosition.Y = e.Y;
 
-                tb_Position.Text = currentPosition.ToString();
-                rtb_Color.BackColor = color;
+                    tb_Position.Text = currentPosition.ToString();
+                    rtb_Color.BackColor = color;
+                }
             }
         }
-
         private void DrawingBoard_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
@@ -271,7 +276,6 @@ namespace DBMControllerApp_TK
                 Hide();
             }
         }
-
         private void trk_thickness_ValueChanged(object sender, EventArgs e)
         {
             if(trk_thickness.Focused)
@@ -280,7 +284,6 @@ namespace DBMControllerApp_TK
                 tb_Thickness.Text = thickness.ToString();
             }
         }
-
         private void rtb_Color_Click(object sender, EventArgs e)
         {
             if(colorDialog1.ShowDialog()==DialogResult.OK)
@@ -292,13 +295,18 @@ namespace DBMControllerApp_TK
 
         private void imageBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            tipDown();
+            if(!enableHardware)
+            {
+                tipDown();
+            }
         }
 
         private void imageBox1_MouseUp(object sender, MouseEventArgs e)
         {
-
-            tipUp();
+            if(!enableHardware)
+            {
+                tipUp();
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -364,6 +372,7 @@ namespace DBMControllerApp_TK
                 btn_Marker.Enabled = false;
                 btn_duster.Enabled = false;
                 button2.Enabled = false;
+                btn_Enable.Enabled = false;
             }
             else if (isPlaying)
             {
@@ -380,6 +389,7 @@ namespace DBMControllerApp_TK
                 btn_Marker.Enabled = true;
                 btn_duster.Enabled = true;
                 button2.Enabled = true;
+                btn_Enable.Enabled = true;
             }
         }
 
@@ -403,6 +413,7 @@ namespace DBMControllerApp_TK
                 btn_Marker.Enabled = false;
                 btn_duster.Enabled = false;
                 button2.Enabled = false;
+                btn_Enable.Enabled = false;
             }
             else if (isPlaying)
             {
@@ -419,6 +430,7 @@ namespace DBMControllerApp_TK
                 btn_Marker.Enabled = true;
                 btn_duster.Enabled = true;
                 button2.Enabled = true;
+                btn_Enable.Enabled = true;
             }
         }
         private void btn_PlayPause_Click(object sender, EventArgs e)
@@ -540,6 +552,19 @@ namespace DBMControllerApp_TK
         private void trk_Seek_MouseUp(object sender, MouseEventArgs e)
         {
             //playPause(false);
+        }
+
+        private void btn_Enable_Click(object sender, EventArgs e)
+        {
+            enableHardware = !enableHardware;
+            if(enableHardware)
+            {
+                btn_Enable.Text = "Disable Device Input";
+            }
+            else
+            {
+                btn_Enable.Text = "Enable Device Input";
+            }
         }
     }
 }

@@ -229,7 +229,7 @@
             this.btn_Board.Name = "btn_Board";
             this.btn_Board.Size = new System.Drawing.Size(130, 23);
             this.btn_Board.TabIndex = 2;
-            this.btn_Board.Text = "Toggle Show Position";
+            this.btn_Board.Text = "Show Position";
             this.btn_Board.UseVisualStyleBackColor = true;
             this.btn_Board.Click += new System.EventHandler(this.btn_Board_Click);
             // 

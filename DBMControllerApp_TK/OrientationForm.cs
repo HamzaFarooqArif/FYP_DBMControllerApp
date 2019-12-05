@@ -13,6 +13,8 @@ using System.IO.Ports;
 using OpenTK;
 using DirectShowLib;
 using DBMControllerApp_TK.Utilities;
+using Emgu.CV;
+using Emgu.CV.Structure;
 
 namespace DBMControllerApp_TK
 {
@@ -47,8 +49,49 @@ namespace DBMControllerApp_TK
 
             Thread t1 = new Thread(demo);
             t1.Start();
+
+            Application.Idle += idleEvent;
+        }
+        private void idleEvent(object sender, EventArgs arg)
+        {
+            drawOrientationPlane();
         }
 
+        private void drawOrientationPlane()
+        {
+            int boardWidth = CentralClass.getInstance().boardWidth;
+            int boardHeight = CentralClass.getInstance().boardHeight;
+            Image<Bgr, byte> boardFrame = new Image<Bgr, byte>(boardWidth, boardHeight);
+
+            double calibX = MouseUtility.simplifyAngle(demo3d.calibX);
+            double calibY = MouseUtility.simplifyAngle(demo3d.calibY);
+            double calibZ = MouseUtility.simplifyAngle(demo3d.calibZ);
+
+            Vector3d markerVect = new Vector3d(0, 0, 100);
+
+            markerVect = MouseUtility.rotateX(markerVect, calibX);
+            markerVect = MouseUtility.rotateY(markerVect, calibY);
+            //markerVect = MouseUtility.rotateZ(markerVect, calibZ);
+
+            CvInvoke.Line(boardFrame, new Point(0, boardHeight / 2), new Point(boardWidth, boardHeight / 2), new MCvScalar(255, 255, 255));
+            CvInvoke.Line(boardFrame, new Point(boardWidth / 2, 0), new Point(boardWidth / 2, boardHeight), new MCvScalar(255, 255, 255));
+            CvInvoke.Line(boardFrame, MouseUtility.drawVector(markerVect, boardWidth / 2, boardHeight / 2).Item1, MouseUtility.drawVector(markerVect, boardWidth / 2, boardHeight / 2).Item2, new MCvScalar(0, 0, 255), 2);
+
+            if (markerVect.Z > 0) CvInvoke.Circle(boardFrame, new Point(boardWidth / 2, boardHeight / 2), Math.Abs((int)markerVect.Z), new MCvScalar(0, 0, 255), 1);
+            else CvInvoke.Circle(boardFrame, new Point(boardWidth / 2, boardHeight / 2), Math.Abs((int)markerVect.Z), new MCvScalar(255, 0, 0), 1);
+
+            CentralClass.getInstance().tipOffset.X = (int)markerVect.X;
+            CentralClass.getInstance().tipOffset.Y = (int)markerVect.Y;
+
+            if (CentralClass.getInstance().showTipOffset)
+            {
+                CvInvoke.Imshow("OrientationPlane", boardFrame);
+            }
+            else
+            {
+                CvInvoke.DestroyWindow("OrientationPlane");
+            }
+        }
         public void makeVisible(bool visibility)
         {
             if(visibility)

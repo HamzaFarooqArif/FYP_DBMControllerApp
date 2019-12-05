@@ -25,7 +25,7 @@ namespace DBMControllerApp_TK.Utilities
 
         public int boardWidth;
         public int boardHeight;
-        public bool showBoard;
+        //public bool showBoard;
         public static CentralClass getInstance()
         {
             if(instance == null)
@@ -39,7 +39,7 @@ namespace DBMControllerApp_TK.Utilities
         {
             boardWidth = 480;
             boardHeight = 320;
-            showBoard = false;
+            //showBoard = false;
             showTipOffset = false;
             showDemo3d = false;
             upper1 = new Hsv();

@@ -194,7 +194,7 @@ namespace DBMControllerApp_TK
             }
             else
             {
-                btn_filter.Text = "Hide filter";
+                btn_filter.Text = "Show filter";
             }
         }
     }

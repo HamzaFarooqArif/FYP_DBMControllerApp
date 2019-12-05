@@ -60,6 +60,7 @@ namespace DBMControllerApp_TK
             Cam_FilterProp.getInstance(1).Hide();
             OrientationForm.getInstance().Hide();
             DrawingBoard.getInstance().Hide();
+            PositionBoard.getInstance().Hide();
         }
 
         private void btn_Capture1_Click(object sender, EventArgs e)
@@ -194,13 +195,14 @@ namespace DBMControllerApp_TK
         }
         private void idleEvent(object sender, EventArgs arg)
         {
-            drawBoard();
-            drawOrientationPlane();
+            //drawBoard();
+            //drawOrientationPlane();
         }
 
         private void btn_Board_Click(object sender, EventArgs e)
         {
-            CentralClass.getInstance().showBoard = !CentralClass.getInstance().showBoard;
+            PositionBoard.getInstance().Show();
+            //CentralClass.getInstance().showBoard = !CentralClass.getInstance().showBoard;
         }
 
         private void btn_orientation_Click(object sender, EventArgs e)
@@ -217,107 +219,87 @@ namespace DBMControllerApp_TK
             }
         }
 
-        private void drawBoard()
-        {
-            int boardWidth = CentralClass.getInstance().boardWidth;
-            int boardHeight = CentralClass.getInstance().boardHeight;
-            float sizeFactor = 0.5f;
+        //private void drawBoard()
+        //{
+        //    int boardWidth = CentralClass.getInstance().boardWidth;
+        //    int boardHeight = CentralClass.getInstance().boardHeight;
+        //    float sizeFactor = 0.5f;
 
-            Image<Bgr, byte> boardFrame = new Image<Bgr, byte>(boardWidth, boardHeight);
-            Point line1p1 = new Point((int)((float)boardWidth * (float)0.1), (int)((float)boardHeight * (float)0.1));
-            Point line1p2 = new Point(boardWidth, boardHeight);
-            Point line2p1 = new Point((int)((float)boardWidth * (float)0.9), (int)((float)boardHeight * (float)0.1));
-            Point line2p2 = new Point(0, boardHeight);
+        //    Image<Bgr, byte> boardFrame = new Image<Bgr, byte>(boardWidth, boardHeight);
+        //    Point line1p1 = new Point((int)((float)boardWidth * (float)0.1), (int)((float)boardHeight * (float)0.1));
+        //    Point line1p2 = new Point(boardWidth, boardHeight);
+        //    Point line2p1 = new Point((int)((float)boardWidth * (float)0.9), (int)((float)boardHeight * (float)0.1));
+        //    Point line2p2 = new Point(0, boardHeight);
 
-            line1p2 = MouseUtility.getInstance(0).rotate(line1p2, line1p1, (float)11.5 - MouseUtility.getInstance(0).getAngleFromPercent(MouseUtility.getInstance(0).position));
-            line2p2 = MouseUtility.getInstance(1).rotate(line2p2, line2p1, (float)-11.5 + MouseUtility.getInstance(1).getAngleFromPercent(MouseUtility.getInstance(1).position));
+        //    line1p2 = MouseUtility.getInstance(0).rotate(line1p2, line1p1, (float)11.5 - MouseUtility.getInstance(0).getAngleFromPercent(MouseUtility.getInstance(0).position));
+        //    line2p2 = MouseUtility.getInstance(1).rotate(line2p2, line2p1, (float)-11.5 + MouseUtility.getInstance(1).getAngleFromPercent(MouseUtility.getInstance(1).position));
 
-            CvInvoke.Circle(boardFrame, line1p1, 1, new MCvScalar(255, 255, 255), 2);
-            CvInvoke.Circle(boardFrame, line1p2, 1, new MCvScalar(255, 255, 255), 2);
-            CvInvoke.Circle(boardFrame, line2p1, 1, new MCvScalar(255, 255, 255), 2);
-            CvInvoke.Circle(boardFrame, line2p2, 1, new MCvScalar(255, 255, 255), 2);
-            CvInvoke.Line(boardFrame, line1p1, line1p2, new MCvScalar(255, 255, 255));
-            CvInvoke.Line(boardFrame, line2p1, line2p2, new MCvScalar(255, 255, 255));
+        //    //line1p2 = MouseUtility.getInstance(0).getEndPoints(boardHeight, boardWidth, line1p1, line1p2)[1];
+        //    //line2p2 = MouseUtility.getInstance(1).getEndPoints(boardHeight, boardWidth, line2p1, line2p2)[1];
 
-            //CvInvoke.Circle(boardFrame, MouseUtility.findIntercept(line1p1, line1p2, line2p1, line2p2), 5, new MCvScalar(255, 255, 255), 5);
+        //    CvInvoke.Circle(boardFrame, line1p1, 5, new MCvScalar(255, 0, 0), 2);
+        //    CvInvoke.Circle(boardFrame, line1p2, 5, new MCvScalar(255, 0, 0), 2);
+        //    CvInvoke.Circle(boardFrame, line2p1, 5, new MCvScalar(255, 0, 0), 2);
+        //    CvInvoke.Circle(boardFrame, line2p2, 5, new MCvScalar(255, 0, 0), 2);
+        //    CvInvoke.Line(boardFrame, line1p1, line1p2, new MCvScalar(255, 255, 255));
+        //    CvInvoke.Line(boardFrame, line2p1, line2p2, new MCvScalar(255, 255, 255));
+
+        //    //CvInvoke.Circle(boardFrame, MouseUtility.findIntercept(line1p1, line1p2, line2p1, line2p2), 5, new MCvScalar(255, 255, 255), 5);
+
+        //    PointF notNeedp1 = new PointF();
+        //    PointF notNeedp2 = new PointF();
+        //    PointF p3 = new PointF();
+        //    bool notNeeda;
+        //    bool notNeedb;
+        //    MouseUtility.FindIntersection(line1p1, line1p2, line2p1, line2p2, out notNeeda, out notNeedb, out p3, out notNeedp1, out notNeedp2);
+        //    Point position = new Point((int)p3.X, (int)p3.Y);
+
+        //    CvInvoke.Circle(boardFrame, position, 5, new MCvScalar(255, 0, 0), 2);
+
+
+        //    double calibX = MouseUtility.simplifyAngle(demo3d.calibX);
+        //    double calibY = MouseUtility.simplifyAngle(demo3d.calibY);
+        //    double calibZ = MouseUtility.simplifyAngle(demo3d.calibZ);
+
+        //    Vector3d markerVect = new Vector3d(0, 0, 100);
+
+        //    markerVect = MouseUtility.rotateX(markerVect, calibX);
+        //    markerVect = MouseUtility.rotateY(markerVect, calibY);
+        //    //markerVect = MouseUtility.rotateZ(markerVect, calibZ);
+        //    markerVect.X = markerVect.X * sizeFactor;
+        //    markerVect.Y = markerVect.Y * sizeFactor;
+        //    markerVect.Z = markerVect.Z * sizeFactor;
+
+        //    Point actualPosition = new Point(MouseUtility.drawVector(markerVect, position.X, position.Y).Item2.X, MouseUtility.drawVector(markerVect, position.X, position.Y).Item2.Y);
+
+        //    //CvInvoke.Line(boardFrame, new Point(0, boardHeight / 2), new Point(boardWidth, boardHeight / 2), new MCvScalar(255, 255, 255));
+        //    //CvInvoke.Line(boardFrame, new Point(boardWidth / 2, 0), new Point(boardWidth / 2, boardHeight), new MCvScalar(255, 255, 255));
+        //    CvInvoke.Line(boardFrame, position, actualPosition, new MCvScalar(0, 0, 255), 2);
 
             
-            double calibX = MouseUtility.simplifyAngle(demo3d.calibX);
-            double calibY = MouseUtility.simplifyAngle(demo3d.calibY);
-            double calibZ = MouseUtility.simplifyAngle(demo3d.calibZ);
+        //    //if (markerVect.Z > 0) CvInvoke.Circle(boardFrame, MouseUtility.findIntercept(line1p1, line1p2, line2p1, line2p2), Math.Abs((int)(markerVect.Z * sizeFactor)), new MCvScalar(0, 0, 255), 1);
+        //    //else CvInvoke.Circle(boardFrame, MouseUtility.findIntercept(line1p1, line1p2, line2p1, line2p2), Math.Abs((int)(markerVect.Z * sizeFactor)), new MCvScalar(255, 0, 0), 1);
 
-            Vector3d markerVect = new Vector3d(0, 0, 100);
+        //    if (markerVect.Z > 0) CvInvoke.Circle(boardFrame, position, Math.Abs((int)(markerVect.Z * sizeFactor)), new MCvScalar(0, 0, 255), 1);
+        //    else CvInvoke.Circle(boardFrame, position, Math.Abs((int)(markerVect.Z * sizeFactor)), new MCvScalar(255, 0, 0), 1);
 
-            markerVect = MouseUtility.rotateX(markerVect, calibX);
-            markerVect = MouseUtility.rotateY(markerVect, calibY);
-            //markerVect = MouseUtility.rotateZ(markerVect, calibZ);
-            markerVect.X = markerVect.X * sizeFactor;
-            markerVect.Y = markerVect.Y * sizeFactor;
-            markerVect.Z = markerVect.Z * sizeFactor;
+        //    CentralClass.getInstance().tipOffset.X = (int)markerVect.X;
+        //    CentralClass.getInstance().tipOffset.Y = (int)markerVect.Y;
 
-            //CvInvoke.Line(boardFrame, new Point(0, boardHeight / 2), new Point(boardWidth, boardHeight / 2), new MCvScalar(255, 255, 255));
-            //CvInvoke.Line(boardFrame, new Point(boardWidth / 2, 0), new Point(boardWidth / 2, boardHeight), new MCvScalar(255, 255, 255));
-            CvInvoke.Line(boardFrame, MouseUtility.drawVector(markerVect, MouseUtility.findIntercept(line1p1, line1p2, line2p1, line2p2).X, MouseUtility.findIntercept(line1p1, line1p2, line2p1, line2p2).Y).Item1, MouseUtility.drawVector(markerVect, MouseUtility.findIntercept(line1p1, line1p2, line2p1, line2p2).X, MouseUtility.findIntercept(line1p1, line1p2, line2p1, line2p2).Y).Item2, new MCvScalar(0, 0, 255), 2);
-
-            //if (markerVect.Z > 0) CvInvoke.Circle(boardFrame, new Point(boardWidth / 2, boardHeight / 2), Math.Abs((int)markerVect.Z), new MCvScalar(0, 0, 255), 1);
-            //else CvInvoke.Circle(boardFrame, new Point(boardWidth / 2, boardHeight / 2), Math.Abs((int)markerVect.Z), new MCvScalar(255, 0, 0), 1);
-
-            if (markerVect.Z > 0) CvInvoke.Circle(boardFrame, MouseUtility.findIntercept(line1p1, line1p2, line2p1, line2p2), Math.Abs((int)(markerVect.Z * sizeFactor)), new MCvScalar(0, 0, 255), 1);
-            else CvInvoke.Circle(boardFrame, MouseUtility.findIntercept(line1p1, line1p2, line2p1, line2p2), Math.Abs((int)(markerVect.Z * sizeFactor)), new MCvScalar(255, 0, 0), 1);
-
-            CentralClass.getInstance().tipOffset.X = (int)markerVect.X;
-            CentralClass.getInstance().tipOffset.Y = (int)markerVect.Y;
-
-            if (CentralClass.getInstance().showBoard)
-            {
-                CvInvoke.Imshow("Board", boardFrame);
-            }
-            else
-            {
-                CvInvoke.DestroyWindow("Board");
-            }
-        }
-        private void drawOrientationPlane()
-        {
-            int boardWidth = CentralClass.getInstance().boardWidth;
-            int boardHeight = CentralClass.getInstance().boardHeight;
-            Image<Bgr, byte> boardFrame = new Image<Bgr, byte>(boardWidth, boardHeight);
-
-            double calibX = MouseUtility.simplifyAngle(demo3d.calibX);
-            double calibY = MouseUtility.simplifyAngle(demo3d.calibY);
-            double calibZ = MouseUtility.simplifyAngle(demo3d.calibZ);
-
-            Vector3d markerVect = new Vector3d(0, 0, 100);
-
-            markerVect = MouseUtility.rotateX(markerVect, calibX);
-            markerVect = MouseUtility.rotateY(markerVect, calibY);
-            //markerVect = MouseUtility.rotateZ(markerVect, calibZ);
-
-            CvInvoke.Line(boardFrame, new Point(0, boardHeight / 2), new Point(boardWidth, boardHeight / 2), new MCvScalar(255, 255, 255));
-            CvInvoke.Line(boardFrame, new Point(boardWidth / 2, 0), new Point(boardWidth / 2, boardHeight), new MCvScalar(255, 255, 255));
-            CvInvoke.Line(boardFrame, MouseUtility.drawVector(markerVect, boardWidth/2, boardHeight/2).Item1, MouseUtility.drawVector(markerVect, boardWidth/2, boardHeight/2).Item2, new MCvScalar(0, 0, 255), 2);
-
-            if(markerVect.Z > 0) CvInvoke.Circle(boardFrame, new Point(boardWidth / 2, boardHeight / 2), Math.Abs((int)markerVect.Z), new MCvScalar(0, 0, 255), 1);
-            else CvInvoke.Circle(boardFrame, new Point(boardWidth / 2, boardHeight / 2), Math.Abs((int)markerVect.Z), new MCvScalar(255, 0, 0), 1);
-
-            CentralClass.getInstance().tipOffset.X = (int)markerVect.X;
-            CentralClass.getInstance().tipOffset.Y = (int)markerVect.Y;
-
-            if(CentralClass.getInstance().showTipOffset)
-            {
-                CvInvoke.Imshow("OrientationPlane", boardFrame);
-            }
-            else
-            {
-                CvInvoke.DestroyWindow("OrientationPlane");
-            }
-        }
+        //    if (CentralClass.getInstance().showBoard)
+        //    {
+        //        CvInvoke.Imshow("Board", boardFrame);
+        //    }
+        //    else
+        //    {
+        //        CvInvoke.DestroyWindow("Board");
+        //    }
+        //}
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
             DrawingBoard.getInstance().Show();
         }
-
-        
     }
 }
