@@ -17,6 +17,8 @@ namespace DBMControllerApp_TK
     public partial class PositionBoard : Form
     {
         private static PositionBoard instance;
+        private bool invertLeftPos;
+        private bool invertRightPos;
         public static PositionBoard getInstance()
         {
             if (instance == null) instance = new PositionBoard();
@@ -25,6 +27,9 @@ namespace DBMControllerApp_TK
         private PositionBoard()
         {
             InitializeComponent();
+            invertLeftPos = Properties.Settings.Default.InvertLeftPos;
+            invertRightPos = Properties.Settings.Default.InvertRightPos;
+
             Application.Idle += idleEvent;
         }
 
@@ -44,9 +49,12 @@ namespace DBMControllerApp_TK
             Point line2p1 = new Point((int)((float)boardWidth * (float)0.9), (int)((float)boardHeight * (float)0.1));
             Point line2p2 = new Point(0, boardHeight);
 
-            line1p2 = MouseUtility.getInstance(0).rotate(line1p2, line1p1, (float)11.5 - MouseUtility.getInstance(0).getAngleFromPercent(MouseUtility.getInstance(0).position));
-            line2p2 = MouseUtility.getInstance(1).rotate(line2p2, line2p1, (float)-11.5 + MouseUtility.getInstance(1).getAngleFromPercent(MouseUtility.getInstance(1).position));
 
+            if(invertLeftPos) line1p2 = MouseUtility.getInstance(0).rotate(line1p2, line1p1, (float)11.5 + MouseUtility.getInstance(0).getAngleFromPercent(MouseUtility.getInstance(0).position));
+            else line1p2 = MouseUtility.getInstance(0).rotate(line1p2, line1p1, (float)11.5 - MouseUtility.getInstance(0).getAngleFromPercent(MouseUtility.getInstance(0).position));
+            if (invertRightPos) line2p2 = MouseUtility.getInstance(1).rotate(line2p2, line2p1, (float)-11.5 - MouseUtility.getInstance(1).getAngleFromPercent(MouseUtility.getInstance(1).position));
+            else line2p2 = MouseUtility.getInstance(1).rotate(line2p2, line2p1, (float)-11.5 + MouseUtility.getInstance(1).getAngleFromPercent(MouseUtility.getInstance(1).position));
+            
             //line1p2 = MouseUtility.getInstance(0).getEndPoints(boardHeight, boardWidth, line1p1, line1p2)[1];
             //line2p2 = MouseUtility.getInstance(1).getEndPoints(boardHeight, boardWidth, line2p1, line2p2)[1];
 
@@ -117,6 +125,28 @@ namespace DBMControllerApp_TK
             {
                 e.Cancel = true;
                 Hide();
+            }
+        }
+
+        private void btn_InvLeft_Click(object sender, EventArgs e)
+        {
+            invertLeftPos = !invertLeftPos;
+        }
+
+        private void btn_InvRight_Click(object sender, EventArgs e)
+        {
+            invertRightPos = !invertRightPos;
+        }
+
+        private void btn_save_Click(object sender, EventArgs e)
+        {
+            DialogResult dialog = dialog = MessageBox.Show("Are you sure you want to save settings?", "Save Settings", MessageBoxButtons.YesNo);
+            if (dialog == DialogResult.Yes)
+            {
+                Properties.Settings.Default.InvertLeftPos = invertLeftPos;
+                Properties.Settings.Default.InvertRightPos = invertRightPos;
+                Properties.Settings.Default.Save();
+                MessageBox.Show("Settings Saved");
             }
         }
     }

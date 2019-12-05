@@ -298,5 +298,29 @@ namespace DBMControllerApp_TK.Properties {
                 this["Cam2_Point3"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool InvertLeftPos {
+            get {
+                return ((bool)(this["InvertLeftPos"]));
+            }
+            set {
+                this["InvertLeftPos"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool InvertRightPos {
+            get {
+                return ((bool)(this["InvertRightPos"]));
+            }
+            set {
+                this["InvertRightPos"] = value;
+            }
+        }
     }
 }
