@@ -342,7 +342,7 @@ namespace DBMControllerApp_TK
             else
             {
                 dataFile.saveToFile();
-                dataFile.loadFromFile();
+                initializeControls();
                 btn_StartRecord.Text = "Start Recording";
                 btn_StartRecord.ForeColor = Color.FromArgb(0, 0, 0);
                 
