@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using OpenTK;
-
 namespace DBMControllerApp_TK.Utilities
 {
     class MouseUtility
@@ -481,12 +480,10 @@ namespace DBMControllerApp_TK.Utilities
 
             return result;
         }
-
         public static Vector3d rotateZ(Vector3d vector, double angle)
         {
             return rotateZ(vector.X, vector.Y, vector.Z, angle);
         }
-
         public static Tuple<Point, Point> drawVector(Vector3d vector, int oX, int oY)
         {
             Point origin = new Point(oX, oY);
@@ -494,52 +491,73 @@ namespace DBMControllerApp_TK.Utilities
             return new Tuple<Point, Point>(origin, point);
         }
 
+
+        static void threeaxisrot(double r11, double r12, double r21, double r31, double r32, double[] res)
+        {
+            res[0] = Math.Atan2(r31, r32);
+            res[1] = Math.Asin(r21);
+            res[2] = Math.Atan2(r11, r12);
+        }
+        static double rad2deg(double rad)
+        {
+            return rad * 180.0 / Math.PI;
+        }
+
         public static Vector3 ToEulerAngles(Quaternion q)
         {
-            // Store the Euler angles in radians
-            Vector3 pitchYawRoll = new Vector3();
+            double[] res = {1, 1, 1};
+            threeaxisrot(-2 * (q.Y * q.Z - q.W * q.X),
+                    q.W * q.W - q.X * q.X - q.Y * q.Y + q.Z * q.Z,
+                    2 * (q.X * q.Z + q.W * q.Y),
+                   -2 * (q.X * q.Y - q.W * q.Z),
+                    q.W * q.W + q.X * q.X - q.Y * q.Y - q.Z * q.Z,
+                    res);
+            Vector3 result = new Vector3((float)(rad2deg(res[0])), (float)(rad2deg(res[1])), (float)(rad2deg(res[2])));
+            return result;
+            //// Store the Euler angles in radians
+            //Vector3 pitchYawRoll = new Vector3();
 
-            double sqw = q.W * q.W;
-            double sqx = q.X * q.X;
-            double sqy = q.Y * q.Y;
-            double sqz = q.Z * q.Z;
+            //double sqw = Math.Pow(q.W, 2);
+            //double sqx = Math.Pow(q.X, 2);
+            //double sqy = Math.Pow(q.Y, 2);
+            //double sqz = Math.Pow(q.Z, 2);
 
-            // If quaternion is normalised the unit is one, otherwise it is the correction factor
-            double unit = sqx + sqy + sqz + sqw;
-            double test = q.X * q.Y + q.Z * q.W;
+            //// If quaternion is normalised the unit is one, otherwise it is the correction factor
+            //double unit = sqx + sqy + sqz + sqw;
+            //double test = q.X * q.Y + q.Z * q.W;
 
-            if (test > 0.4999f * unit)                              // 0.4999f OR 0.5f - EPSILON
-            {
-                // Singularity at north pole
-                pitchYawRoll.Y = 2f * (float)Math.Atan2(q.X, q.W);  // Yaw
-                pitchYawRoll.X = (float)Math.PI * 0.5f;                         // Pitch
-                pitchYawRoll.Z = 0f;                                // Roll
-                return pitchYawRoll;
-            }
-            else if (test < -0.4999f * unit)                        // -0.4999f OR -0.5f + EPSILON
-            {
-                // Singularity at south pole
-                pitchYawRoll.Y = -2f * (float)Math.Atan2(q.X, q.W); // Yaw
-                pitchYawRoll.X = -(float)Math.PI * 0.5f;                        // Pitch
-                pitchYawRoll.Z = 0f;                                // Roll
-                return pitchYawRoll;
-            }
-            else
-            {
-                pitchYawRoll.Y = (float)Math.Atan2(2f * q.Y * q.W - 2f * q.X * q.Z, sqx - sqy - sqz + sqw);       // Yaw
-                pitchYawRoll.X = (float)Math.Asin(2f * test / unit);                                             // Pitch
-                pitchYawRoll.Z = (float)Math.Atan2(2f * q.X * q.W - 2f * q.Y * q.Z, -sqx + sqy - sqz + sqw);      // Roll
-            }
+            //if (test > 0.4999f * unit)                              // 0.4999f OR 0.5f - EPSILON
+            //{
+            //    // Singularity at north pole
+            //    pitchYawRoll.Y = 2f * (float)Math.Atan2(q.X, q.W);  // Yaw
+            //    pitchYawRoll.X = (float)Math.PI * 0.5f;                         // Pitch
+            //    pitchYawRoll.Z = 0f;                                // Roll
+            //    return pitchYawRoll;
+            //}
+            //else if (test < -0.4999f * unit)                        // -0.4999f OR -0.5f + EPSILON
+            //{
+            //    // Singularity at south pole
+            //    pitchYawRoll.Y = -2f * (float)Math.Atan2(q.X, q.W); // Yaw
+            //    pitchYawRoll.X = -(float)Math.PI * 0.5f;                        // Pitch
+            //    pitchYawRoll.Z = 0f;                                // Roll
+            //    return pitchYawRoll;
+            //}
+            //else
+            //{
+            //    pitchYawRoll.Y = (float)Math.Atan2(2f * q.Y * q.W - 2f * q.X * q.Z, sqx - sqy - sqz + sqw);       // Yaw
+            //    pitchYawRoll.X = (float)Math.Asin(2f * test / unit);                                             // Pitch
+            //    pitchYawRoll.Z = (float)Math.Atan2(2f * q.X * q.W - 2f * q.Y * q.Z, -sqx + sqy - sqz + sqw);      // Roll
+            //}
 
-            pitchYawRoll.X *= (float)(180 / Math.PI);
-            pitchYawRoll.Y *= (float)(180 / Math.PI);
-            pitchYawRoll.Z *= (float)(180 / Math.PI);
+            //pitchYawRoll.X *= (float)(180 / Math.PI);
+            //pitchYawRoll.Y *= (float)(180 / Math.PI);
+            //pitchYawRoll.Z *= (float)(180 / Math.PI);
 
-            pitchYawRoll.X = (float)simplifyAngle(pitchYawRoll.X);
-            pitchYawRoll.Y = (float)simplifyAngle(pitchYawRoll.Y);
-            pitchYawRoll.Z = (float)simplifyAngle(pitchYawRoll.Z);
+            //pitchYawRoll.X = (float)simplifyAngle(pitchYawRoll.X);
+            //pitchYawRoll.Y = (float)simplifyAngle(pitchYawRoll.Y);
+            //pitchYawRoll.Z = (float)simplifyAngle(pitchYawRoll.Z);
 
-            return pitchYawRoll;
+            //return pitchYawRoll;
         }
 
         public static Point findIntercept(Point l1p1, Point l1p2, Point l2p1, Point l2p2)
@@ -557,20 +575,6 @@ namespace DBMControllerApp_TK.Utilities
 
             return result;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         // Find the point of intersection between
         // the lines p1 --> p2 and p3 --> p4.

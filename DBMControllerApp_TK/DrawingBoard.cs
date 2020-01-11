@@ -93,6 +93,7 @@ namespace DBMControllerApp_TK
         }
         private void idleEvent(object sender, EventArgs arg)
         {
+
             draw();
         }
         private void draw()
@@ -543,7 +544,6 @@ namespace DBMControllerApp_TK
                 trk_Seek.Value = currentTick;
             }
         }
-
         private void trk_Seek_MouseDown(object sender, MouseEventArgs e)
         {
             playPause(true);

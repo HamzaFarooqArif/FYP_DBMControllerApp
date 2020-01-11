@@ -30,7 +30,6 @@ C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMContr
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\Emgu.CV.World.xml
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\ZedGraph.xml
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\zh-CN\ZedGraph.resources.dll
-C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.csprojResolveAssemblyReference.cache
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.Cam1_Preview.resources
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.Cam2_Preview.resources
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.Properties.Resources.resources
@@ -74,3 +73,5 @@ C:\Users\Acer\documents\visual studio 2015\Projects\DBMControllerApp_TK\DBMContr
 C:\Users\Acer\documents\visual studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Acer\documents\visual studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Acer\documents\visual studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.PositionBoard.resources
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.csprojAssemblyReference.cache
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.csproj.CopyComplete
