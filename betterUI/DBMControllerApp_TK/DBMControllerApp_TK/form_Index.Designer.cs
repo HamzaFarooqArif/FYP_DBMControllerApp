@@ -30,9 +30,7 @@
         {
             this.panelSideMenu = new System.Windows.Forms.Panel();
             this.panelSettingsSubmenu = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnHardwareInput = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.panelHomeSubmenu = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
@@ -44,6 +42,10 @@
             this.panelPlayer = new System.Windows.Forms.Panel();
             this.panelChildForm = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panelHardwareInputSubmenu = new System.Windows.Forms.Panel();
+            this.btnCameraSettings = new System.Windows.Forms.Button();
+            this.btnOrientationSettings = new System.Windows.Forms.Button();
+            this.btnPositionSettings = new System.Windows.Forms.Button();
             this.panelSideMenu.SuspendLayout();
             this.panelSettingsSubmenu.SuspendLayout();
             this.panelHomeSubmenu.SuspendLayout();
@@ -51,6 +53,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panelChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panelHardwareInputSubmenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelSideMenu
@@ -70,60 +73,31 @@
             // 
             // panelSettingsSubmenu
             // 
+            this.panelSettingsSubmenu.AutoSize = true;
             this.panelSettingsSubmenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.panelSettingsSubmenu.Controls.Add(this.button4);
-            this.panelSettingsSubmenu.Controls.Add(this.button5);
-            this.panelSettingsSubmenu.Controls.Add(this.button6);
+            this.panelSettingsSubmenu.Controls.Add(this.panelHardwareInputSubmenu);
+            this.panelSettingsSubmenu.Controls.Add(this.btnHardwareInput);
             this.panelSettingsSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSettingsSubmenu.Location = new System.Drawing.Point(0, 315);
+            this.panelSettingsSubmenu.Location = new System.Drawing.Point(0, 310);
             this.panelSettingsSubmenu.Name = "panelSettingsSubmenu";
-            this.panelSettingsSubmenu.Size = new System.Drawing.Size(200, 125);
+            this.panelSettingsSubmenu.Size = new System.Drawing.Size(200, 163);
             this.panelSettingsSubmenu.TabIndex = 4;
             // 
-            // button4
+            // btnHardwareInput
             // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.ForeColor = System.Drawing.Color.LightGray;
-            this.button4.Location = new System.Drawing.Point(0, 80);
-            this.button4.Name = "button4";
-            this.button4.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button4.Size = new System.Drawing.Size(200, 40);
-            this.button4.TabIndex = 2;
-            this.button4.Text = "button4";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.ForeColor = System.Drawing.Color.LightGray;
-            this.button5.Location = new System.Drawing.Point(0, 40);
-            this.button5.Name = "button5";
-            this.button5.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button5.Size = new System.Drawing.Size(200, 40);
-            this.button5.TabIndex = 1;
-            this.button5.Text = "button5";
-            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.ForeColor = System.Drawing.Color.LightGray;
-            this.button6.Location = new System.Drawing.Point(0, 0);
-            this.button6.Name = "button6";
-            this.button6.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button6.Size = new System.Drawing.Size(200, 40);
-            this.button6.TabIndex = 0;
-            this.button6.Text = "button6";
-            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnHardwareInput.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnHardwareInput.FlatAppearance.BorderSize = 0;
+            this.btnHardwareInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHardwareInput.ForeColor = System.Drawing.Color.LightGray;
+            this.btnHardwareInput.Location = new System.Drawing.Point(0, 0);
+            this.btnHardwareInput.Name = "btnHardwareInput";
+            this.btnHardwareInput.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.btnHardwareInput.Size = new System.Drawing.Size(200, 40);
+            this.btnHardwareInput.TabIndex = 0;
+            this.btnHardwareInput.Text = "Hardware Input";
+            this.btnHardwareInput.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHardwareInput.UseVisualStyleBackColor = true;
+            this.btnHardwareInput.Click += new System.EventHandler(this.btnHardwareInput_Click);
             // 
             // btnSettings
             // 
@@ -132,7 +106,7 @@
             this.btnSettings.FlatAppearance.BorderSize = 0;
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSettings.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnSettings.Location = new System.Drawing.Point(0, 270);
+            this.btnSettings.Location = new System.Drawing.Point(0, 265);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnSettings.Size = new System.Drawing.Size(200, 45);
@@ -144,6 +118,7 @@
             // 
             // panelHomeSubmenu
             // 
+            this.panelHomeSubmenu.AutoSize = true;
             this.panelHomeSubmenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.panelHomeSubmenu.Controls.Add(this.button3);
             this.panelHomeSubmenu.Controls.Add(this.button2);
@@ -151,7 +126,7 @@
             this.panelHomeSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHomeSubmenu.Location = new System.Drawing.Point(0, 145);
             this.panelHomeSubmenu.Name = "panelHomeSubmenu";
-            this.panelHomeSubmenu.Size = new System.Drawing.Size(200, 125);
+            this.panelHomeSubmenu.Size = new System.Drawing.Size(200, 120);
             this.panelHomeSubmenu.TabIndex = 2;
             // 
             // button3
@@ -266,6 +241,62 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // panelHardwareInputSubmenu
+            // 
+            this.panelHardwareInputSubmenu.AutoSize = true;
+            this.panelHardwareInputSubmenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(50)))));
+            this.panelHardwareInputSubmenu.Controls.Add(this.btnOrientationSettings);
+            this.panelHardwareInputSubmenu.Controls.Add(this.btnCameraSettings);
+            this.panelHardwareInputSubmenu.Controls.Add(this.btnPositionSettings);
+            this.panelHardwareInputSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelHardwareInputSubmenu.Location = new System.Drawing.Point(0, 40);
+            this.panelHardwareInputSubmenu.Name = "panelHardwareInputSubmenu";
+            this.panelHardwareInputSubmenu.Size = new System.Drawing.Size(200, 123);
+            this.panelHardwareInputSubmenu.TabIndex = 3;
+            // 
+            // btnCameraSettings
+            // 
+            this.btnCameraSettings.FlatAppearance.BorderSize = 0;
+            this.btnCameraSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCameraSettings.ForeColor = System.Drawing.Color.LightGray;
+            this.btnCameraSettings.Location = new System.Drawing.Point(0, 40);
+            this.btnCameraSettings.Name = "btnCameraSettings";
+            this.btnCameraSettings.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            this.btnCameraSettings.Size = new System.Drawing.Size(200, 40);
+            this.btnCameraSettings.TabIndex = 1;
+            this.btnCameraSettings.Text = "Camera";
+            this.btnCameraSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCameraSettings.UseVisualStyleBackColor = true;
+            this.btnCameraSettings.Click += new System.EventHandler(this.btnCameraSettings_Click);
+            // 
+            // btnOrientationSettings
+            // 
+            this.btnOrientationSettings.FlatAppearance.BorderSize = 0;
+            this.btnOrientationSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrientationSettings.ForeColor = System.Drawing.Color.LightGray;
+            this.btnOrientationSettings.Location = new System.Drawing.Point(0, 80);
+            this.btnOrientationSettings.Name = "btnOrientationSettings";
+            this.btnOrientationSettings.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            this.btnOrientationSettings.Size = new System.Drawing.Size(200, 40);
+            this.btnOrientationSettings.TabIndex = 2;
+            this.btnOrientationSettings.Text = "Orientation";
+            this.btnOrientationSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOrientationSettings.UseVisualStyleBackColor = true;
+            // 
+            // btnPositionSettings
+            // 
+            this.btnPositionSettings.FlatAppearance.BorderSize = 0;
+            this.btnPositionSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPositionSettings.ForeColor = System.Drawing.Color.LightGray;
+            this.btnPositionSettings.Location = new System.Drawing.Point(0, 0);
+            this.btnPositionSettings.Name = "btnPositionSettings";
+            this.btnPositionSettings.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            this.btnPositionSettings.Size = new System.Drawing.Size(200, 40);
+            this.btnPositionSettings.TabIndex = 3;
+            this.btnPositionSettings.Text = "Position";
+            this.btnPositionSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPositionSettings.UseVisualStyleBackColor = true;
+            // 
             // form_Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -281,13 +312,16 @@
             this.Text = "DBM";
             this.Load += new System.EventHandler(this.form_Index_Load);
             this.panelSideMenu.ResumeLayout(false);
+            this.panelSideMenu.PerformLayout();
             this.panelSettingsSubmenu.ResumeLayout(false);
+            this.panelSettingsSubmenu.PerformLayout();
             this.panelHomeSubmenu.ResumeLayout(false);
             this.panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panelChildForm.ResumeLayout(false);
             this.panelChildForm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panelHardwareInputSubmenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -302,14 +336,16 @@
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.Panel panelLogo;
         private System.Windows.Forms.Panel panelSettingsSubmenu;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnHardwareInput;
         private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Panel panelPlayer;
         private System.Windows.Forms.Panel panelChildForm;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panelHardwareInputSubmenu;
+        private System.Windows.Forms.Button btnOrientationSettings;
+        private System.Windows.Forms.Button btnCameraSettings;
+        private System.Windows.Forms.Button btnPositionSettings;
     }
 }
 

@@ -28,17 +28,16 @@ namespace DBMControllerApp_TK
             panelHomeSubmenu.Visible = false;
             panelSettingsSubmenu.Visible = false;
         }
-        private void hideSubmenu()
+
+        private void hideHardwareSubmenu()
         {
-            if (panelHomeSubmenu.Visible == true) panelHomeSubmenu.Visible = false;
-            if (panelSettingsSubmenu.Visible == true) panelSettingsSubmenu.Visible = false;
+            panelHardwareInputSubmenu.Visible = false;
         }
 
         private void showSubmenu(Panel submenu)
         {
             if(submenu.Visible == false)
             {
-                hideSubmenu();
                 submenu.Visible = true;
             }
             else
@@ -55,11 +54,18 @@ namespace DBMControllerApp_TK
         private void btnSettings_Click(object sender, EventArgs e)
         {
             showSubmenu(panelSettingsSubmenu);
+            hideHardwareSubmenu();
         }
+        private void btnHardwareInput_Click(object sender, EventArgs e)
+        {
+            panelHardwareInputSubmenu.Visible = !panelHardwareInputSubmenu.Visible;
+        }
+        #endregion
+        #region Subforms
         private Form activeForm = null;
         private void openChildForm(Form childForm)
         {
-            if(activeForm != null)
+            if (activeForm != null)
             {
                 activeForm.Close();
             }
@@ -71,6 +77,10 @@ namespace DBMControllerApp_TK
             panelChildForm.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
+        }
+        private void btnCameraSettings_Click(object sender, EventArgs e)
+        {
+
         }
         #endregion
         private void form_Index_Load(object sender, EventArgs e)
