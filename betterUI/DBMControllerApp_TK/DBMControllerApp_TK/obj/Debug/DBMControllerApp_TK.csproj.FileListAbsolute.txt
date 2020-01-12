@@ -7,3 +7,5 @@ C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.csproj.GenerateResource.cache
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.exe
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.pdb
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.Forms.CameraSettings.resources
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.Forms.OrientationSettings.resources

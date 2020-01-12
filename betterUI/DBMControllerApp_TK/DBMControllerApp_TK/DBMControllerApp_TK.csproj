@@ -46,16 +46,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="form_Index.cs">
+    <Compile Include="Forms\CameraSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="form_Index.Designer.cs">
+    <Compile Include="Forms\CameraSettings.Designer.cs">
+      <DependentUpon>CameraSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\form_Index.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\form_Index.Designer.cs">
       <DependentUpon>form_Index.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OrientationSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OrientationSettings.Designer.cs">
+      <DependentUpon>OrientationSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="form_Index.resx">
+    <EmbeddedResource Include="Forms\CameraSettings.resx">
+      <DependentUpon>CameraSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\form_Index.resx">
       <DependentUpon>form_Index.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OrientationSettings.resx">
+      <DependentUpon>OrientationSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
