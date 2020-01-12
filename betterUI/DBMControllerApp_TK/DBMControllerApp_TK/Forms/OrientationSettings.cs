@@ -21,7 +21,7 @@ namespace DBMControllerApp_TK.Forms
             }
             return _instance;
         }
-        private OrientationSettings()
+        public OrientationSettings()
         {
             InitializeComponent();
         }

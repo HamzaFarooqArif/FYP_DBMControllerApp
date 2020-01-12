@@ -9,3 +9,7 @@ C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.pdb
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.Forms.CameraSettings.resources
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.Forms.OrientationSettings.resources
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\DebugTools.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\Gma.System.MouseKeyHook.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\DebugTools.xml
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.csproj.CopyComplete

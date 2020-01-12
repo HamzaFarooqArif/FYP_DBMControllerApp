@@ -1,4 +1,5 @@
 ﻿using DBMControllerApp_TK.Forms;
+using DebugTools.Tools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,7 @@ namespace DBMControllerApp_TK
         {
             InitializeComponent();
             initControls();
+            Inspector inspector = new Inspector();
         }
         
         private void initControls()
@@ -66,25 +68,25 @@ namespace DBMControllerApp_TK
         private void appendChildForm(Form childForm)
         {
             childForm.TopLevel = false;
-            childForm.AutoSize = true;
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
             childForm.BringToFront();
             childForm.Show();
 
-            if(panelChildForm.Controls.OfType<TableLayoutPanel>().Count() == 0)
+            if (panelChildForm.Controls.OfType<TableLayoutPanel>().Count() == 0)
             {
                 TableLayoutPanel tableLayoutPanel = new TableLayoutPanel();
                 tableLayoutPanel.RowCount = 1;
                 tableLayoutPanel.ColumnCount = 1;
                 tableLayoutPanel.Name = "TLPForms";
+                tableLayoutPanel.Margin = new Padding(0);
                 tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent));
                 tableLayoutPanel.ColumnStyles[tableLayoutPanel.ColumnStyles.Count - 1].Width = 50;
                 tableLayoutPanel.Controls.Add(childForm, tableLayoutPanel.ColumnCount - 1, 0);
                 tableLayoutPanel.Dock = DockStyle.Fill;
-                tableLayoutPanel.AutoSize = true;
                 panelChildForm.Controls.Add(tableLayoutPanel);
                 tableLayoutPanel.BringToFront();
+                //tableLayoutPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset;
             }
             else
             {
@@ -103,8 +105,9 @@ namespace DBMControllerApp_TK
         }
         private void btnCameraSettings_Click(object sender, EventArgs e)
         {
-            appendChildForm(CameraSettings.getInstance());
-            appendChildForm(OrientationSettings.getInstance());
+            closeChildForms();
+            appendChildForm(CameraSettings.getInstance(0));
+            appendChildForm(CameraSettings.getInstance(1));
         }
         #endregion
         private void form_Index_Load(object sender, EventArgs e)
@@ -118,6 +121,11 @@ namespace DBMControllerApp_TK
         }
 
         private void btnPositionSettings_Click(object sender, EventArgs e)
+        {
+            //closeChildForms();
+        }
+
+        private void btnPlayer_Click(object sender, EventArgs e)
         {
             closeChildForms();
         }

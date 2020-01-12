@@ -31,29 +31,28 @@
             this.panelSideMenu = new System.Windows.Forms.Panel();
             this.panelSettingsSubmenu = new System.Windows.Forms.Panel();
             this.panelHardwareInputSubmenu = new System.Windows.Forms.Panel();
+            this.btnOrientationSettings = new System.Windows.Forms.Button();
             this.btnCameraSettings = new System.Windows.Forms.Button();
             this.btnPositionSettings = new System.Windows.Forms.Button();
             this.btnHardwareInput = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.panelHomeSubmenu = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnPlayer = new System.Windows.Forms.Button();
             this.btnHome = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panelPlayer = new System.Windows.Forms.Panel();
             this.panelChildForm = new System.Windows.Forms.Panel();
-            this.btnOrientationSettings = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panelSideMenu.SuspendLayout();
             this.panelSettingsSubmenu.SuspendLayout();
             this.panelHardwareInputSubmenu.SuspendLayout();
             this.panelHomeSubmenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panelChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // panelSideMenu
@@ -78,7 +77,7 @@
             this.panelSettingsSubmenu.Controls.Add(this.panelHardwareInputSubmenu);
             this.panelSettingsSubmenu.Controls.Add(this.btnHardwareInput);
             this.panelSettingsSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSettingsSubmenu.Location = new System.Drawing.Point(0, 310);
+            this.panelSettingsSubmenu.Location = new System.Drawing.Point(0, 270);
             this.panelSettingsSubmenu.Name = "panelSettingsSubmenu";
             this.panelSettingsSubmenu.Size = new System.Drawing.Size(200, 163);
             this.panelSettingsSubmenu.TabIndex = 4;
@@ -95,6 +94,20 @@
             this.panelHardwareInputSubmenu.Size = new System.Drawing.Size(200, 123);
             this.panelHardwareInputSubmenu.TabIndex = 3;
             this.panelHardwareInputSubmenu.Paint += new System.Windows.Forms.PaintEventHandler(this.panelHardwareInputSubmenu_Paint);
+            // 
+            // btnOrientationSettings
+            // 
+            this.btnOrientationSettings.FlatAppearance.BorderSize = 0;
+            this.btnOrientationSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrientationSettings.ForeColor = System.Drawing.Color.LightGray;
+            this.btnOrientationSettings.Location = new System.Drawing.Point(0, 80);
+            this.btnOrientationSettings.Name = "btnOrientationSettings";
+            this.btnOrientationSettings.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            this.btnOrientationSettings.Size = new System.Drawing.Size(200, 40);
+            this.btnOrientationSettings.TabIndex = 2;
+            this.btnOrientationSettings.Text = "Orientation";
+            this.btnOrientationSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOrientationSettings.UseVisualStyleBackColor = true;
             // 
             // btnCameraSettings
             // 
@@ -149,7 +162,7 @@
             this.btnSettings.FlatAppearance.BorderSize = 0;
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSettings.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnSettings.Location = new System.Drawing.Point(0, 265);
+            this.btnSettings.Location = new System.Drawing.Point(0, 225);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnSettings.Size = new System.Drawing.Size(200, 45);
@@ -163,29 +176,13 @@
             // 
             this.panelHomeSubmenu.AutoSize = true;
             this.panelHomeSubmenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.panelHomeSubmenu.Controls.Add(this.button3);
             this.panelHomeSubmenu.Controls.Add(this.button2);
-            this.panelHomeSubmenu.Controls.Add(this.button1);
+            this.panelHomeSubmenu.Controls.Add(this.btnPlayer);
             this.panelHomeSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHomeSubmenu.Location = new System.Drawing.Point(0, 145);
             this.panelHomeSubmenu.Name = "panelHomeSubmenu";
-            this.panelHomeSubmenu.Size = new System.Drawing.Size(200, 120);
+            this.panelHomeSubmenu.Size = new System.Drawing.Size(200, 80);
             this.panelHomeSubmenu.TabIndex = 2;
-            // 
-            // button3
-            // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.ForeColor = System.Drawing.Color.LightGray;
-            this.button3.Location = new System.Drawing.Point(0, 80);
-            this.button3.Name = "button3";
-            this.button3.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button3.Size = new System.Drawing.Size(200, 40);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "button3";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -202,20 +199,21 @@
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnPlayer
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.LightGray;
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(200, 40);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnPlayer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnPlayer.FlatAppearance.BorderSize = 0;
+            this.btnPlayer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlayer.ForeColor = System.Drawing.Color.LightGray;
+            this.btnPlayer.Location = new System.Drawing.Point(0, 0);
+            this.btnPlayer.Name = "btnPlayer";
+            this.btnPlayer.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.btnPlayer.Size = new System.Drawing.Size(200, 40);
+            this.btnPlayer.TabIndex = 0;
+            this.btnPlayer.Text = "Player";
+            this.btnPlayer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPlayer.UseVisualStyleBackColor = true;
+            this.btnPlayer.Click += new System.EventHandler(this.btnPlayer_Click);
             // 
             // btnHome
             // 
@@ -243,6 +241,17 @@
             this.panelLogo.Size = new System.Drawing.Size(200, 100);
             this.panelLogo.TabIndex = 0;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox2.Image = global::DBMControllerApp_TK.Properties.Resources.DBM_Logo_White_;
+            this.pictureBox2.Location = new System.Drawing.Point(26, 14);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(148, 66);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 1;
+            this.pictureBox2.TabStop = false;
+            // 
             // panelPlayer
             // 
             this.panelPlayer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
@@ -262,20 +271,6 @@
             this.panelChildForm.Size = new System.Drawing.Size(584, 441);
             this.panelChildForm.TabIndex = 2;
             // 
-            // btnOrientationSettings
-            // 
-            this.btnOrientationSettings.FlatAppearance.BorderSize = 0;
-            this.btnOrientationSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrientationSettings.ForeColor = System.Drawing.Color.LightGray;
-            this.btnOrientationSettings.Location = new System.Drawing.Point(0, 80);
-            this.btnOrientationSettings.Name = "btnOrientationSettings";
-            this.btnOrientationSettings.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
-            this.btnOrientationSettings.Size = new System.Drawing.Size(200, 40);
-            this.btnOrientationSettings.TabIndex = 2;
-            this.btnOrientationSettings.Text = "Orientation";
-            this.btnOrientationSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOrientationSettings.UseVisualStyleBackColor = true;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -286,17 +281,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox2.Image = global::DBMControllerApp_TK.Properties.Resources.DBM_Logo_White_;
-            this.pictureBox2.Location = new System.Drawing.Point(26, 14);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(148, 66);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
             // 
             // form_Index
             // 
@@ -318,10 +302,10 @@
             this.panelHardwareInputSubmenu.ResumeLayout(false);
             this.panelHomeSubmenu.ResumeLayout(false);
             this.panelLogo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panelChildForm.ResumeLayout(false);
             this.panelChildForm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -330,9 +314,8 @@
 
         private System.Windows.Forms.Panel panelSideMenu;
         private System.Windows.Forms.Panel panelHomeSubmenu;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnPlayer;
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.Panel panelLogo;
         private System.Windows.Forms.Panel panelSettingsSubmenu;

@@ -12,21 +12,33 @@ namespace DBMControllerApp_TK.Forms
 {
     public partial class CameraSettings : Form
     {
-        private static CameraSettings _instance;
-        public static CameraSettings getInstance()
+        private static List<CameraSettings> _instance;
+        private int formIdx;
+        public static CameraSettings getInstance(int idx)
         {
             if(_instance == null)
             {
-                _instance = new CameraSettings();
+                _instance = new List<CameraSettings>();
             }
-            return _instance;
+            while(_instance.Count - 1 < idx)
+            {
+                _instance.Add(new CameraSettings());
+            }
+            return _instance[idx];
         }
         private CameraSettings()
         {
             InitializeComponent();
+            formIdx = _instance.Count;
+            lbl_CameraIndex.Text = lbl_CameraIndex.Text + " " + (formIdx + 1);
         }
 
         private void CameraSettings_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Preview_Click(object sender, EventArgs e)
         {
 
         }
