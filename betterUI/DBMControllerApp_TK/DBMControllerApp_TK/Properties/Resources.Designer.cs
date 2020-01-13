@@ -73,6 +73,16 @@ namespace DBMControllerApp_TK.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Dummy_Preview {
+            get {
+                object obj = ResourceManager.GetObject("Dummy_Preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap marker_logo {
             get {
                 object obj = ResourceManager.GetObject("marker_logo", resourceCulture);
