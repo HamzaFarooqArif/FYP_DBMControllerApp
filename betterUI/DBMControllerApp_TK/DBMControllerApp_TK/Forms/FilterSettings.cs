@@ -34,6 +34,7 @@ namespace DBMControllerApp_TK.Forms
             InitializeComponent();
             upper = new Hsv();
             lower = new Hsv();
+            updateColorBox();
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -57,6 +58,7 @@ namespace DBMControllerApp_TK.Forms
             {
                 upper.H = trk_HueU.Value;
                 tb_HueU.Value = (int)upper.H;
+                updateColorBox();
             }
         }
 
@@ -67,6 +69,7 @@ namespace DBMControllerApp_TK.Forms
             {
                 lower.V = trk_ValL.Value;
                 tb_ValL.Value = (int)lower.V;
+                updateColorBox();
             }
         }
 
@@ -76,6 +79,7 @@ namespace DBMControllerApp_TK.Forms
             {
                 upper.S = trk_SatU.Value;
                 tb_SatU.Value = (int)upper.S;
+                updateColorBox();
             }
         }
 
@@ -85,6 +89,7 @@ namespace DBMControllerApp_TK.Forms
             {
                 upper.V = trk_ValU.Value;
                 tb_ValU.Value = (int)upper.V;
+                updateColorBox();
             }
         }
 
@@ -94,6 +99,7 @@ namespace DBMControllerApp_TK.Forms
             {
                 lower.H = trk_HueL.Value;
                 tb_HueL.Value = (int)lower.H;
+                updateColorBox();
             }
         }
 
@@ -103,6 +109,7 @@ namespace DBMControllerApp_TK.Forms
             {
                 lower.S = trk_SatL.Value;
                 tb_SatL.Value = (int)lower.S;
+                updateColorBox();
             }
         }
 
@@ -112,6 +119,7 @@ namespace DBMControllerApp_TK.Forms
             {
                 upper.H = (int)tb_HueU.Value;
                 trk_HueU.Value = (int)upper.H;
+                updateColorBox();
             }
         }
 
@@ -121,6 +129,7 @@ namespace DBMControllerApp_TK.Forms
             {
                 upper.S = (int)tb_SatU.Value;
                 trk_SatU.Value = (int)upper.S;
+                updateColorBox();
             }
         }
 
@@ -130,6 +139,7 @@ namespace DBMControllerApp_TK.Forms
             {
                 upper.V = (int)tb_ValU.Value;
                 trk_ValU.Value = (int)upper.V;
+                updateColorBox();
             }
         }
 
@@ -139,12 +149,18 @@ namespace DBMControllerApp_TK.Forms
             {
                 lower.H = (int)tb_HueL.Value;
                 trk_HueL.Value = (int)lower.H;
+                updateColorBox();
             }
         }
 
         private void tb_SatL_ValueChanged(object sender, EventArgs e)
         {
-
+            if (tb_SatL.Focused)
+            {
+                lower.S = (int)tb_SatL.Value;
+                trk_SatL.Value = (int)lower.S;
+                updateColorBox();
+            }
         }
         private void tb_ValL_ValueChanged(object sender, EventArgs e)
         {
@@ -152,7 +168,30 @@ namespace DBMControllerApp_TK.Forms
             {
                 lower.V = (int)tb_ValL.Value;
                 trk_ValL.Value = (int)lower.V;
+                updateColorBox();
             }
+        }
+
+        private void updateColorBox()
+        {
+            Hsv upperActual = new Hsv();
+            Hsv lowerActual = new Hsv();
+
+            upperActual.H = (upper.H / 255) * 360;
+            upperActual.S = upper.S / 255;
+            upperActual.V = upper.V / 255;
+
+            lowerActual.H = (lower.H / 255) * 360;
+            lowerActual.S = lower.S / 255;
+            lowerActual.V = lower.V / 255;
+
+            Rgb uRGB = upperActual.To<Rgb>();
+            Color bgColorU = Color.FromArgb((int)uRGB.R, (int)uRGB.G, (int)uRGB.B);
+            rtb_U.BackColor = bgColorU;
+
+            Rgb lRGB = lowerActual.To<Rgb>();
+            Color bgColorL = Color.FromArgb((int)lRGB.R, (int)lRGB.G, (int)lRGB.B);
+            rtb_L.BackColor = bgColorL;
         }
     }
 }
