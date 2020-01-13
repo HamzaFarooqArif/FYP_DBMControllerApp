@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using Emgu;
 using Emgu.CV;
 using Emgu.CV.Structure;
@@ -66,6 +67,10 @@ namespace DBMControllerApp_TK.Forms
 
         private void btn_Capture_Click(object sender, EventArgs e)
         {
+            if(String.IsNullOrEmpty(cb_camList.Text))
+            {
+                MessageBox.Show(Utility.errorList[0]);
+            }
             if(cb_camList.Enabled)
             {
                 cb_camList.Enabled = false;
@@ -142,6 +147,11 @@ namespace DBMControllerApp_TK.Forms
 
         private void btn_Preview_Click_1(object sender, EventArgs e)
         {
+            if(frame == null)
+            {
+                MessageBox.Show(Utility.errorList[1]);
+                return;
+            }
             if(isPreview)
             {
                 isPreview = false;
@@ -149,7 +159,7 @@ namespace DBMControllerApp_TK.Forms
                 ib_Preview.Image = new Image<Bgra, byte>(DBMControllerApp_TK.Properties.Resources.Dummy_Preview);
                 btn_Preview.Text = "Preview";
             }
-            else if(frame != null)
+            else
             {
                 isPreview = true;
                 ib_Preview.SizeMode = PictureBoxSizeMode.StretchImage;
