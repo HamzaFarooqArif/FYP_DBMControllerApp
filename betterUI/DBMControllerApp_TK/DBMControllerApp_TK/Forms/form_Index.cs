@@ -129,5 +129,12 @@ namespace DBMControllerApp_TK
         {
             closeChildForms();
         }
+
+        private void btn_Filter_Click(object sender, EventArgs e)
+        {
+            closeChildForms();
+            appendChildForm(FilterSettings.getInstance(0));
+            appendChildForm(FilterSettings.getInstance(1));
+        }
     }
 }

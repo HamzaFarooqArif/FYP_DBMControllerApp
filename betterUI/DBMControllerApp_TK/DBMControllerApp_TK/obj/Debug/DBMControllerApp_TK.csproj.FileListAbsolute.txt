@@ -44,3 +44,4 @@ C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\tr\ZedGraph.resources.dll
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\zh-cn\ZedGraph.resources.dll
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.Forms.FilterSettings.resources

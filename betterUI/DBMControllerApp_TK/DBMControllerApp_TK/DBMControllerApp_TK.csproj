@@ -73,6 +73,12 @@
     <Compile Include="Forms\CameraSettings.Designer.cs">
       <DependentUpon>CameraSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FilterSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FilterSettings.Designer.cs">
+      <DependentUpon>FilterSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\form_Index.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     <Compile Include="Utilities\Utility.cs" />
     <EmbeddedResource Include="Forms\CameraSettings.resx">
       <DependentUpon>CameraSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FilterSettings.resx">
+      <DependentUpon>FilterSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\form_Index.resx">
       <DependentUpon>form_Index.cs</DependentUpon>

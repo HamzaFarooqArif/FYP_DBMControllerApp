@@ -41,18 +41,19 @@
             this.btnPlayer = new System.Windows.Forms.Button();
             this.btnHome = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panelPlayer = new System.Windows.Forms.Panel();
             this.panelChildForm = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btn_Filter = new System.Windows.Forms.Button();
             this.panelSideMenu.SuspendLayout();
             this.panelSettingsSubmenu.SuspendLayout();
             this.panelHardwareInputSubmenu.SuspendLayout();
             this.panelHomeSubmenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panelChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // panelSideMenu
@@ -79,19 +80,20 @@
             this.panelSettingsSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSettingsSubmenu.Location = new System.Drawing.Point(0, 270);
             this.panelSettingsSubmenu.Name = "panelSettingsSubmenu";
-            this.panelSettingsSubmenu.Size = new System.Drawing.Size(200, 163);
+            this.panelSettingsSubmenu.Size = new System.Drawing.Size(200, 199);
             this.panelSettingsSubmenu.TabIndex = 4;
             // 
             // panelHardwareInputSubmenu
             // 
             this.panelHardwareInputSubmenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(50)))));
+            this.panelHardwareInputSubmenu.Controls.Add(this.btn_Filter);
             this.panelHardwareInputSubmenu.Controls.Add(this.btnOrientationSettings);
             this.panelHardwareInputSubmenu.Controls.Add(this.btnCameraSettings);
             this.panelHardwareInputSubmenu.Controls.Add(this.btnPositionSettings);
             this.panelHardwareInputSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHardwareInputSubmenu.Location = new System.Drawing.Point(0, 40);
             this.panelHardwareInputSubmenu.Name = "panelHardwareInputSubmenu";
-            this.panelHardwareInputSubmenu.Size = new System.Drawing.Size(200, 123);
+            this.panelHardwareInputSubmenu.Size = new System.Drawing.Size(200, 159);
             this.panelHardwareInputSubmenu.TabIndex = 3;
             this.panelHardwareInputSubmenu.Paint += new System.Windows.Forms.PaintEventHandler(this.panelHardwareInputSubmenu_Paint);
             // 
@@ -241,17 +243,6 @@
             this.panelLogo.Size = new System.Drawing.Size(200, 100);
             this.panelLogo.TabIndex = 0;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox2.Image = global::DBMControllerApp_TK.Properties.Resources.DBM_Logo_White_;
-            this.pictureBox2.Location = new System.Drawing.Point(26, 14);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(148, 66);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
-            // 
             // panelPlayer
             // 
             this.panelPlayer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
@@ -282,6 +273,32 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox2.Image = global::DBMControllerApp_TK.Properties.Resources.DBM_Logo_White_;
+            this.pictureBox2.Location = new System.Drawing.Point(26, 14);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(148, 66);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 1;
+            this.pictureBox2.TabStop = false;
+            // 
+            // btn_Filter
+            // 
+            this.btn_Filter.FlatAppearance.BorderSize = 0;
+            this.btn_Filter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Filter.ForeColor = System.Drawing.Color.LightGray;
+            this.btn_Filter.Location = new System.Drawing.Point(0, 117);
+            this.btn_Filter.Name = "btn_Filter";
+            this.btn_Filter.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            this.btn_Filter.Size = new System.Drawing.Size(200, 40);
+            this.btn_Filter.TabIndex = 4;
+            this.btn_Filter.Text = "Filter";
+            this.btn_Filter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Filter.UseVisualStyleBackColor = true;
+            this.btn_Filter.Click += new System.EventHandler(this.btn_Filter_Click);
+            // 
             // form_Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -302,10 +319,10 @@
             this.panelHardwareInputSubmenu.ResumeLayout(false);
             this.panelHomeSubmenu.ResumeLayout(false);
             this.panelLogo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panelChildForm.ResumeLayout(false);
             this.panelChildForm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -329,6 +346,7 @@
         private System.Windows.Forms.Button btnCameraSettings;
         private System.Windows.Forms.Button btnPositionSettings;
         private System.Windows.Forms.Button btnOrientationSettings;
+        private System.Windows.Forms.Button btn_Filter;
     }
 }
 
