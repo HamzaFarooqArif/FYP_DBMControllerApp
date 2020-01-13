@@ -19,11 +19,12 @@ namespace DBMControllerApp_TK.Forms
     public partial class CameraSettings : Form
     {
         private static List<CameraSettings> _instance;
-        private int formIdx;
+        public int formIdx;
         private int camIdx;
         private VideoCapture capture;
         private int fps;
         public Mat frame;
+        private bool deviceBusy;
         private bool isPreview;
         public static CameraSettings getInstance(int idx)
         {
@@ -50,7 +51,7 @@ namespace DBMControllerApp_TK.Forms
             tb_fps.Value = 30;
             fps = 0;
             isPreview = false;
-            frame = new Mat();
+            deviceBusy = false;
         }
 
         private void CameraSettings_Load(object sender, EventArgs e)
@@ -72,30 +73,71 @@ namespace DBMControllerApp_TK.Forms
                 btn_Capture.Text = "Stop Capture";
                 camIdx = cb_camList.SelectedIndex;
                 fps = (int)tb_fps.Value;
-                capture = new VideoCapture(cb_camList.SelectedIndex);
-                capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.Fps, (int)tb_fps.Value);
-                capture.ImageGrabbed += processFrame;    
-                capture.Start();
+                deviceBusy = true;
+                frame = new Mat();
+                foreach (CameraSettings form in _instance)
+                {
+                    if(form.formIdx != this.formIdx && form.camIdx != this.camIdx)
+                    {
+                        capture = new VideoCapture(cb_camList.SelectedIndex);
+                        capture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.Fps, (int)tb_fps.Value);
+                        capture.ImageGrabbed += processFrame;
+                        capture.Start();
+                        deviceBusy = false;
+                    }
+                }
                 
             }
             else
             {
-                cb_camList.Enabled = true;
-                tb_fps.Enabled = true;
-                btn_Capture.Text = "Capture";
-                camIdx = -1;
-                fps = 0;
-                capture.Stop();
-                capture.Dispose();
-                capture = null;
-                
+                if(!deviceBusy)
+                {
+                    capture.Stop();
+                    capture.Dispose();
+                    capture = null;
+                    foreach (CameraSettings form in _instance)
+                    {
+                        if (form.formIdx != this.formIdx && form.deviceBusy && form.camIdx == this.camIdx && form.capture == null)
+                        {
+                            form.stopAll();
+                        }
+                    }
+                }
+                stopAll();
             }
+        }
+
+        public void stopAll()
+        {
+            isPreview = false;
+            ib_Preview.SizeMode = PictureBoxSizeMode.CenterImage;
+            ib_Preview.Image = new Image<Bgra, byte>(DBMControllerApp_TK.Properties.Resources.Dummy_Preview);
+            btn_Preview.Text = "Preview";
+            frame = null;
+            camIdx = -1;
+            cb_camList.Enabled = true;
+            tb_fps.Enabled = true;
+            btn_Capture.Text = "Capture";
+            fps = 0;
+            deviceBusy = false;
         }
         public void processFrame(object sender, EventArgs arg)
         {
             capture.Retrieve(frame, 0);
-            if(isPreview) ib_Preview.Image = frame.ToImage<Bgr, byte>();
+            if(isPreview) ib_Preview.Image = frame;
+            foreach(CameraSettings form in _instance)
+            {
+                if(form.formIdx != this.formIdx && form.deviceBusy && form.camIdx == this.camIdx && form.capture == null)
+                {
+                    form.setImage(frame);
+                }
+            }
+        }
 
+        public void setImage(Mat img)
+        {
+            frame = img;
+            if(isPreview) ib_Preview.Image = frame;
         }
 
         private void btn_Preview_Click_1(object sender, EventArgs e)
@@ -105,11 +147,13 @@ namespace DBMControllerApp_TK.Forms
                 isPreview = false;
                 ib_Preview.SizeMode = PictureBoxSizeMode.CenterImage;
                 ib_Preview.Image = new Image<Bgra, byte>(DBMControllerApp_TK.Properties.Resources.Dummy_Preview);
+                btn_Preview.Text = "Preview";
             }
-            else
+            else if(frame != null)
             {
                 isPreview = true;
                 ib_Preview.SizeMode = PictureBoxSizeMode.StretchImage;
+                btn_Preview.Text = "Hide Preview";
             }
         }
     }
