@@ -1,4 +1,5 @@
 ﻿using DBMControllerApp_TK.Forms;
+using DBMControllerApp_TK.Utilities;
 using DebugTools.Tools;
 using System;
 using System.Collections.Generic;
@@ -12,13 +13,20 @@ using System.Windows.Forms;
 
 namespace DBMControllerApp_TK
 {
-    public partial class form_Index : Form
+    public partial class Index : Form
     {
-        public form_Index()
+        public Index()
         {
             InitializeComponent();
             initControls();
             Inspector inspector = new Inspector();
+
+            CameraSettings.getInstance(0);
+            CameraSettings.getInstance(1);
+            FilterSettings.getInstance(0);
+            FilterSettings.getInstance(1);
+            FilterPreview.getInstance(0);
+            FilterPreview.getInstance(1);
         }
         
         private void initControls()
@@ -135,6 +143,15 @@ namespace DBMControllerApp_TK
             closeChildForms();
             appendChildForm(FilterSettings.getInstance(0));
             appendChildForm(FilterSettings.getInstance(1));
+        }
+
+        private void Index_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dialog = dialog = MessageBox.Show(Utility.errorList[2], "Exit", MessageBoxButtons.YesNo);
+            if (dialog == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

@@ -15,6 +15,7 @@ namespace DBMControllerApp_TK.Forms
     public partial class FilterSettings : Form
     {
         private static List<FilterSettings> _instance;
+        public int formIdx;
         public Hsv upper;
         public Hsv lower;
         public static FilterSettings getInstance(int idx)
@@ -32,6 +33,8 @@ namespace DBMControllerApp_TK.Forms
         private FilterSettings()
         {
             InitializeComponent();
+            formIdx = _instance.Count;
+            lbl_Filter.Text = lbl_Filter.Text + " " + (formIdx + 1);
             upper = new Hsv();
             lower = new Hsv();
             updateColorBox();
@@ -192,6 +195,11 @@ namespace DBMControllerApp_TK.Forms
             Rgb lRGB = lowerActual.To<Rgb>();
             Color bgColorL = Color.FromArgb((int)lRGB.R, (int)lRGB.G, (int)lRGB.B);
             rtb_L.BackColor = bgColorL;
+        }
+
+        private void btn_Preview_Click(object sender, EventArgs e)
+        {
+            FilterPreview.getInstance(formIdx).Show();
         }
     }
 }

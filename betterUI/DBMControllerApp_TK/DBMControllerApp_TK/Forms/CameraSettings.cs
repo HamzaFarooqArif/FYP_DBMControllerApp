@@ -27,6 +27,7 @@ namespace DBMControllerApp_TK.Forms
         public Mat frame;
         private bool deviceBusy;
         private bool isPreview;
+        
         public static CameraSettings getInstance(int idx)
         {
             if(_instance == null)
@@ -91,7 +92,7 @@ namespace DBMControllerApp_TK.Forms
                         deviceBusy = false;
                     }
                 }
-                
+                otherFormStartAll();
             }
             else
             {
@@ -109,6 +110,7 @@ namespace DBMControllerApp_TK.Forms
                     }
                 }
                 stopAll();
+                otherFormStopAll();
             }
         }
 
@@ -129,7 +131,7 @@ namespace DBMControllerApp_TK.Forms
         public void processFrame(object sender, EventArgs arg)
         {
             capture.Retrieve(frame, 0);
-            if(isPreview) ib_Preview.Image = frame;
+            setImage(frame);
             foreach(CameraSettings form in _instance)
             {
                 if(form.formIdx != this.formIdx && form.deviceBusy && form.camIdx == this.camIdx && form.capture == null)
@@ -137,12 +139,13 @@ namespace DBMControllerApp_TK.Forms
                     form.setImage(frame);
                 }
             }
+            
         }
-
         public void setImage(Mat img)
         {
             frame = img;
-            if(isPreview) ib_Preview.Image = frame;
+            if (isPreview) ib_Preview.Image = frame;
+            otherFormFunctions();
         }
 
         private void btn_Preview_Click_1(object sender, EventArgs e)
@@ -164,6 +167,36 @@ namespace DBMControllerApp_TK.Forms
                 isPreview = true;
                 ib_Preview.SizeMode = PictureBoxSizeMode.StretchImage;
                 btn_Preview.Text = "Hide Preview";
+            }
+        }
+        private void otherFormFunctions()
+        {
+            foreach(FilterPreview form in FilterPreview._instance)
+            {
+                if(form.formIdx == this.formIdx)
+                {
+                    form.setImage(frame);
+                }
+            }
+        }
+        private void otherFormStopAll()
+        {
+            foreach (FilterPreview form in FilterPreview._instance)
+            {
+                if (form.formIdx == this.formIdx)
+                {
+                    form.stopAll();
+                }
+            }
+        }
+        private void otherFormStartAll()
+        {
+            foreach (FilterPreview form in FilterPreview._instance)
+            {
+                if (form.formIdx == this.formIdx)
+                {
+                    form.startAll();
+                }
             }
         }
     }

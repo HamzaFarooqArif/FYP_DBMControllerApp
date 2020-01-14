@@ -2,7 +2,6 @@ C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\DBMControllerApp_TK.exe
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\DBMControllerApp_TK.pdb
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.csprojAssemblyReference.cache
-C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.form_Index.resources
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.Properties.Resources.resources
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.csproj.GenerateResource.cache
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.exe
@@ -46,3 +45,5 @@ C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\zh-tw\ZedGraph.resources.dll
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.Forms.FilterSettings.resources
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\ColorMine.dll
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.Forms.FilterPreview.resources
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.Index.resources

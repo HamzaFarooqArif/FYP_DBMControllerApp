@@ -1,6 +1,6 @@
 ﻿namespace DBMControllerApp_TK
 {
-    partial class form_Index
+    partial class Index
     {
         /// <summary>
         /// Required designer variable.
@@ -31,6 +31,7 @@
             this.panelSideMenu = new System.Windows.Forms.Panel();
             this.panelSettingsSubmenu = new System.Windows.Forms.Panel();
             this.panelHardwareInputSubmenu = new System.Windows.Forms.Panel();
+            this.btn_Filter = new System.Windows.Forms.Button();
             this.btnOrientationSettings = new System.Windows.Forms.Button();
             this.btnCameraSettings = new System.Windows.Forms.Button();
             this.btnPositionSettings = new System.Windows.Forms.Button();
@@ -41,19 +42,18 @@
             this.btnPlayer = new System.Windows.Forms.Button();
             this.btnHome = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panelPlayer = new System.Windows.Forms.Panel();
             this.panelChildForm = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btn_Filter = new System.Windows.Forms.Button();
             this.panelSideMenu.SuspendLayout();
             this.panelSettingsSubmenu.SuspendLayout();
             this.panelHardwareInputSubmenu.SuspendLayout();
             this.panelHomeSubmenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panelChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // panelSideMenu
@@ -96,6 +96,21 @@
             this.panelHardwareInputSubmenu.Size = new System.Drawing.Size(200, 159);
             this.panelHardwareInputSubmenu.TabIndex = 3;
             this.panelHardwareInputSubmenu.Paint += new System.Windows.Forms.PaintEventHandler(this.panelHardwareInputSubmenu_Paint);
+            // 
+            // btn_Filter
+            // 
+            this.btn_Filter.FlatAppearance.BorderSize = 0;
+            this.btn_Filter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Filter.ForeColor = System.Drawing.Color.LightGray;
+            this.btn_Filter.Location = new System.Drawing.Point(0, 117);
+            this.btn_Filter.Name = "btn_Filter";
+            this.btn_Filter.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            this.btn_Filter.Size = new System.Drawing.Size(200, 40);
+            this.btn_Filter.TabIndex = 4;
+            this.btn_Filter.Text = "Filter";
+            this.btn_Filter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Filter.UseVisualStyleBackColor = true;
+            this.btn_Filter.Click += new System.EventHandler(this.btn_Filter_Click);
             // 
             // btnOrientationSettings
             // 
@@ -243,6 +258,17 @@
             this.panelLogo.Size = new System.Drawing.Size(200, 100);
             this.panelLogo.TabIndex = 0;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox2.Image = global::DBMControllerApp_TK.Properties.Resources.DBM_Logo_White_;
+            this.pictureBox2.Location = new System.Drawing.Point(26, 14);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(148, 66);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 1;
+            this.pictureBox2.TabStop = false;
+            // 
             // panelPlayer
             // 
             this.panelPlayer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
@@ -273,33 +299,7 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox2.Image = global::DBMControllerApp_TK.Properties.Resources.DBM_Logo_White_;
-            this.pictureBox2.Location = new System.Drawing.Point(26, 14);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(148, 66);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
-            // 
-            // btn_Filter
-            // 
-            this.btn_Filter.FlatAppearance.BorderSize = 0;
-            this.btn_Filter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Filter.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_Filter.Location = new System.Drawing.Point(0, 117);
-            this.btn_Filter.Name = "btn_Filter";
-            this.btn_Filter.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
-            this.btn_Filter.Size = new System.Drawing.Size(200, 40);
-            this.btn_Filter.TabIndex = 4;
-            this.btn_Filter.Text = "Filter";
-            this.btn_Filter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Filter.UseVisualStyleBackColor = true;
-            this.btn_Filter.Click += new System.EventHandler(this.btn_Filter_Click);
-            // 
-            // form_Index
+            // Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -310,8 +310,9 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(800, 600);
-            this.Name = "form_Index";
+            this.Name = "Index";
             this.Text = "DBM";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Index_FormClosing);
             this.Load += new System.EventHandler(this.form_Index_Load);
             this.panelSideMenu.ResumeLayout(false);
             this.panelSideMenu.PerformLayout();
@@ -319,10 +320,10 @@
             this.panelHardwareInputSubmenu.ResumeLayout(false);
             this.panelHomeSubmenu.ResumeLayout(false);
             this.panelLogo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panelChildForm.ResumeLayout(false);
             this.panelChildForm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }

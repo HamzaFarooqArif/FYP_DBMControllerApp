@@ -76,17 +76,23 @@
     <Compile Include="Forms\CameraSettings.Designer.cs">
       <DependentUpon>CameraSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FilterPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FilterPreview.Designer.cs">
+      <DependentUpon>FilterPreview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FilterSettings.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FilterSettings.Designer.cs">
       <DependentUpon>FilterSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\form_Index.cs">
+    <Compile Include="Forms\Index.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\form_Index.Designer.cs">
-      <DependentUpon>form_Index.cs</DependentUpon>
+    <Compile Include="Forms\Index.Designer.cs">
+      <DependentUpon>Index.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\OrientationSettings.cs">
       <SubType>Form</SubType>
@@ -100,11 +106,14 @@
     <EmbeddedResource Include="Forms\CameraSettings.resx">
       <DependentUpon>CameraSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FilterPreview.resx">
+      <DependentUpon>FilterPreview.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FilterSettings.resx">
       <DependentUpon>FilterSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\form_Index.resx">
-      <DependentUpon>form_Index.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Index.resx">
+      <DependentUpon>Index.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\OrientationSettings.resx">
       <DependentUpon>OrientationSettings.cs</DependentUpon>

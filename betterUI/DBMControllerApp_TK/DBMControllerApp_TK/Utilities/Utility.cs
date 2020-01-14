@@ -12,7 +12,8 @@ namespace DBMControllerApp_TK.Utilities
     {
         public static List<string> errorList = new List<string>(new string[] {
             "Select a valid capture device",
-            "Start the capture device first"
+            "Start the capture device first",
+            "Are you sure you want to close the application?"
         });
         public static List<string> getCameraList()
         {

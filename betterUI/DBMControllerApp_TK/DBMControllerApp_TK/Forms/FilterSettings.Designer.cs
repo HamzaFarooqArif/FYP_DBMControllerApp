@@ -753,6 +753,7 @@
             this.btn_Preview.TabIndex = 12;
             this.btn_Preview.Text = "Preview";
             this.btn_Preview.UseVisualStyleBackColor = false;
+            this.btn_Preview.Click += new System.EventHandler(this.btn_Preview_Click);
             // 
             // FilterSettings
             // 
