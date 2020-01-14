@@ -125,6 +125,7 @@
             this.btnOrientationSettings.Text = "Orientation";
             this.btnOrientationSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOrientationSettings.UseVisualStyleBackColor = true;
+            this.btnOrientationSettings.Click += new System.EventHandler(this.btnOrientationSettings_Click);
             // 
             // btnCameraSettings
             // 

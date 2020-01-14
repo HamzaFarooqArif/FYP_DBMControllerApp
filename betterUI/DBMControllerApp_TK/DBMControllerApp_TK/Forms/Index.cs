@@ -19,14 +19,19 @@ namespace DBMControllerApp_TK
         {
             InitializeComponent();
             initControls();
+            initializeForms();
             Inspector inspector = new Inspector();
+        }
 
+        private void initializeForms()
+        {
             CameraSettings.getInstance(0);
             CameraSettings.getInstance(1);
             FilterSettings.getInstance(0);
             FilterSettings.getInstance(1);
             FilterPreview.getInstance(0);
             FilterPreview.getInstance(1);
+            OrientationSettings.getInstance();
         }
         
         private void initControls()
@@ -152,6 +157,12 @@ namespace DBMControllerApp_TK
             {
                 e.Cancel = true;
             }
+        }
+
+        private void btnOrientationSettings_Click(object sender, EventArgs e)
+        {
+            closeChildForms();
+            appendChildForm(OrientationSettings.getInstance());
         }
     }
 }
