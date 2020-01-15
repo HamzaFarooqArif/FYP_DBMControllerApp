@@ -17,10 +17,11 @@ namespace DBMControllerApp_TK.Forms
     {
         public static List<FilterPreview> _instance;
         public int formIdx;
-        public int pointLimit;
-        public Point mainPoint;
-        public Point hoverPoint;
-        public Mat localFrame;
+        public int offset;
+        private int pointLimit;
+        private Point mainPoint;
+        private Point hoverPoint;
+        private Mat localFrame;
         public List<Point> points { get; set; }
         public static FilterPreview getInstance(int idx)
         {
@@ -39,7 +40,8 @@ namespace DBMControllerApp_TK.Forms
             InitializeComponent();
             localFrame = new Mat();
             pointLimit = 3;
-            mainPoint = new Point();
+            offset = 0;
+            mainPoint = new Point(-1, -1);
             hoverPoint = new Point();
             points = new List<Point>();
             formIdx = _instance.Count;
@@ -47,13 +49,17 @@ namespace DBMControllerApp_TK.Forms
             ib_Preview.FunctionalMode = ImageBox.FunctionalModeOption.Minimum;
             ib_Preview.Image = new Image<Bgra, byte>(DBMControllerApp_TK.Properties.Resources.Dummy_Preview);
             ib_Preview.SizeMode = PictureBoxSizeMode.CenterImage;
+            Application.Idle += idleEvent;
         }
-
+        private void idleEvent(object sender, EventArgs arg)
+        {
+            tb_Offset.Text = offset.ToString();
+        }
         public void setImage(Mat frame)
         {
             localFrame = frame;
             placePoint(ref localFrame, hoverPoint);
-            drawTemplate(ref localFrame, points);
+            drawTemplate(ref localFrame, points, hoverPoint);
             ib_Preview.Image = localFrame;
         }
         public void startAll()
@@ -96,19 +102,6 @@ namespace DBMControllerApp_TK.Forms
             }
         }
 
-        private void placePoints(ref Mat frame, List<Point> pointsList)
-        {
-            foreach(Point p in pointsList)
-            {
-                placePoint(ref frame, p);
-            }
-        }
-
-        private void placePoint(ref Mat frame, Point p)
-        {
-            CvInvoke.Circle(frame, p, 1, new MCvScalar(0, 0, 255), 2);
-        }
-
         private void btn_Undo_Click(object sender, EventArgs e)
         {
             if(points.Count > 0) points.RemoveAt(points.Count - 1);
@@ -119,28 +112,56 @@ namespace DBMControllerApp_TK.Forms
             hoverPoint.X = (int)Map(e.X, 0, ib_Preview.Width, 0, localFrame.Width);
             hoverPoint.Y = (int)Map(e.Y, 0, ib_Preview.Height, 0, localFrame.Height);
         }
-        public float Map(float value, float fromSource, float toSource, float fromTarget, float toTarget)
-        {
-            return (value - fromSource) / (toSource - fromSource) * (toTarget - fromTarget) + fromTarget;
-        }
 
         private void ib_Preview_MouseLeave(object sender, EventArgs e)
         {
-            hoverPoint = new Point();
+            hoverPoint = new Point(-1, -1);
         }
 
-        private void drawLine(ref Mat frame, Point p1, Point p2)
-        {
-            CvInvoke.Line(frame, p1, p2, new MCvScalar(0, 0, 255));
-        }
-
-        private void drawTemplate(ref Mat frame, List<Point> pointsList)
+        private void drawTemplate(ref Mat frame, List<Point> pointsList, Point mainPoint)
         {
             placePoints(ref localFrame, points);
             if (pointsList.Count > 1)
             {
                 drawIndefLine(ref frame, pointsList[0], pointsList[1]);
+                if (pointsList.Count > 2)
+                {
+                    List<Point> pointsList_1 = getPerpEndPoints(ref frame, pointsList[0], pointsList[1], pointsList[2]);
+                    drawIndefLine(ref frame, pointsList_1[0], pointsList_1[1]);
+                    if(mainPoint.X > -1 && mainPoint.Y > -1)
+                    {
+                        List<Point> pointsList_2 = getDistPoints(ref frame, pointsList_1[0], pointsList_1[1], mainPoint);
+                        drawLine(ref frame, pointsList_2[0], pointsList_2[1]);
+
+                        List<Point> horizEndPoints = getEndPoints(ref frame, pointsList[0], pointsList[1]);
+                        List<Point> vertEndPoints = pointsList_1;
+                        Point midPoint = findIntercept(horizEndPoints[0], horizEndPoints[1], vertEndPoints[0], vertEndPoints[1]);
+                        int leftDist = distance(horizEndPoints[0], midPoint);
+                        int rightDist = distance(horizEndPoints[1], midPoint);
+                        int dist = distance(pointsList_2[0], pointsList_2[1]);
+                        if (distance(pointsList_2[1], horizEndPoints[0]) > distance(mainPoint, horizEndPoints[0]))
+                        {
+                            offset = (int)percent(dist, leftDist);
+                        }
+                        else
+                        {
+                            offset = -(int)percent(dist, rightDist);
+                        }
+                    }
+                    else
+                    {
+                        offset = 0;
+                    }
+                }
+                else
+                {
+                    offset = 0;
+                }   
             }
+        }
+        private void drawLine(ref Mat frame, Point p1, Point p2)
+        {
+            CvInvoke.Line(frame, p1, p2, new MCvScalar(0, 0, 255));
         }
         private void drawIndefLine(ref Mat frame, Point p1, Point p2)
         {
@@ -295,6 +316,117 @@ namespace DBMControllerApp_TK.Forms
         {
             return p.X != -1 && p.Y != -1;
         }
+        public List<Point> getPerpEndPoints(ref Mat frame, Point p1, Point p2, Point p3)
+        {
+            int rows = frame.Rows;
+            int cols = frame.Cols;
 
+            double slope = (double)(p2.Y - p1.Y) / (double)(p2.X - p1.X);
+            double m = -1 / (slope);
+            int c = (int)(p3.Y - (m * p3.X));
+            Point p4 = new Point();
+
+            for (int i = 0; i < cols; i++)
+            {
+                for (int j = 0; j < rows; j++)
+                {
+                    if ((j == (int)(m * i + c)) && p3.X != i && p3.Y != j)
+                    {
+                        p4.X = i;
+                        p4.Y = j;
+                        break;
+                    }
+                }
+            }
+            if (p4.X == 0 && p4.Y == 0)
+            {
+                p4.X = p3.X;
+                p4.Y = 0;
+            }
+
+            return getEndPoints(ref frame, p3, p4);
+        }
+        public List<Point> getDistPoints(ref Mat frame, Point p1, Point p2, Point p3)
+        {
+            int rows = frame.Rows;
+            int cols = frame.Cols;
+
+            double m1 = (double)(p2.Y - p1.Y) / (double)(p2.X - p1.X);
+            int c1 = (int)(p1.Y - (m1 * p1.X));
+            double m2 = -1 / m1;
+            int c2 = (int)(p3.Y - (m2 * p3.X));
+
+            double x;
+            double y;
+
+            x = (c2 - c1) / (m1 - m2);
+            y = (c1 * m2 - c2 * m1) / (m2 - m1);
+
+            Point p = new Point((int)x, (int)y);
+            //Point p4 = new Point(-1, p3.Y);
+            //double m = (double)(p2.Y - p1.Y) / (double)(p2.X - p1.X);
+            //int c = (int)(p1.Y - (m * p1.X));
+            //double x;
+            //if (double.IsInfinity(m))
+            //{
+            //    x = p1.X;
+            //}
+            //else
+            //{
+            //    x = (p4.Y - c) / m;
+            //}
+            //p4.X = (int)x;
+
+            List<Point> result = new List<Point>();
+            result.Add(p3);
+            result.Add(p);
+
+            return result;
+        }
+        public int distance(Point p, Point q)
+        {
+            int xDiff = p.X - q.X;
+            int yDiff = p.Y - q.Y;
+
+            int result = (int)Math.Sqrt(Math.Pow(xDiff, 2) + Math.Pow(yDiff, 2));
+
+            return result;
+        }
+        public float percent(int obtained, int total)
+        {
+            float result = (float)obtained / (float)total;
+            result *= 100;
+            return result;
+        }
+        public Point findIntercept(Point l1p1, Point l1p2, Point l2p1, Point l2p2)
+        {
+            double m1 = (l1p2.Y - l1p1.Y) / (l1p2.X - l1p1.X);
+            double c1 = (l1p2.Y - m1 * l1p2.X);
+
+            double m2 = (l2p2.Y - l2p1.Y) / (l2p2.X - l2p1.X);
+            double c2 = (l2p2.Y - m2 * l2p2.X);
+
+            int x = (int)((c2 - c1) / (m1 - m2));
+            int y = (int)(m1 * x + c1);
+
+            Point result = new Point(x, y);
+
+            return result;
+        }
+        public float Map(float value, float fromSource, float toSource, float fromTarget, float toTarget)
+        {
+            return (value - fromSource) / (toSource - fromSource) * (toTarget - fromTarget) + fromTarget;
+        }
+        private void placePoint(ref Mat frame, Point p)
+        {
+            CvInvoke.Circle(frame, p, 1, new MCvScalar(0, 0, 255), 2);
+        }
+        private void placePoints(ref Mat frame, List<Point> pointsList)
+        {
+            foreach (Point p in pointsList)
+            {
+                placePoint(ref frame, p);
+            }
+        }
     }
 }
