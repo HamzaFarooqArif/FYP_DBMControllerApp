@@ -68,6 +68,9 @@
             this.ib_Preview.Size = new System.Drawing.Size(382, 184);
             this.ib_Preview.TabIndex = 2;
             this.ib_Preview.TabStop = false;
+            this.ib_Preview.DoubleClick += new System.EventHandler(this.ib_Preview_DoubleClick);
+            this.ib_Preview.MouseLeave += new System.EventHandler(this.ib_Preview_MouseLeave);
+            this.ib_Preview.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ib_Preview_MouseMove);
             // 
             // tableLayoutPanel2
             // 
@@ -116,6 +119,7 @@
             this.btn_Undo.TabIndex = 5;
             this.btn_Undo.Text = "Undo";
             this.btn_Undo.UseVisualStyleBackColor = false;
+            this.btn_Undo.Click += new System.EventHandler(this.btn_Undo_Click);
             // 
             // btn_Save
             // 

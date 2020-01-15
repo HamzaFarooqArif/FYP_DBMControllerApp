@@ -197,5 +197,10 @@ namespace DBMControllerApp_TK
                 btn_filter.Text = "Show filter";
             }
         }
+
+        private void imageBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
