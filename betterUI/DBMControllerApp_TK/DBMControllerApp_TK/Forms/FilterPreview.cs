@@ -11,12 +11,15 @@ using System.Windows.Forms;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.UI;
+using Emgu.CV.Util;
+
 namespace DBMControllerApp_TK.Forms
 {
     public partial class FilterPreview : Form
     {
         public static List<FilterPreview> _instance;
         public int formIdx;
+        private bool showMask;
         public int offset;
         private int pointLimit;
         private Point mainPoint;
@@ -39,6 +42,7 @@ namespace DBMControllerApp_TK.Forms
         {
             InitializeComponent();
             localFrame = new Mat();
+            showMask = false;
             pointLimit = 3;
             offset = 0;
             mainPoint = new Point(-1, -1);
@@ -58,9 +62,55 @@ namespace DBMControllerApp_TK.Forms
         public void setImage(Mat frame)
         {
             localFrame = frame;
+            mainPoint = detectCircle(ref localFrame);
             placePoint(ref localFrame, hoverPoint);
-            drawTemplate(ref localFrame, points, hoverPoint);
+            drawTemplate(ref localFrame, points, mainPoint);
             ib_Preview.Image = localFrame;
+        }
+        private Point detectCircle(ref Mat frame)
+        {
+            Image<Bgr, byte> frameImg = frame.ToImage<Bgr, byte>();
+            frameImg._SmoothGaussian(11);
+            Image<Hsv, byte> frameHSV = frameImg.Convert<Hsv, byte>();
+            CvInvoke.InRange(frameHSV, new ScalarArray(new MCvScalar(FilterSettings.getInstance(formIdx).lower.H, FilterSettings.getInstance(formIdx).lower.S, FilterSettings.getInstance(formIdx).lower.V)),
+                           new ScalarArray(new MCvScalar(FilterSettings.getInstance(formIdx).upper.H, FilterSettings.getInstance(formIdx).upper.S, FilterSettings.getInstance(formIdx).upper.V)), frameHSV);
+            var element = CvInvoke.GetStructuringElement(Emgu.CV.CvEnum.ElementShape.Rectangle, new Size(3, 3), new Point(-1, -1));
+            CvInvoke.Erode(frameHSV, frameHSV, element, new Point(-1, -1), 2, Emgu.CV.CvEnum.BorderType.Reflect, default(MCvScalar));
+            CvInvoke.Dilate(frameHSV, frameHSV, element, new Point(-1, -1), 2, Emgu.CV.CvEnum.BorderType.Reflect, default(MCvScalar));
+            VectorOfVectorOfPoint contours = new Emgu.CV.Util.VectorOfVectorOfPoint();
+            CvInvoke.FindContours(frameHSV, contours, null, Emgu.CV.CvEnum.RetrType.List, Emgu.CV.CvEnum.ChainApproxMethod.ChainApproxSimple);
+            Image<Gray, byte> imgout = new Image<Gray, byte>(frameHSV.Width, frameHSV.Height, new Gray(0));
+            Image<Gray, byte> imgCircle = new Image<Gray, byte>(frameHSV.Width, frameHSV.Height, new Gray(0));
+            CvInvoke.DrawContours(imgout, contours, -1, new MCvScalar(255, 0, 0));
+            Point center = new Point();
+            if (contours.Size > 0)
+            {
+                double prevSize = 0;
+                int idx = 0;
+
+                for (int i = 0; i < contours.Size; i++)
+                {
+                    if (CvInvoke.ContourArea(contours[i]) > prevSize)
+                    {
+                        prevSize = CvInvoke.ContourArea(contours[i]);
+                        idx = i;
+                    }
+                }
+
+                CircleF circle = CvInvoke.MinEnclosingCircle(contours[idx]);
+                Moments M = CvInvoke.Moments(contours[idx]);
+                center = new Point((int)(M.M10 / M.M00), (int)(M.M01 / M.M00));
+
+                if (circle.Radius > 10)
+                {
+                    CvInvoke.Circle(frame, center, (int)circle.Radius, new MCvScalar(255, 0, 0), 5);
+                    CvInvoke.Circle(frame, center, 5, new MCvScalar(0, 0, 255), 5);
+                    CvInvoke.Circle(frameHSV, center, (int)circle.Radius, new MCvScalar(255, 0, 0), 5);
+                    CvInvoke.Circle(frameHSV, center, 5, new MCvScalar(255, 0, 0), 5);
+                }
+            }
+            if(showMask) frame = frameHSV.Mat;
+            return center;
         }
         public void startAll()
         {
@@ -427,6 +477,19 @@ namespace DBMControllerApp_TK.Forms
             {
                 placePoint(ref frame, p);
             }
+        }
+
+        private void btn_ShowMask_Click(object sender, EventArgs e)
+        {
+            if(showMask)
+            {
+                btn_ShowMask.Text = "Show Mask";
+            }
+            else
+            {
+                btn_ShowMask.Text = "Hide Mask";
+            }
+            showMask = !showMask;
         }
     }
 }

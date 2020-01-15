@@ -36,15 +36,15 @@
             this.btn_Undo = new System.Windows.Forms.Button();
             this.btn_Save = new System.Windows.Forms.Button();
             this.btn_ShowMask = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.tb_Offset = new System.Windows.Forms.TextBox();
             this.lbl_Offset = new System.Windows.Forms.Label();
+            this.tb_Offset = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ib_Preview)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -154,17 +154,7 @@
             this.btn_ShowMask.TabIndex = 3;
             this.btn_ShowMask.Text = "Show Mask";
             this.btn_ShowMask.UseVisualStyleBackColor = false;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
-            this.panel1.Controls.Add(this.tableLayoutPanel1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(382, 218);
-            this.panel1.TabIndex = 1;
+            this.btn_ShowMask.Click += new System.EventHandler(this.btn_ShowMask_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -182,15 +172,6 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(127, 34);
             this.tableLayoutPanel3.TabIndex = 7;
             // 
-            // tb_Offset
-            // 
-            this.tb_Offset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_Offset.Location = new System.Drawing.Point(55, 7);
-            this.tb_Offset.Name = "tb_Offset";
-            this.tb_Offset.ReadOnly = true;
-            this.tb_Offset.Size = new System.Drawing.Size(69, 20);
-            this.tb_Offset.TabIndex = 7;
-            // 
             // lbl_Offset
             // 
             this.lbl_Offset.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -202,6 +183,26 @@
             this.lbl_Offset.Size = new System.Drawing.Size(46, 17);
             this.lbl_Offset.TabIndex = 8;
             this.lbl_Offset.Text = "Offset";
+            // 
+            // tb_Offset
+            // 
+            this.tb_Offset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_Offset.Location = new System.Drawing.Point(55, 7);
+            this.tb_Offset.Name = "tb_Offset";
+            this.tb_Offset.ReadOnly = true;
+            this.tb_Offset.Size = new System.Drawing.Size(69, 20);
+            this.tb_Offset.TabIndex = 7;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
+            this.panel1.Controls.Add(this.tableLayoutPanel1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(382, 218);
+            this.panel1.TabIndex = 1;
             // 
             // FilterPreview
             // 
@@ -215,9 +216,9 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ib_Preview)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
