@@ -27,7 +27,7 @@ namespace DBMControllerApp_TK.Forms
         public int OPWidth;
         public int OPHeight;
         public Point tipOffset;
-        private bool showTipOffset;
+        private bool showDemo2d;
         private delegate void SetTextDeleg(string text);
         public static OrientationSettings getInstance()
         {
@@ -47,7 +47,7 @@ namespace DBMControllerApp_TK.Forms
             OPWidth = 480;
             OPHeight = 320;
             tipOffset = new Point();
-            showTipOffset = false;
+            showDemo2d = false;
 
             Thread t1 = new Thread(demo);
             t1.Start();
@@ -199,7 +199,9 @@ namespace DBMControllerApp_TK.Forms
 
         private void btn_Show2d_Click(object sender, EventArgs e)
         {
-            showTipOffset = !showTipOffset;
+            if (!showDemo2d) btn_Show2d.Text = "Hide 2d";
+            else btn_Show2d.Text = "Show 2d Orientation";
+            showDemo2d = !showDemo2d;
         }
         private void drawOrientationPlane()
         {
@@ -219,6 +221,10 @@ namespace DBMControllerApp_TK.Forms
             CvInvoke.Line(boardFrame, new Point(OPWidth / 2, 0), new Point(OPWidth / 2, OPHeight), new MCvScalar(255, 255, 255));
             CvInvoke.Line(boardFrame, Utility.drawVector(markerVect, OPWidth / 2, OPHeight / 2).Item1, Utility.drawVector(markerVect, OPWidth / 2, OPHeight / 2).Item2, new MCvScalar(0, 0, 255), 2);
 
+            if (double.IsNaN(markerVect.X)) markerVect.X = 0;
+            if (double.IsNaN(markerVect.Y)) markerVect.Y = 0;
+            if (double.IsNaN(markerVect.Z)) markerVect.Z = 0;
+
             if (markerVect.Z > 0) CvInvoke.Circle(boardFrame, new Point(OPWidth / 2, OPHeight / 2), Math.Abs((int)markerVect.Z), new MCvScalar(0, 0, 255), 1);
             else CvInvoke.Circle(boardFrame, new Point(OPWidth / 2, OPHeight / 2), Math.Abs((int)markerVect.Z), new MCvScalar(255, 0, 0), 1);
 
@@ -227,7 +233,7 @@ namespace DBMControllerApp_TK.Forms
 
             tb_TipOffset.Text = tipOffset.ToString();
 
-            if (showTipOffset)
+            if (showDemo2d)
             {
                 CvInvoke.Imshow("OrientationPlane", boardFrame);
             }
@@ -238,6 +244,11 @@ namespace DBMControllerApp_TK.Forms
         }
 
         private void tableLayoutPanel10_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void cb_SerialList_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
