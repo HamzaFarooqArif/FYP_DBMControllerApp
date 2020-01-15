@@ -157,6 +157,10 @@ namespace DBMControllerApp_TK
             {
                 e.Cancel = true;
             }
+            else
+            {
+                Environment.Exit(0);
+            }
         }
 
         private void btnOrientationSettings_Click(object sender, EventArgs e)
