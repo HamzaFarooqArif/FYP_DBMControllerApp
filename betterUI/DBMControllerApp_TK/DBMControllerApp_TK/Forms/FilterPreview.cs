@@ -61,7 +61,7 @@ namespace DBMControllerApp_TK.Forms
         }
         public void setImage(Mat frame)
         {
-            localFrame = frame;
+            localFrame = frame.Clone();
             mainPoint = detectCircle(ref localFrame);
             placePoint(ref localFrame, hoverPoint);
             drawTemplate(ref localFrame, points, mainPoint);
@@ -69,6 +69,7 @@ namespace DBMControllerApp_TK.Forms
         }
         private Point detectCircle(ref Mat frame)
         {
+            if (frame == null) return new Point();
             Image<Bgr, byte> frameImg = frame.ToImage<Bgr, byte>();
             frameImg._SmoothGaussian(11);
             Image<Hsv, byte> frameHSV = frameImg.Convert<Hsv, byte>();
