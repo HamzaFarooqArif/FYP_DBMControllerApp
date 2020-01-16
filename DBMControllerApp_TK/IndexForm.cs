@@ -60,7 +60,7 @@ namespace DBMControllerApp_TK
             Cam_FilterProp.getInstance(1).Hide();
             OrientationForm.getInstance().Hide();
             DrawingBoard.getInstance().Hide();
-            PositionBoard.getInstance().Hide();
+            PositionSettings.getInstance().Hide();
         }
 
         private void btn_Capture1_Click(object sender, EventArgs e)
@@ -201,7 +201,7 @@ namespace DBMControllerApp_TK
 
         private void btn_Board_Click(object sender, EventArgs e)
         {
-            PositionBoard.getInstance().Show();
+            PositionSettings.getInstance().Show();
             //CentralClass.getInstance().showBoard = !CentralClass.getInstance().showBoard;
         }
 

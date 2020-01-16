@@ -103,6 +103,12 @@
     <Compile Include="Forms\OrientationSettings.Designer.cs">
       <DependentUpon>OrientationSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\PositionSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PositionSettings.Designer.cs">
+      <DependentUpon>PositionSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\demo3d.cs" />
@@ -121,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\OrientationSettings.resx">
       <DependentUpon>OrientationSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PositionSettings.resx">
+      <DependentUpon>PositionSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

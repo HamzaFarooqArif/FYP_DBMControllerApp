@@ -32,6 +32,7 @@ namespace DBMControllerApp_TK
             FilterPreview.getInstance(0);
             FilterPreview.getInstance(1);
             OrientationSettings.getInstance();
+            PositionSettings.getInstance();
         }
         
         private void initControls()
@@ -86,35 +87,18 @@ namespace DBMControllerApp_TK
             childForm.BringToFront();
             childForm.Show();
 
-            if (panelChildForm.Controls.OfType<TableLayoutPanel>().Count() == 0)
-            {
-                TableLayoutPanel tableLayoutPanel = new TableLayoutPanel();
-                tableLayoutPanel.RowCount = 1;
-                tableLayoutPanel.ColumnCount = 1;
-                tableLayoutPanel.Name = "TLPForms";
-                tableLayoutPanel.Margin = new Padding(0);
-                tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent));
-                tableLayoutPanel.ColumnStyles[tableLayoutPanel.ColumnStyles.Count - 1].Width = 50;
-                tableLayoutPanel.Controls.Add(childForm, tableLayoutPanel.ColumnCount - 1, 0);
-                tableLayoutPanel.Dock = DockStyle.Fill;
-                panelChildForm.Controls.Add(tableLayoutPanel);
-                tableLayoutPanel.BringToFront();
-                //tableLayoutPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset;
-            }
-            else
-            {
-                TableLayoutPanel tableLayoutPanel = panelChildForm.Controls.OfType<TableLayoutPanel>().FirstOrDefault();
-                tableLayoutPanel.ColumnCount += 1;
-                tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent));
-                tableLayoutPanel.ColumnStyles[tableLayoutPanel.ColumnStyles.Count - 1].Width = 50;
-                tableLayoutPanel.Controls.Add(childForm, tableLayoutPanel.ColumnCount - 1, 0);
-                tableLayoutPanel.BringToFront();
-            }
-
+            TLPForms.ColumnStyles.Add(new ColumnStyle(SizeType.Percent));
+            TLPForms.ColumnStyles[TLPForms.ColumnStyles.Count - 1].Width = 100;
+            TLPForms.Controls.Add(childForm);
         }
         private void closeChildForms()
         {
-            panelChildForm.Controls.RemoveByKey("TLPForms");
+            TLPForms.Controls.Clear();
+        }
+        private void splashScreen()
+        {
+            TLPForms.Controls.Clear();
+            TLPForms.Controls.Add(ib_Splash);
         }
         private void btnCameraSettings_Click(object sender, EventArgs e)
         {
@@ -135,12 +119,13 @@ namespace DBMControllerApp_TK
 
         private void btnPositionSettings_Click(object sender, EventArgs e)
         {
-            //closeChildForms();
+            closeChildForms();
+            appendChildForm(PositionSettings.getInstance());
         }
 
         private void btnPlayer_Click(object sender, EventArgs e)
         {
-            closeChildForms();
+            splashScreen();
         }
 
         private void btn_Filter_Click(object sender, EventArgs e)

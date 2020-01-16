@@ -1,6 +1,6 @@
 ﻿namespace DBMControllerApp_TK
 {
-    partial class PositionBoard
+    partial class PositionSettings
     {
         /// <summary>
         /// Required designer variable.

@@ -32,78 +32,78 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.tb_SatU = new System.Windows.Forms.NumericUpDown();
             this.trk_SatU = new System.Windows.Forms.TrackBar();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.tb_ValU = new System.Windows.Forms.NumericUpDown();
             this.trk_ValU = new System.Windows.Forms.TrackBar();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.trk_HueU = new System.Windows.Forms.TrackBar();
+            this.tb_HueU = new System.Windows.Forms.NumericUpDown();
             this.lbl_Upper = new System.Windows.Forms.Label();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
+            this.tb_SatL = new System.Windows.Forms.NumericUpDown();
             this.trk_SatL = new System.Windows.Forms.TrackBar();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
+            this.tb_ValL = new System.Windows.Forms.NumericUpDown();
             this.trk_ValL = new System.Windows.Forms.TrackBar();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
+            this.tb_HueL = new System.Windows.Forms.NumericUpDown();
             this.trk_HueL = new System.Windows.Forms.TrackBar();
             this.lbl_Lower = new System.Windows.Forms.Label();
             this.lbl_Filter = new System.Windows.Forms.Label();
             this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
-            this.btn_Save = new System.Windows.Forms.Button();
+            this.btn_Preview = new System.Windows.Forms.Button();
             this.rtb_L = new System.Windows.Forms.RichTextBox();
             this.lbl_UpperColor = new System.Windows.Forms.Label();
             this.lbl_LowerColor = new System.Windows.Forms.Label();
             this.rtb_U = new System.Windows.Forms.RichTextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.tb_HueU = new System.Windows.Forms.NumericUpDown();
-            this.tb_SatU = new System.Windows.Forms.NumericUpDown();
-            this.tb_ValU = new System.Windows.Forms.NumericUpDown();
-            this.tb_HueL = new System.Windows.Forms.NumericUpDown();
-            this.tb_SatL = new System.Windows.Forms.NumericUpDown();
-            this.tb_ValL = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
             this.btn_Load = new System.Windows.Forms.Button();
-            this.btn_Preview = new System.Windows.Forms.Button();
+            this.btn_Save = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_SatU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_SatU)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_ValU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_ValU)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trk_HueU)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_HueU)).BeginInit();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_SatL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_SatL)).BeginInit();
             this.tableLayoutPanel12.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_ValL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_ValL)).BeginInit();
             this.tableLayoutPanel14.SuspendLayout();
             this.tableLayoutPanel15.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_HueL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_HueL)).BeginInit();
             this.tableLayoutPanel16.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tb_HueU)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tb_SatU)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tb_ValU)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tb_HueL)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tb_SatL)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tb_ValL)).BeginInit();
             this.tableLayoutPanel17.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -172,6 +172,20 @@
             this.tableLayoutPanel7.Size = new System.Drawing.Size(230, 32);
             this.tableLayoutPanel7.TabIndex = 5;
             // 
+            // tb_SatU
+            // 
+            this.tb_SatU.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_SatU.Location = new System.Drawing.Point(180, 6);
+            this.tb_SatU.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.tb_SatU.Name = "tb_SatU";
+            this.tb_SatU.Size = new System.Drawing.Size(47, 20);
+            this.tb_SatU.TabIndex = 7;
+            this.tb_SatU.ValueChanged += new System.EventHandler(this.tb_SatU_ValueChanged);
+            // 
             // trk_SatU
             // 
             this.trk_SatU.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -226,6 +240,20 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(230, 32);
             this.tableLayoutPanel5.TabIndex = 5;
+            // 
+            // tb_ValU
+            // 
+            this.tb_ValU.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_ValU.Location = new System.Drawing.Point(179, 6);
+            this.tb_ValU.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.tb_ValU.Name = "tb_ValU";
+            this.tb_ValU.Size = new System.Drawing.Size(48, 20);
+            this.tb_ValU.TabIndex = 8;
+            this.tb_ValU.ValueChanged += new System.EventHandler(this.tb_ValU_ValueChanged);
             // 
             // trk_ValU
             // 
@@ -292,6 +320,20 @@
             this.trk_HueU.Size = new System.Drawing.Size(177, 36);
             this.trk_HueU.TabIndex = 5;
             this.trk_HueU.ValueChanged += new System.EventHandler(this.trk_HueU_ValueChanged);
+            // 
+            // tb_HueU
+            // 
+            this.tb_HueU.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_HueU.Location = new System.Drawing.Point(180, 8);
+            this.tb_HueU.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.tb_HueU.Name = "tb_HueU";
+            this.tb_HueU.Size = new System.Drawing.Size(47, 20);
+            this.tb_HueU.TabIndex = 6;
+            this.tb_HueU.ValueChanged += new System.EventHandler(this.tb_HueU_ValueChanged);
             // 
             // lbl_Upper
             // 
@@ -391,6 +433,20 @@
             this.tableLayoutPanel11.Size = new System.Drawing.Size(230, 32);
             this.tableLayoutPanel11.TabIndex = 5;
             // 
+            // tb_SatL
+            // 
+            this.tb_SatL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_SatL.Location = new System.Drawing.Point(179, 6);
+            this.tb_SatL.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.tb_SatL.Name = "tb_SatL";
+            this.tb_SatL.Size = new System.Drawing.Size(48, 20);
+            this.tb_SatL.TabIndex = 10;
+            this.tb_SatL.ValueChanged += new System.EventHandler(this.tb_SatL_ValueChanged);
+            // 
             // trk_SatL
             // 
             this.trk_SatL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -446,6 +502,20 @@
             this.tableLayoutPanel13.Size = new System.Drawing.Size(230, 32);
             this.tableLayoutPanel13.TabIndex = 5;
             // 
+            // tb_ValL
+            // 
+            this.tb_ValL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_ValL.Location = new System.Drawing.Point(179, 6);
+            this.tb_ValL.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.tb_ValL.Name = "tb_ValL";
+            this.tb_ValL.Size = new System.Drawing.Size(48, 20);
+            this.tb_ValL.TabIndex = 11;
+            this.tb_ValL.ValueChanged += new System.EventHandler(this.tb_ValL_ValueChanged);
+            // 
             // trk_ValL
             // 
             this.trk_ValL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -500,6 +570,20 @@
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel15.Size = new System.Drawing.Size(230, 36);
             this.tableLayoutPanel15.TabIndex = 5;
+            // 
+            // tb_HueL
+            // 
+            this.tb_HueL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_HueL.Location = new System.Drawing.Point(179, 8);
+            this.tb_HueL.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.tb_HueL.Name = "tb_HueL";
+            this.tb_HueL.Size = new System.Drawing.Size(48, 20);
+            this.tb_HueL.TabIndex = 9;
+            this.tb_HueL.ValueChanged += new System.EventHandler(this.tb_HueL_ValueChanged);
             // 
             // trk_HueL
             // 
@@ -558,19 +642,20 @@
             this.tableLayoutPanel16.TabIndex = 7;
             this.tableLayoutPanel16.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel16_Paint_1);
             // 
-            // btn_Save
+            // btn_Preview
             // 
-            this.btn_Save.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.btn_Save.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_Save.FlatAppearance.BorderSize = 0;
-            this.btn_Save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Save.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_Save.Location = new System.Drawing.Point(59, 3);
-            this.btn_Save.Name = "btn_Save";
-            this.btn_Save.Size = new System.Drawing.Size(50, 36);
-            this.btn_Save.TabIndex = 10;
-            this.btn_Save.Text = "Save Settings";
-            this.btn_Save.UseVisualStyleBackColor = false;
+            this.btn_Preview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.btn_Preview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_Preview.FlatAppearance.BorderSize = 0;
+            this.btn_Preview.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Preview.ForeColor = System.Drawing.Color.LightGray;
+            this.btn_Preview.Location = new System.Drawing.Point(3, 60);
+            this.btn_Preview.Name = "btn_Preview";
+            this.btn_Preview.Size = new System.Drawing.Size(106, 36);
+            this.btn_Preview.TabIndex = 12;
+            this.btn_Preview.Text = "Preview";
+            this.btn_Preview.UseVisualStyleBackColor = false;
+            this.btn_Preview.Click += new System.EventHandler(this.btn_Preview_Click);
             // 
             // rtb_L
             // 
@@ -615,101 +700,6 @@
             this.rtb_U.TabIndex = 7;
             this.rtb_U.Text = "";
             // 
-            // panel1
-            // 
-            this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.tableLayoutPanel8);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(232, 476);
-            this.panel1.TabIndex = 2;
-            // 
-            // tb_HueU
-            // 
-            this.tb_HueU.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_HueU.Location = new System.Drawing.Point(180, 8);
-            this.tb_HueU.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.tb_HueU.Name = "tb_HueU";
-            this.tb_HueU.Size = new System.Drawing.Size(47, 20);
-            this.tb_HueU.TabIndex = 6;
-            this.tb_HueU.ValueChanged += new System.EventHandler(this.tb_HueU_ValueChanged);
-            // 
-            // tb_SatU
-            // 
-            this.tb_SatU.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_SatU.Location = new System.Drawing.Point(180, 6);
-            this.tb_SatU.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.tb_SatU.Name = "tb_SatU";
-            this.tb_SatU.Size = new System.Drawing.Size(47, 20);
-            this.tb_SatU.TabIndex = 7;
-            this.tb_SatU.ValueChanged += new System.EventHandler(this.tb_SatU_ValueChanged);
-            // 
-            // tb_ValU
-            // 
-            this.tb_ValU.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_ValU.Location = new System.Drawing.Point(179, 6);
-            this.tb_ValU.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.tb_ValU.Name = "tb_ValU";
-            this.tb_ValU.Size = new System.Drawing.Size(48, 20);
-            this.tb_ValU.TabIndex = 8;
-            this.tb_ValU.ValueChanged += new System.EventHandler(this.tb_ValU_ValueChanged);
-            // 
-            // tb_HueL
-            // 
-            this.tb_HueL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_HueL.Location = new System.Drawing.Point(179, 8);
-            this.tb_HueL.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.tb_HueL.Name = "tb_HueL";
-            this.tb_HueL.Size = new System.Drawing.Size(48, 20);
-            this.tb_HueL.TabIndex = 9;
-            this.tb_HueL.ValueChanged += new System.EventHandler(this.tb_HueL_ValueChanged);
-            // 
-            // tb_SatL
-            // 
-            this.tb_SatL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_SatL.Location = new System.Drawing.Point(179, 6);
-            this.tb_SatL.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.tb_SatL.Name = "tb_SatL";
-            this.tb_SatL.Size = new System.Drawing.Size(48, 20);
-            this.tb_SatL.TabIndex = 10;
-            this.tb_SatL.ValueChanged += new System.EventHandler(this.tb_SatL_ValueChanged);
-            // 
-            // tb_ValL
-            // 
-            this.tb_ValL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_ValL.Location = new System.Drawing.Point(179, 6);
-            this.tb_ValL.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.tb_ValL.Name = "tb_ValL";
-            this.tb_ValL.Size = new System.Drawing.Size(48, 20);
-            this.tb_ValL.TabIndex = 11;
-            this.tb_ValL.ValueChanged += new System.EventHandler(this.tb_ValL_ValueChanged);
-            // 
             // tableLayoutPanel17
             // 
             this.tableLayoutPanel17.ColumnCount = 2;
@@ -740,20 +730,30 @@
             this.btn_Load.Text = "Load Settings";
             this.btn_Load.UseVisualStyleBackColor = false;
             // 
-            // btn_Preview
+            // btn_Save
             // 
-            this.btn_Preview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.btn_Preview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_Preview.FlatAppearance.BorderSize = 0;
-            this.btn_Preview.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Preview.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_Preview.Location = new System.Drawing.Point(3, 60);
-            this.btn_Preview.Name = "btn_Preview";
-            this.btn_Preview.Size = new System.Drawing.Size(106, 36);
-            this.btn_Preview.TabIndex = 12;
-            this.btn_Preview.Text = "Preview";
-            this.btn_Preview.UseVisualStyleBackColor = false;
-            this.btn_Preview.Click += new System.EventHandler(this.btn_Preview_Click);
+            this.btn_Save.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.btn_Save.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_Save.FlatAppearance.BorderSize = 0;
+            this.btn_Save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Save.ForeColor = System.Drawing.Color.LightGray;
+            this.btn_Save.Location = new System.Drawing.Point(59, 3);
+            this.btn_Save.Name = "btn_Save";
+            this.btn_Save.Size = new System.Drawing.Size(50, 36);
+            this.btn_Save.TabIndex = 10;
+            this.btn_Save.Text = "Save Settings";
+            this.btn_Save.UseVisualStyleBackColor = false;
+            // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.tableLayoutPanel8);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(232, 476);
+            this.panel1.TabIndex = 2;
             // 
             // FilterSettings
             // 
@@ -772,17 +772,20 @@
             this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_SatU)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_SatU)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_ValU)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_ValU)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trk_HueU)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_HueU)).EndInit();
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel8.PerformLayout();
             this.tableLayoutPanel9.ResumeLayout(false);
@@ -791,27 +794,24 @@
             this.tableLayoutPanel10.PerformLayout();
             this.tableLayoutPanel11.ResumeLayout(false);
             this.tableLayoutPanel11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_SatL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_SatL)).EndInit();
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel12.PerformLayout();
             this.tableLayoutPanel13.ResumeLayout(false);
             this.tableLayoutPanel13.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_ValL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_ValL)).EndInit();
             this.tableLayoutPanel14.ResumeLayout(false);
             this.tableLayoutPanel14.PerformLayout();
             this.tableLayoutPanel15.ResumeLayout(false);
             this.tableLayoutPanel15.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_HueL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_HueL)).EndInit();
             this.tableLayoutPanel16.ResumeLayout(false);
             this.tableLayoutPanel16.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tb_HueU)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tb_SatU)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tb_ValU)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tb_HueL)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tb_SatL)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tb_ValL)).EndInit();
             this.tableLayoutPanel17.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

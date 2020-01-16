@@ -104,11 +104,11 @@
     <Compile Include="DrawingBoard.Designer.cs">
       <DependentUpon>DrawingBoard.cs</DependentUpon>
     </Compile>
-    <Compile Include="PositionBoard.cs">
+    <Compile Include="PositionSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PositionBoard.Designer.cs">
-      <DependentUpon>PositionBoard.cs</DependentUpon>
+    <Compile Include="PositionSettings.Designer.cs">
+      <DependentUpon>PositionSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\demo3d.cs" />
     <Compile Include="IndexForm.cs">
@@ -146,8 +146,8 @@
     <EmbeddedResource Include="OrientationForm.resx">
       <DependentUpon>OrientationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PositionBoard.resx">
-      <DependentUpon>PositionBoard.cs</DependentUpon>
+    <EmbeddedResource Include="PositionSettings.resx">
+      <DependentUpon>PositionSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

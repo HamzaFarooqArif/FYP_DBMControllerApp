@@ -14,17 +14,17 @@ using System.Windows.Forms;
 
 namespace DBMControllerApp_TK
 {
-    public partial class PositionBoard : Form
+    public partial class PositionSettings : Form
     {
-        private static PositionBoard instance;
+        private static PositionSettings instance;
         private bool invertLeftPos;
         private bool invertRightPos;
-        public static PositionBoard getInstance()
+        public static PositionSettings getInstance()
         {
-            if (instance == null) instance = new PositionBoard();
+            if (instance == null) instance = new PositionSettings();
             return instance;
         }
-        private PositionBoard()
+        private PositionSettings()
         {
             InitializeComponent();
             invertLeftPos = Properties.Settings.Default.InvertLeftPos;
