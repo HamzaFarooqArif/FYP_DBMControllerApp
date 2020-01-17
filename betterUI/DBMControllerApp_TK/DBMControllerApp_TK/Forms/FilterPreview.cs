@@ -61,6 +61,7 @@ namespace DBMControllerApp_TK.Forms
         }
         public void setImage(Mat frame)
         {
+            if (frame == null) return;
             localFrame = frame.Clone();
             mainPoint = detectCircle(ref localFrame);
             placePoint(ref localFrame, hoverPoint);

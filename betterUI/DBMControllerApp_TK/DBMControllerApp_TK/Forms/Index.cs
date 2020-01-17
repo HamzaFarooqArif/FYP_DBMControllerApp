@@ -1,4 +1,5 @@
 ﻿using DBMControllerApp_TK.Forms;
+using DBMControllerApp_TK.Properties;
 using DBMControllerApp_TK.Utilities;
 using DebugTools.Tools;
 using System;
@@ -6,7 +7,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -39,6 +42,7 @@ namespace DBMControllerApp_TK
         {
             initSubMenus();
         }
+        
         #region Sidepanel
         private void initSubMenus()
         {

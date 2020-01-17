@@ -50,10 +50,10 @@ namespace DBMControllerApp_TK.Forms
             ib_Preview.FunctionalMode = ImageBox.FunctionalModeOption.Minimum;
             ib_Preview.Image = new Image<Bgra, byte>(DBMControllerApp_TK.Properties.Resources.Dummy_Preview);
             cb_camList.DataSource = Utility.getCameraList();
-            tb_fps.Value = 30;
             fps = 0;
             isPreview = false;
             deviceBusy = false;
+            loadSettings();
         }
 
         private void CameraSettings_Load(object sender, EventArgs e)
@@ -130,6 +130,7 @@ namespace DBMControllerApp_TK.Forms
         }
         public void processFrame(object sender, EventArgs arg)
         {
+            if (capture == null) return;
             capture.Retrieve(frame, 0);
             setImage(frame);
             foreach(CameraSettings form in _instance)
@@ -198,6 +199,25 @@ namespace DBMControllerApp_TK.Forms
                     form.startAll();
                 }
             }
+        }
+
+        private void btn_Save_Click(object sender, EventArgs e)
+        {
+            saveSettings();
+            MessageBox.Show("Camera "+ (formIdx + 1) +" "+ Utility.errorList[4]);
+        }
+        private void btn_Load_Click(object sender, EventArgs e)
+        {
+            loadSettings();
+        }
+        private void saveSettings()
+        {
+            Config.save("CamFPS_"+formIdx, (int)tb_fps.Value);
+        }
+        private void loadSettings()
+        {
+            int fps = Config.load("CamFPS_" + formIdx);
+            tb_fps.Value = fps;
         }
     }
 }
