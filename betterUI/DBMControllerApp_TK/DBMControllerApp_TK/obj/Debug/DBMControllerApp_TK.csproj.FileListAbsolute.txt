@@ -53,3 +53,4 @@ C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.Forms.PositionSettings.resources
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Acer\Documents\Visual Studio 2015\Projects\DBMControllerApp_TK\betterUI\DBMControllerApp_TK\DBMControllerApp_TK\obj\Debug\DBMControllerApp_TK.Forms.Recorder.resources

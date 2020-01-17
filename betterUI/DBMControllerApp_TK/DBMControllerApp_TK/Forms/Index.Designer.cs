@@ -43,10 +43,9 @@
             this.btnHome = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.panelPlayer = new System.Windows.Forms.Panel();
             this.panelChildForm = new System.Windows.Forms.Panel();
-            this.ib_Splash = new System.Windows.Forms.PictureBox();
             this.TLPForms = new System.Windows.Forms.TableLayoutPanel();
+            this.ib_Splash = new System.Windows.Forms.PictureBox();
             this.panelSideMenu.SuspendLayout();
             this.panelSettingsSubmenu.SuspendLayout();
             this.panelHardwareInputSubmenu.SuspendLayout();
@@ -54,8 +53,8 @@
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panelChildForm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ib_Splash)).BeginInit();
             this.TLPForms.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ib_Splash)).BeginInit();
             this.SuspendLayout();
             // 
             // panelSideMenu
@@ -218,6 +217,7 @@
             this.button2.Text = "button2";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnPlayer
             // 
@@ -272,15 +272,6 @@
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             // 
-            // panelPlayer
-            // 
-            this.panelPlayer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-            this.panelPlayer.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelPlayer.Location = new System.Drawing.Point(200, 441);
-            this.panelPlayer.Name = "panelPlayer";
-            this.panelPlayer.Size = new System.Drawing.Size(584, 120);
-            this.panelPlayer.TabIndex = 1;
-            // 
             // panelChildForm
             // 
             this.panelChildForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
@@ -288,20 +279,8 @@
             this.panelChildForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelChildForm.Location = new System.Drawing.Point(200, 0);
             this.panelChildForm.Name = "panelChildForm";
-            this.panelChildForm.Size = new System.Drawing.Size(584, 441);
+            this.panelChildForm.Size = new System.Drawing.Size(584, 561);
             this.panelChildForm.TabIndex = 2;
-            // 
-            // ib_Splash
-            // 
-            this.ib_Splash.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.ib_Splash.Image = global::DBMControllerApp_TK.Properties.Resources.marker_logo;
-            this.ib_Splash.Location = new System.Drawing.Point(127, 21);
-            this.ib_Splash.Margin = new System.Windows.Forms.Padding(0);
-            this.ib_Splash.Name = "ib_Splash";
-            this.ib_Splash.Size = new System.Drawing.Size(330, 399);
-            this.ib_Splash.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.ib_Splash.TabIndex = 0;
-            this.ib_Splash.TabStop = false;
             // 
             // TLPForms
             // 
@@ -315,9 +294,21 @@
             this.TLPForms.Name = "TLPForms";
             this.TLPForms.RowCount = 1;
             this.TLPForms.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TLPForms.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.TLPForms.Size = new System.Drawing.Size(584, 441);
+            this.TLPForms.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 441F));
+            this.TLPForms.Size = new System.Drawing.Size(584, 561);
             this.TLPForms.TabIndex = 1;
+            // 
+            // ib_Splash
+            // 
+            this.ib_Splash.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ib_Splash.Image = global::DBMControllerApp_TK.Properties.Resources.marker_logo;
+            this.ib_Splash.Location = new System.Drawing.Point(127, 81);
+            this.ib_Splash.Margin = new System.Windows.Forms.Padding(0);
+            this.ib_Splash.Name = "ib_Splash";
+            this.ib_Splash.Size = new System.Drawing.Size(330, 399);
+            this.ib_Splash.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.ib_Splash.TabIndex = 0;
+            this.ib_Splash.TabStop = false;
             // 
             // Index
             // 
@@ -325,7 +316,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.panelChildForm);
-            this.Controls.Add(this.panelPlayer);
             this.Controls.Add(this.panelSideMenu);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -342,9 +332,9 @@
             this.panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panelChildForm.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ib_Splash)).EndInit();
             this.TLPForms.ResumeLayout(false);
             this.TLPForms.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ib_Splash)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -360,7 +350,6 @@
         private System.Windows.Forms.Panel panelSettingsSubmenu;
         private System.Windows.Forms.Button btnHardwareInput;
         private System.Windows.Forms.Button btnSettings;
-        private System.Windows.Forms.Panel panelPlayer;
         private System.Windows.Forms.Panel panelChildForm;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel panelHardwareInputSubmenu;

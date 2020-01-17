@@ -36,6 +36,7 @@ namespace DBMControllerApp_TK
             FilterPreview.getInstance(1);
             OrientationSettings.getInstance();
             PositionSettings.getInstance();
+            Recorder.getInstance();
         }
         
         private void initControls()
@@ -129,7 +130,8 @@ namespace DBMControllerApp_TK
 
         private void btnPlayer_Click(object sender, EventArgs e)
         {
-            splashScreen();
+            closeChildForms();
+            appendChildForm(Recorder.getInstance());
         }
 
         private void btn_Filter_Click(object sender, EventArgs e)
@@ -156,6 +158,11 @@ namespace DBMControllerApp_TK
         {
             closeChildForms();
             appendChildForm(OrientationSettings.getInstance());
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            splashScreen();
         }
     }
 }

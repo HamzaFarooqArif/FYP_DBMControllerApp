@@ -94,6 +94,12 @@
     <Compile Include="Forms\FilterSettings.Designer.cs">
       <DependentUpon>FilterSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Recorder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Recorder.Designer.cs">
+      <DependentUpon>Recorder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Index.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PositionSettings.resx">
       <DependentUpon>PositionSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Recorder.resx">
+      <DependentUpon>Recorder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
