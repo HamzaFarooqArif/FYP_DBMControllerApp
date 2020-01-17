@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 using ColorMine;
 using ColorMine.ColorSpaces;
+using DBMControllerApp_TK.Utilities;
+
 namespace DBMControllerApp_TK.Forms
 {
     public partial class FilterSettings : Form
@@ -37,7 +39,7 @@ namespace DBMControllerApp_TK.Forms
             lbl_Filter.Text = lbl_Filter.Text + " " + (formIdx + 1);
             upper = new Hsv();
             lower = new Hsv();
-            updateColorBox();
+            loadSettings();
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -200,6 +202,55 @@ namespace DBMControllerApp_TK.Forms
         private void btn_Preview_Click(object sender, EventArgs e)
         {
             FilterPreview.getInstance(formIdx).Show();
+        }
+
+        private void btn_Save_Click(object sender, EventArgs e)
+        {
+            saveSettings();
+            MessageBox.Show("Filter " + (formIdx + 1) + " " + Utility.errorList[4]);
+        }
+        private void saveSettings()
+        {
+            Config.save("upper_H " + formIdx, (int)upper.H);
+            Config.save("upper_S " + formIdx, (int)upper.S);
+            Config.save("upper_V " + formIdx, (int)upper.V);
+            Config.save("lower_H " + formIdx, (int)lower.H);
+            Config.save("lower_S " + formIdx, (int)lower.S);
+            Config.save("lower_V " + formIdx, (int)lower.V);
+        }
+        private void loadSettings()
+        {
+            upper.H = Config.load("upper_H " + formIdx);
+            upper.S = Config.load("upper_S " + formIdx);
+            upper.V = Config.load("upper_V " + formIdx);
+            lower.H = Config.load("lower_H " + formIdx);
+            lower.S = Config.load("lower_S " + formIdx);
+            lower.V = Config.load("lower_V " + formIdx);
+
+            updateControls();
+        }
+        private void updateControls()
+        {
+            tb_HueU.Value = (int)upper.H;
+            tb_SatU.Value = (int)upper.S;
+            tb_ValU.Value = (int)upper.V;
+            tb_HueL.Value = (int)lower.H;
+            tb_SatL.Value = (int)lower.S;
+            tb_ValL.Value = (int)lower.V;
+
+            trk_HueU.Value = (int)upper.H;
+            trk_SatU.Value = (int)upper.S;
+            trk_ValU.Value = (int)upper.V;
+            trk_HueL.Value = (int)lower.H;
+            trk_SatL.Value = (int)lower.S;
+            trk_ValL.Value = (int)lower.V;
+
+            updateColorBox();
+        }
+
+        private void btn_Load_Click(object sender, EventArgs e)
+        {
+            loadSettings();
         }
     }
 }
