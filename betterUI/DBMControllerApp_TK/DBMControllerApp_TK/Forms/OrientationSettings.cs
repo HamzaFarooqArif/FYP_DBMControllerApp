@@ -48,6 +48,7 @@ namespace DBMControllerApp_TK.Forms
             OPHeight = 320;
             tipOffset = new Point();
             showDemo2d = false;
+            loadSettings();
 
             Thread t1 = new Thread(demo);
             t1.Start();
@@ -250,7 +251,43 @@ namespace DBMControllerApp_TK.Forms
 
         private void cb_SerialList_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
+
+        private void btn_Save_Click(object sender, EventArgs e)
+        {
+            saveSettings();
+            MessageBox.Show("Orientation " + Utility.errorList[4]);
+        }
+        private void btn_Load_Click(object sender, EventArgs e)
+        {
+            loadSettings();
+        }
+        private void saveSettings()
+        {
+            Config.save("OrientOff_X", offsetX);
+            Config.save("OrientOff_Y", offsetY);
+            Config.save("OrientOff_Z", offsetZ);
+        }
+        private void loadSettings()
+        {
+            offsetX = Config.load("OrientOff_X");
+            offsetY = Config.load("OrientOff_Y");
+            offsetZ = Config.load("OrientOff_Z");
+            
+            updateControls();
+        }
+        private void updateControls()
+        {
+            tb_OffX.Value = offsetX;
+            tb_OffY.Value = offsetY;
+            tb_OffZ.Value = offsetZ;
+            
+            trk_OffX.Value = offsetX;
+            trk_OffY.Value = offsetY;
+            trk_OffZ.Value = offsetZ;
+        }
+
+        
     }
 }

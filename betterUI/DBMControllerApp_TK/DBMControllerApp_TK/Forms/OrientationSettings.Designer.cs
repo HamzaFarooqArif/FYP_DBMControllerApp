@@ -720,6 +720,7 @@
             this.btn_Load.TabIndex = 6;
             this.btn_Load.Text = "Load Saved";
             this.btn_Load.UseVisualStyleBackColor = false;
+            this.btn_Load.Click += new System.EventHandler(this.btn_Load_Click);
             // 
             // btn_Save
             // 
@@ -734,6 +735,7 @@
             this.btn_Save.TabIndex = 4;
             this.btn_Save.Text = "Save Settings";
             this.btn_Save.UseVisualStyleBackColor = false;
+            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
             // 
             // serialPort
             // 
