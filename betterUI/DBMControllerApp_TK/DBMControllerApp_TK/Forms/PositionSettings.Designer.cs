@@ -32,13 +32,13 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.ib_Preview = new Emgu.CV.UI.ImageBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.btn_Load = new System.Windows.Forms.Button();
-            this.btn_InvRight = new System.Windows.Forms.Button();
-            this.btn_Save = new System.Windows.Forms.Button();
-            this.btn_InvLeft = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.lbl_Position = new System.Windows.Forms.Label();
             this.tb_Offset = new System.Windows.Forms.TextBox();
+            this.btn_Load = new System.Windows.Forms.Button();
+            this.btn_InvLeft = new System.Windows.Forms.Button();
+            this.btn_Save = new System.Windows.Forms.Button();
+            this.btn_InvRight = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ib_Preview)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -93,64 +93,6 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(412, 34);
             this.tableLayoutPanel2.TabIndex = 3;
             // 
-            // btn_Load
-            // 
-            this.btn_Load.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.btn_Load.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_Load.FlatAppearance.BorderSize = 0;
-            this.btn_Load.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Load.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_Load.Location = new System.Drawing.Point(276, 3);
-            this.btn_Load.Name = "btn_Load";
-            this.btn_Load.Size = new System.Drawing.Size(62, 28);
-            this.btn_Load.TabIndex = 6;
-            this.btn_Load.Text = "Load Saved";
-            this.btn_Load.UseVisualStyleBackColor = false;
-            // 
-            // btn_InvRight
-            // 
-            this.btn_InvRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.btn_InvRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_InvRight.FlatAppearance.BorderSize = 0;
-            this.btn_InvRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_InvRight.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_InvRight.Location = new System.Drawing.Point(208, 3);
-            this.btn_InvRight.Name = "btn_InvRight";
-            this.btn_InvRight.Size = new System.Drawing.Size(62, 28);
-            this.btn_InvRight.TabIndex = 5;
-            this.btn_InvRight.Text = "Invert Right";
-            this.btn_InvRight.UseVisualStyleBackColor = false;
-            this.btn_InvRight.Click += new System.EventHandler(this.btn_InvRight_Click);
-            // 
-            // btn_Save
-            // 
-            this.btn_Save.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.btn_Save.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_Save.FlatAppearance.BorderSize = 0;
-            this.btn_Save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Save.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_Save.Location = new System.Drawing.Point(344, 3);
-            this.btn_Save.Name = "btn_Save";
-            this.btn_Save.Size = new System.Drawing.Size(65, 28);
-            this.btn_Save.TabIndex = 4;
-            this.btn_Save.Text = "Save Settings";
-            this.btn_Save.UseVisualStyleBackColor = false;
-            // 
-            // btn_InvLeft
-            // 
-            this.btn_InvLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.btn_InvLeft.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_InvLeft.FlatAppearance.BorderSize = 0;
-            this.btn_InvLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_InvLeft.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_InvLeft.Location = new System.Drawing.Point(140, 3);
-            this.btn_InvLeft.Name = "btn_InvLeft";
-            this.btn_InvLeft.Size = new System.Drawing.Size(62, 28);
-            this.btn_InvLeft.TabIndex = 3;
-            this.btn_InvLeft.Text = "Invert Left";
-            this.btn_InvLeft.UseVisualStyleBackColor = false;
-            this.btn_InvLeft.Click += new System.EventHandler(this.btn_InvLeft_Click);
-            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 2;
@@ -187,6 +129,66 @@
             this.tb_Offset.ReadOnly = true;
             this.tb_Offset.Size = new System.Drawing.Size(69, 20);
             this.tb_Offset.TabIndex = 7;
+            // 
+            // btn_Load
+            // 
+            this.btn_Load.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.btn_Load.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_Load.FlatAppearance.BorderSize = 0;
+            this.btn_Load.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Load.ForeColor = System.Drawing.Color.LightGray;
+            this.btn_Load.Location = new System.Drawing.Point(276, 3);
+            this.btn_Load.Name = "btn_Load";
+            this.btn_Load.Size = new System.Drawing.Size(62, 28);
+            this.btn_Load.TabIndex = 6;
+            this.btn_Load.Text = "Load Saved";
+            this.btn_Load.UseVisualStyleBackColor = false;
+            this.btn_Load.Click += new System.EventHandler(this.btn_Load_Click);
+            // 
+            // btn_InvLeft
+            // 
+            this.btn_InvLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.btn_InvLeft.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_InvLeft.FlatAppearance.BorderSize = 0;
+            this.btn_InvLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_InvLeft.ForeColor = System.Drawing.Color.LightGray;
+            this.btn_InvLeft.Location = new System.Drawing.Point(140, 3);
+            this.btn_InvLeft.Name = "btn_InvLeft";
+            this.btn_InvLeft.Size = new System.Drawing.Size(62, 28);
+            this.btn_InvLeft.TabIndex = 3;
+            this.btn_InvLeft.Text = "Invert Left";
+            this.btn_InvLeft.UseVisualStyleBackColor = false;
+            this.btn_InvLeft.Click += new System.EventHandler(this.btn_InvLeft_Click);
+            // 
+            // btn_Save
+            // 
+            this.btn_Save.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.btn_Save.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_Save.FlatAppearance.BorderSize = 0;
+            this.btn_Save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Save.ForeColor = System.Drawing.Color.LightGray;
+            this.btn_Save.Location = new System.Drawing.Point(344, 3);
+            this.btn_Save.Name = "btn_Save";
+            this.btn_Save.Size = new System.Drawing.Size(65, 28);
+            this.btn_Save.TabIndex = 4;
+            this.btn_Save.Text = "Save Settings";
+            this.btn_Save.UseVisualStyleBackColor = false;
+            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
+            // 
+            // btn_InvRight
+            // 
+            this.btn_InvRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.btn_InvRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_InvRight.FlatAppearance.BorderSize = 0;
+            this.btn_InvRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_InvRight.ForeColor = System.Drawing.Color.LightGray;
+            this.btn_InvRight.Location = new System.Drawing.Point(208, 3);
+            this.btn_InvRight.Name = "btn_InvRight";
+            this.btn_InvRight.Size = new System.Drawing.Size(62, 28);
+            this.btn_InvRight.TabIndex = 5;
+            this.btn_InvRight.Text = "Invert Right";
+            this.btn_InvRight.UseVisualStyleBackColor = false;
+            this.btn_InvRight.Click += new System.EventHandler(this.btn_InvRight_Click);
             // 
             // PositionSettings
             // 

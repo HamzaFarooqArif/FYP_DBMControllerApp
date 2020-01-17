@@ -1,4 +1,5 @@
-﻿using Emgu.CV;
+﻿using DBMControllerApp_TK.Utilities;
+using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.UI;
 using OpenTK;
@@ -40,6 +41,7 @@ namespace DBMControllerApp_TK.Forms
             tipOffset = new Point();
             ib_Preview.FunctionalMode = ImageBox.FunctionalModeOption.Minimum;
             ib_Preview.SizeMode = PictureBoxSizeMode.StretchImage;
+            loadSettings();
 
             Application.Idle += idleEvent;
         }
@@ -244,5 +246,34 @@ namespace DBMControllerApp_TK.Forms
         {
             invertRightPos = !invertRightPos;
         }
+
+        private void btn_Save_Click(object sender, EventArgs e)
+        {
+            saveSettings();
+            MessageBox.Show("Position " + Utility.errorList[4]);
+        }
+        private void btn_Load_Click(object sender, EventArgs e)
+        {
+            loadSettings();
+        }
+        private void saveSettings()
+        {
+            if (invertLeftPos) Config.save("InvLeftPos", 1);
+            else Config.save("InvLeftPos", 0);
+            if (invertRightPos) Config.save("InvRightPos", 1);
+            else Config.save("InvRightPos", 0);
+        }
+        private void loadSettings()
+        {
+            int invertLeftPos_local = Config.load("InvLeftPos");
+            int invertRightPos_local = Config.load("InvRightPos");
+
+            if (invertLeftPos_local == 1) invertLeftPos = true;
+            else invertLeftPos = false;
+            if (invertRightPos_local == 1) invertRightPos = true;
+            else invertRightPos = false;
+        }
+
+        
     }
 }

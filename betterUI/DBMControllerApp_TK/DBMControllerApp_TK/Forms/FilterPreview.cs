@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using DBMControllerApp_TK.Utilities;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.UI;
@@ -53,6 +53,7 @@ namespace DBMControllerApp_TK.Forms
             ib_Preview.FunctionalMode = ImageBox.FunctionalModeOption.Minimum;
             ib_Preview.Image = new Image<Bgra, byte>(DBMControllerApp_TK.Properties.Resources.Dummy_Preview);
             ib_Preview.SizeMode = PictureBoxSizeMode.CenterImage;
+            loadSettings();
             Application.Idle += idleEvent;
         }
         private void idleEvent(object sender, EventArgs arg)
@@ -496,7 +497,44 @@ namespace DBMControllerApp_TK.Forms
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
+            saveSettings();
+            MessageBox.Show("Preview " + (formIdx + 1) + " " + Utility.errorList[4]);
+        }
+        private void saveSettings()
+        {
+            for (int i = 0; i < pointLimit; i++)
+            {
+                if(i < points.Count)
+                {
+                    Config.save("Preview " + formIdx + " P " + i + " X", points[i].X);
+                    Config.save("Preview " + formIdx + " P " + i + " Y", points[i].Y);
+                }
+                else
+                {
+                    Config.save("Preview " + formIdx + " P " + i + " X", 0);
+                    Config.save("Preview " + formIdx + " P " + i + " Y", 0);
+                }
+            }
+        }
+        private void loadSettings()
+        {
+            points.Clear();
+            for (int i = 0; i < pointLimit; i++)
+            {
+                Point p = new Point();
+                p.X = Config.load("Preview " + formIdx + " P " + i + " X");
+                p.Y = Config.load("Preview " + formIdx + " P " + i + " Y");
 
+                if(p.X != 0 && p.Y != 0)
+                {
+                    insertPoint(p);
+                }
+            }
+        }
+
+        private void btn_Load_Click(object sender, EventArgs e)
+        {
+            loadSettings();
         }
     }
 }

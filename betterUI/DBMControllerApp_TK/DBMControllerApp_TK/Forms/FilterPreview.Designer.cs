@@ -38,6 +38,8 @@
             this.lbl_Offset = new System.Windows.Forms.Label();
             this.tb_Offset = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_Save = new System.Windows.Forms.Button();
+            this.btn_Load = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ib_Preview)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -76,13 +78,17 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnCount = 5;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel2.Controls.Add(this.btn_ShowMask, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btn_Undo, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btn_Save, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btn_Load, 3, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 273);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
@@ -99,9 +105,9 @@
             this.btn_Undo.FlatAppearance.BorderSize = 0;
             this.btn_Undo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Undo.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_Undo.Location = new System.Drawing.Point(337, 3);
+            this.btn_Undo.Location = new System.Drawing.Point(253, 3);
             this.btn_Undo.Name = "btn_Undo";
-            this.btn_Undo.Size = new System.Drawing.Size(163, 28);
+            this.btn_Undo.Size = new System.Drawing.Size(77, 28);
             this.btn_Undo.TabIndex = 5;
             this.btn_Undo.Text = "Undo";
             this.btn_Undo.UseVisualStyleBackColor = false;
@@ -116,7 +122,7 @@
             this.btn_ShowMask.ForeColor = System.Drawing.Color.LightGray;
             this.btn_ShowMask.Location = new System.Drawing.Point(170, 3);
             this.btn_ShowMask.Name = "btn_ShowMask";
-            this.btn_ShowMask.Size = new System.Drawing.Size(161, 28);
+            this.btn_ShowMask.Size = new System.Drawing.Size(77, 28);
             this.btn_ShowMask.TabIndex = 3;
             this.btn_ShowMask.Text = "Show Mask";
             this.btn_ShowMask.UseVisualStyleBackColor = false;
@@ -170,6 +176,36 @@
             this.panel1.Size = new System.Drawing.Size(503, 307);
             this.panel1.TabIndex = 1;
             // 
+            // btn_Save
+            // 
+            this.btn_Save.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.btn_Save.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_Save.FlatAppearance.BorderSize = 0;
+            this.btn_Save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Save.ForeColor = System.Drawing.Color.LightGray;
+            this.btn_Save.Location = new System.Drawing.Point(419, 3);
+            this.btn_Save.Name = "btn_Save";
+            this.btn_Save.Size = new System.Drawing.Size(81, 28);
+            this.btn_Save.TabIndex = 4;
+            this.btn_Save.Text = "Save Settings";
+            this.btn_Save.UseVisualStyleBackColor = false;
+            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
+            // 
+            // btn_Load
+            // 
+            this.btn_Load.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.btn_Load.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_Load.FlatAppearance.BorderSize = 0;
+            this.btn_Load.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Load.ForeColor = System.Drawing.Color.LightGray;
+            this.btn_Load.Location = new System.Drawing.Point(336, 3);
+            this.btn_Load.Name = "btn_Load";
+            this.btn_Load.Size = new System.Drawing.Size(77, 28);
+            this.btn_Load.TabIndex = 6;
+            this.btn_Load.Text = "Load Saved";
+            this.btn_Load.UseVisualStyleBackColor = false;
+            this.btn_Load.Click += new System.EventHandler(this.btn_Load_Click);
+            // 
             // FilterPreview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -201,5 +237,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TextBox tb_Offset;
         private System.Windows.Forms.Label lbl_Offset;
+        private System.Windows.Forms.Button btn_Save;
+        private System.Windows.Forms.Button btn_Load;
     }
 }
