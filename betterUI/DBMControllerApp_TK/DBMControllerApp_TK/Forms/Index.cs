@@ -150,6 +150,7 @@ namespace DBMControllerApp_TK
             }
             else
             {
+                CameraSettings.killCapture();
                 Environment.Exit(0);
             }
         }

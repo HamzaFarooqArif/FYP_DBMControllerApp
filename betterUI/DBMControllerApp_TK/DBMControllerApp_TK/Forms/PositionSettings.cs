@@ -20,8 +20,8 @@ namespace DBMControllerApp_TK.Forms
         private static PositionSettings _instance;
         private bool invertLeftPos;
         private bool invertRightPos;
-        private int boardWidth;
-        private int boardHeight;
+        //private int boardWidth;
+        //private int boardHeight;
         public Point tipOffset;
         public static PositionSettings getInstance()
         {
@@ -34,8 +34,6 @@ namespace DBMControllerApp_TK.Forms
         private PositionSettings()
         {
             InitializeComponent();
-            boardWidth = 480;
-            boardHeight = 320;
             invertRightPos = false;
             invertRightPos = false;
             tipOffset = new Point();
@@ -48,11 +46,11 @@ namespace DBMControllerApp_TK.Forms
         private void idleEvent(object sender, EventArgs arg)
         {
             float sizeFactor = 0.5f;
-            Image<Bgr, byte> boardFrame = new Image<Bgr, byte>(boardWidth, boardHeight);
-            Point line1p1 = new Point((int)((float)boardWidth * (float)0.1), (int)((float)boardHeight * (float)0.1));
-            Point line1p2 = new Point(boardWidth, boardHeight);
-            Point line2p1 = new Point((int)((float)boardWidth * (float)0.9), (int)((float)boardHeight * (float)0.1));
-            Point line2p2 = new Point(0, boardHeight);
+            Image<Bgr, byte> boardFrame = new Image<Bgr, byte>(Utility.boardWidth, Utility.boardHeight);
+            Point line1p1 = new Point((int)((float)Utility.boardWidth * (float)0.1), (int)((float)Utility.boardHeight * (float)0.1));
+            Point line1p2 = new Point(Utility.boardWidth, Utility.boardHeight);
+            Point line2p1 = new Point((int)((float)Utility.boardWidth * (float)0.9), (int)((float)Utility.boardHeight * (float)0.1));
+            Point line2p2 = new Point(0, Utility.boardHeight);
             if (invertLeftPos) line1p2 = rotate(line1p2, line1p1, (float)11.5 + getAngleFromPercent(FilterPreview.getInstance(0).offset));
             else line1p2 = rotate(line1p2, line1p1, (float)11.5 - getAngleFromPercent(FilterPreview.getInstance(0).offset));
             if (invertRightPos) line2p2 = rotate(line2p2, line2p1, (float)-11.5 - getAngleFromPercent(FilterPreview.getInstance(1).offset));

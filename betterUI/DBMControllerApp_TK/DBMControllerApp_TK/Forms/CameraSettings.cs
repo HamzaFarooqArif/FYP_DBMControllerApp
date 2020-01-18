@@ -219,5 +219,18 @@ namespace DBMControllerApp_TK.Forms
             int fps = Config.load("CamFPS_" + formIdx);
             tb_fps.Value = fps;
         }
+
+        public static void killCapture()
+        {
+            foreach(CameraSettings form in _instance)
+            {
+                if (!form.deviceBusy)
+                {
+                    form.capture.Stop();
+                    form.capture.Dispose();
+                    form.capture = null;
+                }
+            }
+        }
     }
 }
