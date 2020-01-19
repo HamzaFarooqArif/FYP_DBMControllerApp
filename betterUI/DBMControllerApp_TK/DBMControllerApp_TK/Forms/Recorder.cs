@@ -24,7 +24,11 @@ namespace DBMControllerApp_TK.Forms
         private Color color;
         
         private Point hoverPoint;
-
+        private bool isMarkerSelected;
+        private bool isRecording;
+        private bool isPlaying;
+        private bool isPaused;
+        private bool isHardwareEnabled;
         public static Recorder getInstance()
         {
             if (_instance == null)
@@ -48,6 +52,11 @@ namespace DBMControllerApp_TK.Forms
             tickResolution = (int)tb_OffX.Minimum;
             color = rtb_Color.BackColor;
             hoverPoint = new Point();
+            isMarkerSelected = true;
+            isRecording = false;
+            isPlaying = false;
+            isPaused = false;
+            isHardwareEnabled = false;
         }
         private void updateControls()
         {
@@ -62,12 +71,35 @@ namespace DBMControllerApp_TK.Forms
             tb_Position.Text = hoverPoint.ToString();
             timer.Interval = tickResolution;
             if (!timer.Enabled) timer.Start();
+            if(isMarkerSelected) btn_duster.Text = "Marker";
+            else btn_duster.Text = "Duster";
+            if (isRecording)
+            {
+                btn_StartRecord.Text = "Stop Recording";
+                if(btn_StartPlay.Enabled) btn_StartPlay.Enabled = false;
+            }
+            else
+            {
+                btn_StartRecord.Text = "Start Recording";
+                if (!btn_StartPlay.Enabled) btn_StartPlay.Enabled = true;
+            }
+            if (isPlaying)
+            {
+                btn_StartPlay.Text = "Stop Playing";
+                if(btn_StartRecord.Enabled) btn_StartRecord.Enabled = false;
+            }
+            else
+            {
+                btn_StartPlay.Text = "Start Playing";
+                if (!btn_StartRecord.Enabled) btn_StartRecord.Enabled = true;
+            }
+            if (isPaused) btn_PlayPause.Text = "Resume";
+            else btn_PlayPause.Text = "Pause";
+            if (isHardwareEnabled) btn_Enable.Text = "Disable Device Input";
+            else btn_Enable.Text = "Enable Device Input";
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-        }
+        
 
         private void timer_Tick(object sender, EventArgs e)
         {
@@ -124,6 +156,7 @@ namespace DBMControllerApp_TK.Forms
         {
             hoverPoint.X = (int)Map(e.X, 0, ib_Preview.Width, 0, Utility.boardWidth);
             hoverPoint.Y = (int)Map(e.Y, 0, ib_Preview.Height, 0, Utility.boardHeight);
+            updateControls();
         }
         
         private void trk_thickness_ValueChanged(object sender, EventArgs e)
@@ -131,7 +164,7 @@ namespace DBMControllerApp_TK.Forms
             if(trk_thickness.Focused)
             {
                 thickness = trk_thickness.Value;
-                tb_Thickness.Value = trk_thickness.Value;
+                updateControls();
             }
         }
 
@@ -140,7 +173,7 @@ namespace DBMControllerApp_TK.Forms
             if(tb_OffX.Focused)
             {
                 tickResolution = (int)tb_OffX.Value;
-                timer.Interval = tickResolution;
+                updateControls();
             }
         }
 
@@ -149,7 +182,7 @@ namespace DBMControllerApp_TK.Forms
             if(tb_Thickness.Focused)
             {
                 thickness = (int)tb_Thickness.Value;
-                trk_thickness.Value = thickness;
+                updateControls();
             }
         }
 
@@ -158,21 +191,26 @@ namespace DBMControllerApp_TK.Forms
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 color = colorDialog.Color;
-                rtb_Color.BackColor = color;
+                updateControls();
             }
         }
 
         private void btn_duster_Click(object sender, EventArgs e)
         {
-            //if(isMarker)
-            //{
-            //    btn_duster.Text = "Marker";
-            //}
-            //else
-            //{
-            //    btn_duster.Text = "Duster";
-            //}
-            //isMarker = !isMarker;
+            isMarkerSelected = !isMarkerSelected;
+            updateControls();
+        }
+        private void btn_StartPlay_Click(object sender, EventArgs e)
+        {
+            isPlaying = !isPlaying;
+            isRecording = false;
+            isPaused = false;
+            updateControls();
+        }
+        private void btn_Enable_Click(object sender, EventArgs e)
+        {
+            isHardwareEnabled = !isHardwareEnabled;
+            updateControls();
         }
 
         private void ib_Preview_MouseDown(object sender, MouseEventArgs e)
@@ -223,31 +261,16 @@ namespace DBMControllerApp_TK.Forms
 
         private void btn_StartRecord_Click(object sender, EventArgs e)
         {
-            //if(isStoppedRecording)
-            //{
-            //    clearBoard();
-            //    Animation.flushAll(fullPath);
-            //    btn_StartRecord.Text = "Stop Recording";
-            //}
-            //else
-            //{
-            //    Animation.saveToFile(fullPath);
-            //    btn_StartRecord.Text = "Start Recording";
-            //}
-            //isStoppedRecording = !isStoppedRecording;
+            isRecording = !isRecording;
+            isPlaying = false;
+            isPaused = false;
+            updateControls();
         }
 
         private void btn_PlayPause_Click(object sender, EventArgs e)
         {
-            //if (isPaused)
-            //{
-            //    btn_PlayPause.Text = "Pause";
-            //}
-            //else
-            //{
-            //    btn_PlayPause.Text = "Resume";
-            //}
-            //isPaused = !isPaused;
+            isPaused = !isPaused;
+            updateControls();
         }
         private void playAnimation()
         {
@@ -289,5 +312,6 @@ namespace DBMControllerApp_TK.Forms
             return (value - fromSource) / (toSource - fromSource) * (toTarget - fromTarget) + fromTarget;
         }
 
+        
     }
 }

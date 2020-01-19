@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btn_StartPlay = new System.Windows.Forms.Button();
-            this.btn_PlayPause = new System.Windows.Forms.Button();
             this.btn_StartRecord = new System.Windows.Forms.Button();
+            this.btn_PlayPause = new System.Windows.Forms.Button();
+            this.btn_StartPlay = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btn_Save = new System.Windows.Forms.Button();
@@ -90,20 +90,20 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(537, 28);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // btn_StartPlay
+            // btn_StartRecord
             // 
-            this.btn_StartPlay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.btn_StartPlay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_StartPlay.FlatAppearance.BorderSize = 0;
-            this.btn_StartPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_StartPlay.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_StartPlay.Location = new System.Drawing.Point(182, 3);
-            this.btn_StartPlay.Name = "btn_StartPlay";
-            this.btn_StartPlay.Size = new System.Drawing.Size(173, 22);
-            this.btn_StartPlay.TabIndex = 9;
-            this.btn_StartPlay.Text = "Start Play";
-            this.btn_StartPlay.UseVisualStyleBackColor = false;
-            this.btn_StartPlay.Click += new System.EventHandler(this.button1_Click);
+            this.btn_StartRecord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.btn_StartRecord.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_StartRecord.FlatAppearance.BorderSize = 0;
+            this.btn_StartRecord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_StartRecord.ForeColor = System.Drawing.Color.LightGray;
+            this.btn_StartRecord.Location = new System.Drawing.Point(3, 3);
+            this.btn_StartRecord.Name = "btn_StartRecord";
+            this.btn_StartRecord.Size = new System.Drawing.Size(173, 22);
+            this.btn_StartRecord.TabIndex = 7;
+            this.btn_StartRecord.Text = "Start Recording";
+            this.btn_StartRecord.UseVisualStyleBackColor = false;
+            this.btn_StartRecord.Click += new System.EventHandler(this.btn_StartRecord_Click);
             // 
             // btn_PlayPause
             // 
@@ -120,20 +120,20 @@
             this.btn_PlayPause.UseVisualStyleBackColor = false;
             this.btn_PlayPause.Click += new System.EventHandler(this.btn_PlayPause_Click);
             // 
-            // btn_StartRecord
+            // btn_StartPlay
             // 
-            this.btn_StartRecord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.btn_StartRecord.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_StartRecord.FlatAppearance.BorderSize = 0;
-            this.btn_StartRecord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_StartRecord.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_StartRecord.Location = new System.Drawing.Point(3, 3);
-            this.btn_StartRecord.Name = "btn_StartRecord";
-            this.btn_StartRecord.Size = new System.Drawing.Size(173, 22);
-            this.btn_StartRecord.TabIndex = 7;
-            this.btn_StartRecord.Text = "Start Recording";
-            this.btn_StartRecord.UseVisualStyleBackColor = false;
-            this.btn_StartRecord.Click += new System.EventHandler(this.btn_StartRecord_Click);
+            this.btn_StartPlay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.btn_StartPlay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_StartPlay.FlatAppearance.BorderSize = 0;
+            this.btn_StartPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_StartPlay.ForeColor = System.Drawing.Color.LightGray;
+            this.btn_StartPlay.Location = new System.Drawing.Point(182, 3);
+            this.btn_StartPlay.Name = "btn_StartPlay";
+            this.btn_StartPlay.Size = new System.Drawing.Size(173, 22);
+            this.btn_StartPlay.TabIndex = 9;
+            this.btn_StartPlay.Text = "Start Playing";
+            this.btn_StartPlay.UseVisualStyleBackColor = false;
+            this.btn_StartPlay.Click += new System.EventHandler(this.btn_StartPlay_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -358,7 +358,7 @@
             this.lbl_Position.AutoSize = true;
             this.lbl_Position.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lbl_Position.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lbl_Position.Location = new System.Drawing.Point(395, 6);
+            this.lbl_Position.Location = new System.Drawing.Point(393, 6);
             this.lbl_Position.Name = "lbl_Position";
             this.lbl_Position.Size = new System.Drawing.Size(58, 17);
             this.lbl_Position.TabIndex = 12;
@@ -367,9 +367,9 @@
             // tb_Position
             // 
             this.tb_Position.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_Position.Location = new System.Drawing.Point(459, 4);
+            this.tb_Position.Location = new System.Drawing.Point(457, 4);
             this.tb_Position.Name = "tb_Position";
-            this.tb_Position.Size = new System.Drawing.Size(75, 20);
+            this.tb_Position.Size = new System.Drawing.Size(77, 20);
             this.tb_Position.TabIndex = 13;
             // 
             // tableLayoutPanel2
@@ -450,6 +450,7 @@
             this.btn_Enable.TabIndex = 9;
             this.btn_Enable.Text = "Enable Device Input";
             this.btn_Enable.UseVisualStyleBackColor = false;
+            this.btn_Enable.Click += new System.EventHandler(this.btn_Enable_Click);
             // 
             // button2
             // 
