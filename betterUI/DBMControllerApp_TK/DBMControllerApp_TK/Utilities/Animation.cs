@@ -29,25 +29,11 @@ namespace DBMControllerApp_TK.Utilities
     }
     class Animation
     {
-        private static Animation instance;
-        public List<jsonObj> objList;
-        public string fullPath;
-
-        public static Animation getInstance(string fullPath)
-        {
-            if (instance == null) instance = new Animation(fullPath);
-            instance.loadFromFile();
-            return instance;
-        }
-        public Animation(string fullPath)
-        {
-            objList = new List<jsonObj>();
-            this.fullPath = fullPath;
-        }
-        public bool loadFromFile()
+        public static List<jsonObj> objList;
+        public static bool loadFromFile(string fullPath)
         {
             if (!File.Exists(fullPath)) return false;
-
+            objList = new List<jsonObj>();
             string json;
             using (StreamReader r = new StreamReader(fullPath))
             {
@@ -55,17 +41,29 @@ namespace DBMControllerApp_TK.Utilities
                 objList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<jsonObj>>(json);
                 if (objList == null) objList = new List<jsonObj>();
             }
-
             return true;
         }
-        public bool saveToFile()
+        public static bool saveToFile(string fullPath)
         {
             if (!File.Exists(fullPath)) return false;
-
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(objList.ToArray());
             System.IO.File.WriteAllText(fullPath, json);
-
             return true;
+        }
+        public static void appendObj(int x, int y, double time, int thickness, Color color, int isTipDown)
+        {
+            jsonObj obj = new jsonObj(x, y, time, thickness, color, isTipDown);
+            objList.Add(obj);
+        }
+        public static void appendObj(Point p, double time, int thickness, Color color, int isTipDown)
+        {
+            appendObj(p.X, p.Y, time, thickness, color, isTipDown);
+        }
+        public static void flushAll(string fullPath)
+        {
+            objList = new List<jsonObj>();
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(objList.ToArray());
+            System.IO.File.WriteAllText(fullPath, json);
         }
     }
 }

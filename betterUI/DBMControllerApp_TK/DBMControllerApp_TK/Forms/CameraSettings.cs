@@ -224,7 +224,7 @@ namespace DBMControllerApp_TK.Forms
         {
             foreach(CameraSettings form in _instance)
             {
-                if (!form.deviceBusy)
+                if (!form.deviceBusy && form.capture != null)
                 {
                     form.capture.Stop();
                     form.capture.Dispose();
