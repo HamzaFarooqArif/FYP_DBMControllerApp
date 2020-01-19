@@ -103,7 +103,8 @@ namespace DBMControllerApp_TK.Forms
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            
+            if (isRecording || isPlaying) currentTick++;
+            updateControls();
         }
         
         private void drawHover(ref Mat frame)
@@ -154,11 +155,13 @@ namespace DBMControllerApp_TK.Forms
         
         private void ib_Preview_MouseMove(object sender, MouseEventArgs e)
         {
-            hoverPoint.X = (int)Map(e.X, 0, ib_Preview.Width, 0, Utility.boardWidth);
-            hoverPoint.Y = (int)Map(e.Y, 0, ib_Preview.Height, 0, Utility.boardHeight);
-            updateControls();
+            if(!isHardwareEnabled && !isPlaying)
+            {
+                hoverPoint.X = (int)Map(e.X, 0, ib_Preview.Width, 0, Utility.boardWidth);
+                hoverPoint.Y = (int)Map(e.Y, 0, ib_Preview.Height, 0, Utility.boardHeight);
+                updateControls();
+            }
         }
-        
         private void trk_thickness_ValueChanged(object sender, EventArgs e)
         {
             if(trk_thickness.Focused)
@@ -167,7 +170,6 @@ namespace DBMControllerApp_TK.Forms
                 updateControls();
             }
         }
-
         private void tb_OffX_ValueChanged(object sender, EventArgs e)
         {
             if(tb_OffX.Focused)
@@ -176,7 +178,6 @@ namespace DBMControllerApp_TK.Forms
                 updateControls();
             }
         }
-
         private void tb_Thickness_ValueChanged(object sender, EventArgs e)
         {
             if(tb_Thickness.Focused)
@@ -185,7 +186,6 @@ namespace DBMControllerApp_TK.Forms
                 updateControls();
             }
         }
-
         private void rtb_Color_Click(object sender, EventArgs e)
         {
             if (colorDialog.ShowDialog() == DialogResult.OK)
@@ -194,7 +194,6 @@ namespace DBMControllerApp_TK.Forms
                 updateControls();
             }
         }
-
         private void btn_duster_Click(object sender, EventArgs e)
         {
             isMarkerSelected = !isMarkerSelected;
@@ -205,6 +204,7 @@ namespace DBMControllerApp_TK.Forms
             isPlaying = !isPlaying;
             isRecording = false;
             isPaused = false;
+            currentTick = 0;
             updateControls();
         }
         private void btn_Enable_Click(object sender, EventArgs e)
@@ -217,7 +217,6 @@ namespace DBMControllerApp_TK.Forms
         {
             //isTipDown = true;
         }
-
         private void ib_Preview_MouseUp(object sender, MouseEventArgs e)
         {
             //isTipDown = false;
@@ -237,36 +236,30 @@ namespace DBMControllerApp_TK.Forms
             //    }
             //}
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             //clearBoard();
         }
-
         private void ib_Preview_MouseLeave(object sender, EventArgs e)
         {
             //ib_Preview.Image = frame;
         }
-
         private void btn_Save_Click(object sender, EventArgs e)
         {
             saveSettings();
         }
-        
-
         private void btn_Load_Click(object sender, EventArgs e)
         {
             loadSettings();
         }
-
         private void btn_StartRecord_Click(object sender, EventArgs e)
         {
             isRecording = !isRecording;
             isPlaying = false;
             isPaused = false;
+            currentTick = 0;
             updateControls();
         }
-
         private void btn_PlayPause_Click(object sender, EventArgs e)
         {
             isPaused = !isPaused;
