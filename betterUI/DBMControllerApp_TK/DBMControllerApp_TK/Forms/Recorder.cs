@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +34,7 @@ namespace DBMControllerApp_TK.Forms
         private bool isHardwareEnabled;
         private bool isMouseOver;
         private int isTipDown;
-
+        string fullPath;
         public static Recorder getInstance()
         {
             if (_instance == null)
@@ -65,6 +66,8 @@ namespace DBMControllerApp_TK.Forms
             isHardwareEnabled = false;
             isMouseOver = false;
             isTipDown = 0;
+            fullPath = @"C:\";
+            Animation.objList = new List<jsonObj>();
         }
         private void updateControls()
         {
@@ -93,6 +96,8 @@ namespace DBMControllerApp_TK.Forms
                 if(btn_StartPlay.Enabled) btn_StartPlay.Enabled = false;
                 if (btn_Enable.Enabled) btn_Enable.Enabled = false;
                 if (tb_OffX.Enabled) tb_OffX.Enabled = false;
+                if (btn_SaveFile.Enabled) btn_SaveFile.Enabled = false;
+                if (btn_LoadFile.Enabled) btn_LoadFile.Enabled = false;
 
                 if (!btn_StartRecord.Enabled) btn_StartRecord.Enabled = true;
                 if (!btn_duster.Enabled) btn_duster.Enabled = true;
@@ -116,6 +121,8 @@ namespace DBMControllerApp_TK.Forms
                 if (tb_Thickness.Enabled) tb_Thickness.Enabled = false;
                 if (tb_OffX.Enabled) tb_OffX.Enabled = false;
                 if (rtb_Color.Enabled) rtb_Color.Enabled = false;
+                if (btn_SaveFile.Enabled) btn_SaveFile.Enabled = false;
+                if (btn_LoadFile.Enabled) btn_LoadFile.Enabled = false;
 
                 if (!btn_PlayPause.Enabled) btn_PlayPause.Enabled = true;
             }
@@ -131,6 +138,9 @@ namespace DBMControllerApp_TK.Forms
                 if (!trk_thickness.Enabled) trk_thickness.Enabled = true;
                 if (!tb_Thickness.Enabled) tb_Thickness.Enabled = true;
                 if (!rtb_Color.Enabled) rtb_Color.Enabled = true;
+                if (!btn_SaveFile.Enabled) btn_SaveFile.Enabled = true;
+                if (!btn_LoadFile.Enabled) btn_LoadFile.Enabled = true;
+
                 if (btn_PlayPause.Enabled) btn_PlayPause.Enabled = false;
             }
         }
@@ -168,29 +178,15 @@ namespace DBMControllerApp_TK.Forms
             if (isMarkerSelected)
             {
                 CvInvoke.Line(frame, prevPoint, currentPoint, new MCvScalar(color.B, color.G, color.R), (thickness * Utility.boardHeight) / 100);
-                //if (isRecording)
-                //{
-                //    Animation.appendObj(currentPoint, currentTick, thickness, color, 1);
-                //}
+                if (isRecording)
+                {
+                    Animation.appendObj(currentPoint, currentTick, thickness, color, 1);
+                }
             }
             else
             {
                 CvInvoke.Line(frame, prevPoint, currentPoint, new MCvScalar(0, 0, 0), (thickness * Utility.boardHeight) / 25);
             }
-        }
-        private void clearBoard()
-        {
-            CvInvoke.Line(frame, new Point(0, Utility.boardHeight / 2), new Point(Utility.boardWidth, Utility.boardHeight / 2), new MCvScalar(0, 0, 0), Utility.boardHeight);
-            ib_Preview.Image = frame;
-        }
-
-        private bool isMoved()
-        {
-            return (currentPoint.X != prevPoint.X && currentPoint.Y != prevPoint.Y);
-        }
-        private void suspendMove()
-        {
-            prevPoint = currentPoint;
         }
         
         private void ib_Preview_MouseMove(object sender, MouseEventArgs e)
@@ -242,6 +238,10 @@ namespace DBMControllerApp_TK.Forms
         private void btn_StartPlay_Click(object sender, EventArgs e)
         {
             isPlaying = !isPlaying;
+            if(isPlaying)
+            {
+                clearBoard();
+            }
             isRecording = false;
             isPaused = false;
             currentTick = 0;
@@ -252,7 +252,6 @@ namespace DBMControllerApp_TK.Forms
             isHardwareEnabled = !isHardwareEnabled;
             updateControls();
         }
-
         private void ib_Preview_MouseDown(object sender, MouseEventArgs e)
         {
             if(!isPlaying)
@@ -265,27 +264,20 @@ namespace DBMControllerApp_TK.Forms
             if (!isPlaying)
             {
                 isTipDown = 0;
+                if(isRecording)
+                {
+                    appendEndPoint();
+                }
             }
-            //appendEndPoint();
-        }
-        private void appendEndPoint()
-        {
-            //if(!isStoppedRecording)
-            //{
-            //    if(isMarker)
-            //    {
-            //        Animation.appendObj(hoverPoint, currentTick, thickness, color, 0);
-            //    }
-            //    else
-            //    {
-            //        Animation.appendObj(hoverPoint, currentTick, thickness, Color.FromArgb(0, 0, 0), 0);
-            //    }
-            //}
         }
         private void button2_Click(object sender, EventArgs e)
         {
             clearBoard();
             updateControls();
+        }
+        private void ib_Preview_MouseEnter(object sender, EventArgs e)
+        {
+            isMouseOver = true;
         }
         private void ib_Preview_MouseLeave(object sender, EventArgs e)
         {
@@ -303,6 +295,12 @@ namespace DBMControllerApp_TK.Forms
         private void btn_StartRecord_Click(object sender, EventArgs e)
         {
             isRecording = !isRecording;
+            if (isRecording)
+            {
+                Animation.objList.Clear();
+                clearBoard();
+            }
+            //if (!isRecording) Animation.saveToFile(fullPath, tickResolution);
             isPlaying = false;
             isPaused = false;
             currentTick = 0;
@@ -329,6 +327,17 @@ namespace DBMControllerApp_TK.Forms
             //ib_Preview.Image = frame;
             //if(currentPlayIdx < Animation.objList.Count - 1) currentPlayIdx++;
         }
+        private void appendEndPoint()
+        {
+            if (isMarkerSelected)
+            {
+                Animation.appendObj(currentPoint, currentTick, thickness, color, 0);
+            }
+            else
+            {
+                Animation.appendObj(currentPoint, currentTick, thickness, Color.FromArgb(0, 0, 0), 0);
+            }
+        }
         private void saveSettings()
         {
             Config.save("RecordColor_R", color.R);
@@ -352,10 +361,41 @@ namespace DBMControllerApp_TK.Forms
         {
             return (value - fromSource) / (toSource - fromSource) * (toTarget - fromTarget) + fromTarget;
         }
-
-        private void ib_Preview_MouseEnter(object sender, EventArgs e)
+        private void clearBoard()
         {
-            isMouseOver = true;
+            CvInvoke.Line(frame, new Point(0, Utility.boardHeight / 2), new Point(Utility.boardWidth, Utility.boardHeight / 2), new MCvScalar(0, 0, 0), Utility.boardHeight);
+            ib_Preview.Image = frame;
+        }
+        private bool isMoved()
+        {
+            return (currentPoint.X != prevPoint.X && currentPoint.Y != prevPoint.Y);
+        }
+        private void suspendMove()
+        {
+            prevPoint = currentPoint;
+        }
+
+        private void btn_LoadFile_Click(object sender, EventArgs e)
+        {
+            openFileDialog.InitialDirectory = fullPath;
+            openFileDialog.FileName = "";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                fullPath = openFileDialog.FileName;
+                Animation.loadFromFile(fullPath);
+                tickResolution = Animation.tickResolution;
+            }
+        }
+
+        private void btn_SaveFile_Click(object sender, EventArgs e)
+        {
+            saveFileDialog.InitialDirectory = fullPath;
+            saveFileDialog.FileName = "";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                fullPath = saveFileDialog.FileName;
+                Animation.saveToFile(fullPath, tickResolution);
+            }
         }
     }
 }

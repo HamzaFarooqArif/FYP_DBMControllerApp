@@ -58,6 +58,10 @@
             this.ib_Preview = new Emgu.CV.UI.ImageBox();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.btn_SaveFile = new System.Windows.Forms.Button();
+            this.btn_LoadFile = new System.Windows.Forms.Button();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -87,7 +91,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(537, 28);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(519, 28);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btn_StartRecord
@@ -99,7 +103,7 @@
             this.btn_StartRecord.ForeColor = System.Drawing.Color.LightGray;
             this.btn_StartRecord.Location = new System.Drawing.Point(3, 3);
             this.btn_StartRecord.Name = "btn_StartRecord";
-            this.btn_StartRecord.Size = new System.Drawing.Size(173, 22);
+            this.btn_StartRecord.Size = new System.Drawing.Size(167, 22);
             this.btn_StartRecord.TabIndex = 7;
             this.btn_StartRecord.Text = "Start Recording";
             this.btn_StartRecord.UseVisualStyleBackColor = false;
@@ -112,9 +116,9 @@
             this.btn_PlayPause.FlatAppearance.BorderSize = 0;
             this.btn_PlayPause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_PlayPause.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_PlayPause.Location = new System.Drawing.Point(361, 3);
+            this.btn_PlayPause.Location = new System.Drawing.Point(349, 3);
             this.btn_PlayPause.Name = "btn_PlayPause";
-            this.btn_PlayPause.Size = new System.Drawing.Size(173, 22);
+            this.btn_PlayPause.Size = new System.Drawing.Size(167, 22);
             this.btn_PlayPause.TabIndex = 8;
             this.btn_PlayPause.Text = "Pause";
             this.btn_PlayPause.UseVisualStyleBackColor = false;
@@ -127,9 +131,9 @@
             this.btn_StartPlay.FlatAppearance.BorderSize = 0;
             this.btn_StartPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_StartPlay.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_StartPlay.Location = new System.Drawing.Point(182, 3);
+            this.btn_StartPlay.Location = new System.Drawing.Point(176, 3);
             this.btn_StartPlay.Name = "btn_StartPlay";
-            this.btn_StartPlay.Size = new System.Drawing.Size(173, 22);
+            this.btn_StartPlay.Size = new System.Drawing.Size(167, 22);
             this.btn_StartPlay.TabIndex = 9;
             this.btn_StartPlay.Text = "Start Playing";
             this.btn_StartPlay.UseVisualStyleBackColor = false;
@@ -158,7 +162,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(537, 482);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(519, 482);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
             // tableLayoutPanel5
@@ -174,7 +178,7 @@
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(537, 28);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(519, 28);
             this.tableLayoutPanel5.TabIndex = 5;
             // 
             // btn_Save
@@ -184,9 +188,9 @@
             this.btn_Save.FlatAppearance.BorderSize = 0;
             this.btn_Save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Save.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_Save.Location = new System.Drawing.Point(271, 3);
+            this.btn_Save.Location = new System.Drawing.Point(262, 3);
             this.btn_Save.Name = "btn_Save";
-            this.btn_Save.Size = new System.Drawing.Size(263, 22);
+            this.btn_Save.Size = new System.Drawing.Size(254, 22);
             this.btn_Save.TabIndex = 3;
             this.btn_Save.Text = "Save Settings";
             this.btn_Save.UseVisualStyleBackColor = false;
@@ -201,7 +205,7 @@
             this.btn_Load.ForeColor = System.Drawing.Color.LightGray;
             this.btn_Load.Location = new System.Drawing.Point(3, 3);
             this.btn_Load.Name = "btn_Load";
-            this.btn_Load.Size = new System.Drawing.Size(262, 22);
+            this.btn_Load.Size = new System.Drawing.Size(253, 22);
             this.btn_Load.TabIndex = 2;
             this.btn_Load.Text = "Load Saved";
             this.btn_Load.UseVisualStyleBackColor = false;
@@ -222,7 +226,7 @@
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(531, 30);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(513, 30);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
             // trk_thickness
@@ -232,7 +236,7 @@
             this.trk_thickness.Maximum = 100;
             this.trk_thickness.Minimum = 1;
             this.trk_thickness.Name = "trk_thickness";
-            this.trk_thickness.Size = new System.Drawing.Size(356, 24);
+            this.trk_thickness.Size = new System.Drawing.Size(338, 24);
             this.trk_thickness.TabIndex = 8;
             this.trk_thickness.Value = 1;
             this.trk_thickness.ValueChanged += new System.EventHandler(this.trk_thickness_ValueChanged);
@@ -252,7 +256,7 @@
             // tb_Thickness
             // 
             this.tb_Thickness.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_Thickness.Location = new System.Drawing.Point(440, 5);
+            this.tb_Thickness.Location = new System.Drawing.Point(422, 5);
             this.tb_Thickness.Margin = new System.Windows.Forms.Padding(0);
             this.tb_Thickness.Minimum = new decimal(new int[] {
             1,
@@ -290,7 +294,7 @@
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(537, 29);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(519, 29);
             this.tableLayoutPanel6.TabIndex = 4;
             // 
             // tb_OffX
@@ -358,7 +362,7 @@
             this.lbl_Position.AutoSize = true;
             this.lbl_Position.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lbl_Position.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lbl_Position.Location = new System.Drawing.Point(392, 6);
+            this.lbl_Position.Location = new System.Drawing.Point(374, 6);
             this.lbl_Position.Name = "lbl_Position";
             this.lbl_Position.Size = new System.Drawing.Size(58, 17);
             this.lbl_Position.TabIndex = 12;
@@ -367,7 +371,7 @@
             // tb_Position
             // 
             this.tb_Position.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_Position.Location = new System.Drawing.Point(456, 4);
+            this.tb_Position.Location = new System.Drawing.Point(438, 4);
             this.tb_Position.Name = "tb_Position";
             this.tb_Position.ReadOnly = true;
             this.tb_Position.Size = new System.Drawing.Size(78, 20);
@@ -386,7 +390,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(537, 40);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(519, 40);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // trk_Seek
@@ -394,13 +398,13 @@
             this.trk_Seek.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.trk_Seek.Location = new System.Drawing.Point(3, 3);
             this.trk_Seek.Name = "trk_Seek";
-            this.trk_Seek.Size = new System.Drawing.Size(454, 34);
+            this.trk_Seek.Size = new System.Drawing.Size(436, 34);
             this.trk_Seek.TabIndex = 0;
             // 
             // tb_Seek
             // 
             this.tb_Seek.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_Seek.Location = new System.Drawing.Point(463, 10);
+            this.tb_Seek.Location = new System.Drawing.Point(445, 10);
             this.tb_Seek.Name = "tb_Seek";
             this.tb_Seek.ReadOnly = true;
             this.tb_Seek.Size = new System.Drawing.Size(71, 20);
@@ -408,21 +412,25 @@
             // 
             // tableLayoutPanel4
             // 
-            this.tableLayoutPanel4.ColumnCount = 4;
+            this.tableLayoutPanel4.ColumnCount = 5;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.81564F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.27747F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
             this.tableLayoutPanel4.Controls.Add(this.btn_duster, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btn_Enable, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btn_SaveFile, 3, 0);
             this.tableLayoutPanel4.Controls.Add(this.button2, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btn_LoadFile, 3, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btn_Enable, 2, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 361);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(537, 28);
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(519, 28);
             this.tableLayoutPanel4.TabIndex = 3;
             // 
             // btn_duster
@@ -434,7 +442,7 @@
             this.btn_duster.ForeColor = System.Drawing.Color.LightGray;
             this.btn_duster.Location = new System.Drawing.Point(3, 3);
             this.btn_duster.Name = "btn_duster";
-            this.btn_duster.Size = new System.Drawing.Size(128, 22);
+            this.btn_duster.Size = new System.Drawing.Size(98, 22);
             this.btn_duster.TabIndex = 8;
             this.btn_duster.Text = "Duster";
             this.btn_duster.UseVisualStyleBackColor = false;
@@ -443,12 +451,13 @@
             // btn_Enable
             // 
             this.btn_Enable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.btn_Enable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_Enable.FlatAppearance.BorderSize = 0;
             this.btn_Enable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Enable.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_Enable.Location = new System.Drawing.Point(271, 3);
+            this.btn_Enable.Location = new System.Drawing.Point(211, 3);
             this.btn_Enable.Name = "btn_Enable";
-            this.btn_Enable.Size = new System.Drawing.Size(137, 22);
+            this.btn_Enable.Size = new System.Drawing.Size(105, 22);
             this.btn_Enable.TabIndex = 9;
             this.btn_Enable.Text = "Enable Device Input";
             this.btn_Enable.UseVisualStyleBackColor = false;
@@ -461,9 +470,9 @@
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.LightGray;
-            this.button2.Location = new System.Drawing.Point(137, 3);
+            this.button2.Location = new System.Drawing.Point(107, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(128, 22);
+            this.button2.Size = new System.Drawing.Size(98, 22);
             this.button2.TabIndex = 10;
             this.button2.Text = "Clear";
             this.button2.UseVisualStyleBackColor = false;
@@ -475,7 +484,7 @@
             this.ib_Preview.Location = new System.Drawing.Point(0, 0);
             this.ib_Preview.Margin = new System.Windows.Forms.Padding(0);
             this.ib_Preview.Name = "ib_Preview";
-            this.ib_Preview.Size = new System.Drawing.Size(537, 293);
+            this.ib_Preview.Size = new System.Drawing.Size(519, 293);
             this.ib_Preview.TabIndex = 2;
             this.ib_Preview.TabStop = false;
             this.ib_Preview.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ib_Preview_MouseDown);
@@ -488,12 +497,50 @@
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // btn_SaveFile
+            // 
+            this.btn_SaveFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.btn_SaveFile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_SaveFile.FlatAppearance.BorderSize = 0;
+            this.btn_SaveFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_SaveFile.ForeColor = System.Drawing.Color.LightGray;
+            this.btn_SaveFile.Location = new System.Drawing.Point(322, 3);
+            this.btn_SaveFile.Name = "btn_SaveFile";
+            this.btn_SaveFile.Size = new System.Drawing.Size(91, 22);
+            this.btn_SaveFile.TabIndex = 11;
+            this.btn_SaveFile.Text = "Save File";
+            this.btn_SaveFile.UseVisualStyleBackColor = false;
+            this.btn_SaveFile.Click += new System.EventHandler(this.btn_SaveFile_Click);
+            // 
+            // btn_LoadFile
+            // 
+            this.btn_LoadFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.btn_LoadFile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_LoadFile.FlatAppearance.BorderSize = 0;
+            this.btn_LoadFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_LoadFile.ForeColor = System.Drawing.Color.LightGray;
+            this.btn_LoadFile.Location = new System.Drawing.Point(419, 3);
+            this.btn_LoadFile.Name = "btn_LoadFile";
+            this.btn_LoadFile.Size = new System.Drawing.Size(97, 22);
+            this.btn_LoadFile.TabIndex = 12;
+            this.btn_LoadFile.Text = "Load File";
+            this.btn_LoadFile.UseVisualStyleBackColor = false;
+            this.btn_LoadFile.Click += new System.EventHandler(this.btn_LoadFile_Click);
+            // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.Filter = "Lecture file|*.dbm";
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.Filter = "Lecture file|*.dbm";
+            // 
             // Recorder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
-            this.ClientSize = new System.Drawing.Size(537, 482);
+            this.ClientSize = new System.Drawing.Size(519, 482);
             this.Controls.Add(this.tableLayoutPanel3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Recorder";
@@ -548,5 +595,9 @@
         private System.Windows.Forms.Button btn_Load;
         private System.Windows.Forms.NumericUpDown tb_Thickness;
         private System.Windows.Forms.ColorDialog colorDialog;
+        private System.Windows.Forms.Button btn_SaveFile;
+        private System.Windows.Forms.Button btn_LoadFile;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }

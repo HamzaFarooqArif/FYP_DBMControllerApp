@@ -30,6 +30,7 @@ namespace DBMControllerApp_TK.Utilities
     class Animation
     {
         public static List<jsonObj> objList;
+        public static int tickResolution;
         public static bool loadFromFile(string fullPath)
         {
             if (!File.Exists(fullPath)) return false;
@@ -40,14 +41,26 @@ namespace DBMControllerApp_TK.Utilities
                 json = r.ReadToEnd();
                 objList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<jsonObj>>(json);
                 if (objList == null) objList = new List<jsonObj>();
+                else
+                {
+                    tickResolution = objList[objList.Count - 1].x;
+                    objList.Remove(objList[objList.Count - 1]);
+                }
             }
             return true;
         }
-        public static bool saveToFile(string fullPath)
+        public static bool saveToFile(string fullPath, int tickResolution)
         {
-            if (!File.Exists(fullPath)) return false;
+            if (!File.Exists(fullPath))
+            {
+                File.Create(fullPath).Close();
+            }
+            if (objList == null) objList = new List<jsonObj>();
+            jsonObj configObj = new jsonObj(tickResolution, 0, 0, 0, Color.FromArgb(0, 0, 0), 0);
+            objList.Add(configObj);
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(objList.ToArray());
             System.IO.File.WriteAllText(fullPath, json);
+            objList.Remove(objList[objList.Count - 1]);
             return true;
         }
         public static void appendObj(int x, int y, double time, int thickness, Color color, int isTipDown)
@@ -59,11 +72,6 @@ namespace DBMControllerApp_TK.Utilities
         {
             appendObj(p.X, p.Y, time, thickness, color, isTipDown);
         }
-        public static void flushAll(string fullPath)
-        {
-            objList = new List<jsonObj>();
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(objList.ToArray());
-            System.IO.File.WriteAllText(fullPath, json);
-        }
+        
     }
 }
