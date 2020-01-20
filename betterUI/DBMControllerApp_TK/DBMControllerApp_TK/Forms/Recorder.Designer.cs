@@ -358,7 +358,7 @@
             this.lbl_Position.AutoSize = true;
             this.lbl_Position.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lbl_Position.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lbl_Position.Location = new System.Drawing.Point(393, 6);
+            this.lbl_Position.Location = new System.Drawing.Point(392, 6);
             this.lbl_Position.Name = "lbl_Position";
             this.lbl_Position.Size = new System.Drawing.Size(58, 17);
             this.lbl_Position.TabIndex = 12;
@@ -367,9 +367,10 @@
             // tb_Position
             // 
             this.tb_Position.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_Position.Location = new System.Drawing.Point(457, 4);
+            this.tb_Position.Location = new System.Drawing.Point(456, 4);
             this.tb_Position.Name = "tb_Position";
-            this.tb_Position.Size = new System.Drawing.Size(77, 20);
+            this.tb_Position.ReadOnly = true;
+            this.tb_Position.Size = new System.Drawing.Size(78, 20);
             this.tb_Position.TabIndex = 13;
             // 
             // tableLayoutPanel2
@@ -401,6 +402,7 @@
             this.tb_Seek.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tb_Seek.Location = new System.Drawing.Point(463, 10);
             this.tb_Seek.Name = "tb_Seek";
+            this.tb_Seek.ReadOnly = true;
             this.tb_Seek.Size = new System.Drawing.Size(71, 20);
             this.tb_Seek.TabIndex = 1;
             // 
@@ -477,6 +479,7 @@
             this.ib_Preview.TabIndex = 2;
             this.ib_Preview.TabStop = false;
             this.ib_Preview.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ib_Preview_MouseDown);
+            this.ib_Preview.MouseEnter += new System.EventHandler(this.ib_Preview_MouseEnter);
             this.ib_Preview.MouseLeave += new System.EventHandler(this.ib_Preview_MouseLeave);
             this.ib_Preview.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ib_Preview_MouseMove);
             this.ib_Preview.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ib_Preview_MouseUp);

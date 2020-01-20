@@ -22,13 +22,18 @@ namespace DBMControllerApp_TK.Forms
         private int thickness;
         private int tickResolution;
         private Color color;
-        
-        private Point hoverPoint;
+
+        private Mat hoverFrame;
+        private Point currentPoint;
+        private Point prevPoint;
         private bool isMarkerSelected;
         private bool isRecording;
         private bool isPlaying;
         private bool isPaused;
         private bool isHardwareEnabled;
+        private bool isMouseOver;
+        private int isTipDown;
+
         public static Recorder getInstance()
         {
             if (_instance == null)
@@ -47,119 +52,154 @@ namespace DBMControllerApp_TK.Forms
         private void initVars()
         {
             frame = new Image<Bgr, byte>(Utility.boardWidth, Utility.boardHeight).Mat;
+            hoverFrame = new Image<Bgr, byte>(Utility.boardWidth, Utility.boardHeight).Mat;
             currentTick = 0;
             thickness = (int)tb_Thickness.Minimum;
             tickResolution = (int)tb_OffX.Minimum;
             color = rtb_Color.BackColor;
-            hoverPoint = new Point();
+            currentPoint = new Point();
             isMarkerSelected = true;
             isRecording = false;
             isPlaying = false;
             isPaused = false;
             isHardwareEnabled = false;
+            isMouseOver = false;
+            isTipDown = 0;
         }
         private void updateControls()
         {
-            ib_Preview.Image = frame;
-            if(!ib_Preview.FunctionalMode.Equals(ImageBox.FunctionalModeOption.Minimum)) ib_Preview.FunctionalMode = ImageBox.FunctionalModeOption.Minimum;
+            if (isMouseOver && !isPlaying) ib_Preview.Image = hoverFrame;
+            else ib_Preview.Image = frame;
+            if (!ib_Preview.FunctionalMode.Equals(ImageBox.FunctionalModeOption.Minimum)) ib_Preview.FunctionalMode = ImageBox.FunctionalModeOption.Minimum;
             if (!ib_Preview.SizeMode.Equals(PictureBoxSizeMode.StretchImage)) ib_Preview.SizeMode = PictureBoxSizeMode.StretchImage;
             trk_thickness.Value = thickness;
             tb_Thickness.Value = thickness;
             tb_OffX.Value = tickResolution;
             rtb_Color.BackColor = color;
             tb_Seek.Text = currentTick.ToString();
-            tb_Position.Text = hoverPoint.ToString();
+            tb_Position.Text = currentPoint.ToString();
             timer.Interval = tickResolution;
             if (!timer.Enabled) timer.Start();
-            if(isMarkerSelected) btn_duster.Text = "Marker";
-            else btn_duster.Text = "Duster";
+            if(isMarkerSelected) btn_duster.Text = "Duster";
+            else btn_duster.Text = "Marker";
+            if (isHardwareEnabled) btn_Enable.Text = "Disable Device Input";
+            else btn_Enable.Text = "Enable Device Input";
+            if (isPaused) btn_PlayPause.Text = "Resume";
+            else btn_PlayPause.Text = "Pause";
             if (isRecording)
             {
                 btn_StartRecord.Text = "Stop Recording";
+                
                 if(btn_StartPlay.Enabled) btn_StartPlay.Enabled = false;
+                if (btn_Enable.Enabled) btn_Enable.Enabled = false;
+                if (tb_OffX.Enabled) tb_OffX.Enabled = false;
+
+                if (!btn_StartRecord.Enabled) btn_StartRecord.Enabled = true;
+                if (!btn_duster.Enabled) btn_duster.Enabled = true;
+                if (!button2.Enabled) button2.Enabled = true;
+                if (!trk_thickness.Enabled) trk_thickness.Enabled = true;
+                if (!tb_Thickness.Enabled) tb_Thickness.Enabled = true;
+                if (!rtb_Color.Enabled) rtb_Color.Enabled = true;
+                if (!btn_PlayPause.Enabled) btn_PlayPause.Enabled = true;
+
             }
-            else
-            {
-                btn_StartRecord.Text = "Start Recording";
-                if (!btn_StartPlay.Enabled) btn_StartPlay.Enabled = true;
-            }
+            else btn_StartRecord.Text = "Start Recording";
             if (isPlaying)
             {
                 btn_StartPlay.Text = "Stop Playing";
+                
                 if(btn_StartRecord.Enabled) btn_StartRecord.Enabled = false;
-            }
-            else
-            {
-                btn_StartPlay.Text = "Start Playing";
-                if (!btn_StartRecord.Enabled) btn_StartRecord.Enabled = true;
-            }
-            if (isPaused) btn_PlayPause.Text = "Resume";
-            else btn_PlayPause.Text = "Pause";
-            if (isHardwareEnabled) btn_Enable.Text = "Disable Device Input";
-            else btn_Enable.Text = "Enable Device Input";
-        }
+                if (btn_duster.Enabled) btn_duster.Enabled = false;
+                if (button2.Enabled) button2.Enabled = false;
+                if (btn_Enable.Enabled) btn_Enable.Enabled = false;
+                if (trk_thickness.Enabled) trk_thickness.Enabled = false;
+                if (tb_Thickness.Enabled) tb_Thickness.Enabled = false;
+                if (tb_OffX.Enabled) tb_OffX.Enabled = false;
+                if (rtb_Color.Enabled) rtb_Color.Enabled = false;
 
-        
+                if (!btn_PlayPause.Enabled) btn_PlayPause.Enabled = true;
+            }
+            else btn_StartPlay.Text = "Start Playing";
+            if(!isPlaying && !isRecording)
+            {
+                if (!btn_StartPlay.Enabled) btn_StartPlay.Enabled = true;
+                if (!btn_Enable.Enabled) btn_Enable.Enabled = true;
+                if (!tb_OffX.Enabled) tb_OffX.Enabled = true;
+                if (!btn_StartRecord.Enabled) btn_StartRecord.Enabled = true;
+                if (!btn_duster.Enabled) btn_duster.Enabled = true;
+                if (!button2.Enabled) button2.Enabled = true;
+                if (!trk_thickness.Enabled) trk_thickness.Enabled = true;
+                if (!tb_Thickness.Enabled) tb_Thickness.Enabled = true;
+                if (!rtb_Color.Enabled) rtb_Color.Enabled = true;
+                if (btn_PlayPause.Enabled) btn_PlayPause.Enabled = false;
+            }
+        }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            if (isRecording || isPlaying) currentTick++;
+            if (!isPaused && (isRecording || isPlaying)) currentTick++;
+            if (!isPlaying && isMoved())
+            {
+                drawHoverPoint(ref hoverFrame);
+            }
+            if(isTipDown == 1)
+            {
+                drawLine(ref frame);
+            }
+            suspendMove();
             updateControls();
         }
-        
-        private void drawHover(ref Mat frame)
+
+        private void drawHoverPoint(ref Mat hoverFrame)
         {
-            //Mat frameLocal = frame.Clone();
-            //ib_Preview.Image = frameLocal;
-            //if (isMarker)
-            //{
-            //    CvInvoke.Circle(frameLocal, hoverPoint, (thickness * Utility.boardHeight) / 400, new MCvScalar(color.B, color.G, color.R), (thickness * Utility.boardHeight) / 200);
-            //}
-            //else
-            //{
-            //    CvInvoke.Circle(frameLocal, hoverPoint, (thickness * Utility.boardHeight) / 50, new MCvScalar(color.B, color.G, color.R), 1);
-            //}
-            //ib_Preview.Image = frameLocal;
-        }
-        private void drawShape(ref Mat frame)
-        {
-            //if (isMarker)
-            //{
-            //    CvInvoke.Line(frame, prevPoint, hoverPoint, new MCvScalar(color.B, color.G, color.R), (thickness * Utility.boardHeight) / 100);
-            //    if(!isStoppedRecording)
-            //    {
-            //        Animation.appendObj(hoverPoint, currentTick, thickness, color, 1);
-            //    }
-            //}
-            //else
-            //{
-            //    CvInvoke.Line(frame, prevPoint, hoverPoint, new MCvScalar(0, 0, 0), (thickness * Utility.boardHeight) / 25);
-            //}
-            //ib_Preview.Image = frame;
+            hoverFrame = frame.Clone();
+            if (isMarkerSelected)
+            {
+                CvInvoke.Circle(hoverFrame, currentPoint, (thickness * Utility.boardHeight) / 400, new MCvScalar(color.B, color.G, color.R), (thickness * Utility.boardHeight) / 200);
+            }
+            else
+            {
+                CvInvoke.Circle(hoverFrame, currentPoint, (thickness * Utility.boardHeight) / 50, new MCvScalar(color.B, color.G, color.R), 1);
+            }
         }
         
+        private void drawLine(ref Mat frame)
+        {
+            if (isMarkerSelected)
+            {
+                CvInvoke.Line(frame, prevPoint, currentPoint, new MCvScalar(color.B, color.G, color.R), (thickness * Utility.boardHeight) / 100);
+                //if (isRecording)
+                //{
+                //    Animation.appendObj(currentPoint, currentTick, thickness, color, 1);
+                //}
+            }
+            else
+            {
+                CvInvoke.Line(frame, prevPoint, currentPoint, new MCvScalar(0, 0, 0), (thickness * Utility.boardHeight) / 25);
+            }
+        }
         private void clearBoard()
         {
-            //CvInvoke.Line(frame, new Point(0, Utility.boardHeight / 2), new Point(Utility.boardWidth, Utility.boardHeight / 2), new MCvScalar(0, 0, 0), Utility.boardHeight);
-            //ib_Preview.Image = frame;
+            CvInvoke.Line(frame, new Point(0, Utility.boardHeight / 2), new Point(Utility.boardWidth, Utility.boardHeight / 2), new MCvScalar(0, 0, 0), Utility.boardHeight);
+            ib_Preview.Image = frame;
         }
 
         private bool isMoved()
         {
-            return true;//(hoverPoint.X != prevPoint.X && hoverPoint.Y != prevPoint.Y);
+            return (currentPoint.X != prevPoint.X && currentPoint.Y != prevPoint.Y);
         }
         private void suspendMove()
         {
-            //prevPoint = hoverPoint;
+            prevPoint = currentPoint;
         }
         
         private void ib_Preview_MouseMove(object sender, MouseEventArgs e)
         {
             if(!isHardwareEnabled && !isPlaying)
             {
-                hoverPoint.X = (int)Map(e.X, 0, ib_Preview.Width, 0, Utility.boardWidth);
-                hoverPoint.Y = (int)Map(e.Y, 0, ib_Preview.Height, 0, Utility.boardHeight);
-                updateControls();
+                currentPoint.X = (int)Map(e.X, 0, ib_Preview.Width, 0, Utility.boardWidth);
+                currentPoint.Y = (int)Map(e.Y, 0, ib_Preview.Height, 0, Utility.boardHeight);
+                //updateControls();
             }
         }
         private void trk_thickness_ValueChanged(object sender, EventArgs e)
@@ -215,11 +255,17 @@ namespace DBMControllerApp_TK.Forms
 
         private void ib_Preview_MouseDown(object sender, MouseEventArgs e)
         {
-            //isTipDown = true;
+            if(!isPlaying)
+            {
+                isTipDown = 1;
+            }
         }
         private void ib_Preview_MouseUp(object sender, MouseEventArgs e)
         {
-            //isTipDown = false;
+            if (!isPlaying)
+            {
+                isTipDown = 0;
+            }
             //appendEndPoint();
         }
         private void appendEndPoint()
@@ -238,10 +284,12 @@ namespace DBMControllerApp_TK.Forms
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            //clearBoard();
+            clearBoard();
+            updateControls();
         }
         private void ib_Preview_MouseLeave(object sender, EventArgs e)
         {
+            isMouseOver = false;
             //ib_Preview.Image = frame;
         }
         private void btn_Save_Click(object sender, EventArgs e)
@@ -305,6 +353,9 @@ namespace DBMControllerApp_TK.Forms
             return (value - fromSource) / (toSource - fromSource) * (toTarget - fromTarget) + fromTarget;
         }
 
-        
+        private void ib_Preview_MouseEnter(object sender, EventArgs e)
+        {
+            isMouseOver = true;
+        }
     }
 }
