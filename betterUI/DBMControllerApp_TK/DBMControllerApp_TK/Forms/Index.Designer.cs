@@ -46,6 +46,9 @@
             this.panelChildForm = new System.Windows.Forms.Panel();
             this.TLPForms = new System.Windows.Forms.TableLayoutPanel();
             this.ib_Splash = new System.Windows.Forms.PictureBox();
+            this.btn_Player = new System.Windows.Forms.Button();
+            this.panelPlayerSubmenu = new System.Windows.Forms.Panel();
+            this.btn_Display = new System.Windows.Forms.Button();
             this.panelSideMenu.SuspendLayout();
             this.panelSettingsSubmenu.SuspendLayout();
             this.panelHardwareInputSubmenu.SuspendLayout();
@@ -55,6 +58,7 @@
             this.panelChildForm.SuspendLayout();
             this.TLPForms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ib_Splash)).BeginInit();
+            this.panelPlayerSubmenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelSideMenu
@@ -76,12 +80,14 @@
             // 
             this.panelSettingsSubmenu.AutoSize = true;
             this.panelSettingsSubmenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.panelSettingsSubmenu.Controls.Add(this.panelPlayerSubmenu);
+            this.panelSettingsSubmenu.Controls.Add(this.btn_Player);
             this.panelSettingsSubmenu.Controls.Add(this.panelHardwareInputSubmenu);
             this.panelSettingsSubmenu.Controls.Add(this.btnHardwareInput);
             this.panelSettingsSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSettingsSubmenu.Location = new System.Drawing.Point(0, 270);
             this.panelSettingsSubmenu.Name = "panelSettingsSubmenu";
-            this.panelSettingsSubmenu.Size = new System.Drawing.Size(200, 199);
+            this.panelSettingsSubmenu.Size = new System.Drawing.Size(200, 279);
             this.panelSettingsSubmenu.TabIndex = 4;
             // 
             // panelHardwareInputSubmenu
@@ -294,7 +300,7 @@
             this.TLPForms.Name = "TLPForms";
             this.TLPForms.RowCount = 1;
             this.TLPForms.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TLPForms.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 441F));
+            this.TLPForms.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 561F));
             this.TLPForms.Size = new System.Drawing.Size(584, 561);
             this.TLPForms.TabIndex = 1;
             // 
@@ -309,6 +315,47 @@
             this.ib_Splash.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.ib_Splash.TabIndex = 0;
             this.ib_Splash.TabStop = false;
+            // 
+            // btn_Player
+            // 
+            this.btn_Player.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_Player.FlatAppearance.BorderSize = 0;
+            this.btn_Player.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Player.ForeColor = System.Drawing.Color.LightGray;
+            this.btn_Player.Location = new System.Drawing.Point(0, 199);
+            this.btn_Player.Name = "btn_Player";
+            this.btn_Player.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.btn_Player.Size = new System.Drawing.Size(200, 40);
+            this.btn_Player.TabIndex = 4;
+            this.btn_Player.Text = "Player";
+            this.btn_Player.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Player.UseVisualStyleBackColor = true;
+            this.btn_Player.Click += new System.EventHandler(this.btn_Player_Click);
+            // 
+            // panelPlayerSubmenu
+            // 
+            this.panelPlayerSubmenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(50)))));
+            this.panelPlayerSubmenu.Controls.Add(this.btn_Display);
+            this.panelPlayerSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelPlayerSubmenu.Location = new System.Drawing.Point(0, 239);
+            this.panelPlayerSubmenu.Name = "panelPlayerSubmenu";
+            this.panelPlayerSubmenu.Size = new System.Drawing.Size(200, 40);
+            this.panelPlayerSubmenu.TabIndex = 5;
+            // 
+            // btn_Display
+            // 
+            this.btn_Display.FlatAppearance.BorderSize = 0;
+            this.btn_Display.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Display.ForeColor = System.Drawing.Color.LightGray;
+            this.btn_Display.Location = new System.Drawing.Point(0, 0);
+            this.btn_Display.Name = "btn_Display";
+            this.btn_Display.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            this.btn_Display.Size = new System.Drawing.Size(200, 40);
+            this.btn_Display.TabIndex = 3;
+            this.btn_Display.Text = "Display";
+            this.btn_Display.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Display.UseVisualStyleBackColor = true;
+            this.btn_Display.Click += new System.EventHandler(this.btn_Display_Click);
             // 
             // Index
             // 
@@ -335,6 +382,7 @@
             this.TLPForms.ResumeLayout(false);
             this.TLPForms.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ib_Splash)).EndInit();
+            this.panelPlayerSubmenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -359,6 +407,9 @@
         private System.Windows.Forms.Button btn_Filter;
         private System.Windows.Forms.TableLayoutPanel TLPForms;
         private System.Windows.Forms.PictureBox ib_Splash;
+        private System.Windows.Forms.Panel panelPlayerSubmenu;
+        private System.Windows.Forms.Button btn_Display;
+        private System.Windows.Forms.Button btn_Player;
     }
 }
 

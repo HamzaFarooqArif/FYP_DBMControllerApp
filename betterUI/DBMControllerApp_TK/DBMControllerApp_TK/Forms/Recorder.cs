@@ -34,7 +34,9 @@ namespace DBMControllerApp_TK.Forms
         private bool isHardwareEnabled;
         private bool isMouseOver;
         private int isTipDown;
-        string fullPath;
+        private int playIdx;
+        private jsonObj currentJson;
+        private string fullPath;
         public static Recorder getInstance()
         {
             if (_instance == null)
@@ -68,6 +70,8 @@ namespace DBMControllerApp_TK.Forms
             isTipDown = 0;
             fullPath = @"C:\";
             Animation.objList = new List<jsonObj>();
+            playIdx = 0;
+            timer.Start();
         }
         private void updateControls()
         {
@@ -82,24 +86,38 @@ namespace DBMControllerApp_TK.Forms
             tb_Seek.Text = currentTick.ToString();
             tb_Position.Text = currentPoint.ToString();
             timer.Interval = tickResolution;
-            if (!timer.Enabled) timer.Start();
+            //if (!timer.Enabled) timer.Start();
+            if(isPlaying && !trk_Seek.Focused)
+            {
+                if(trk_Seek.Maximum >= currentTick) trk_Seek.Value = currentTick;
+            }
             if(isMarkerSelected) btn_duster.Text = "Duster";
             else btn_duster.Text = "Marker";
             if (isHardwareEnabled) btn_Enable.Text = "Disable Device Input";
             else btn_Enable.Text = "Enable Device Input";
-            if (isPaused) btn_PlayPause.Text = "Resume";
-            else btn_PlayPause.Text = "Pause";
+            if (isPaused)
+            {
+                btn_PlayPause.Text = "Resume";
+                timer.Stop();
+            }
+            else
+            {
+                btn_PlayPause.Text = "Pause";
+                timer.Start();
+            }
             if (isRecording)
             {
-                btn_StartRecord.Text = "Stop Recording";
-                
-                if(btn_StartPlay.Enabled) btn_StartPlay.Enabled = false;
+                //btn_StartRecord.Text = "Stop Recording";
+                if (btn_StartRecord.Enabled) btn_StartRecord.Enabled = false;
+                if (btn_StartPlay.Enabled) btn_StartPlay.Enabled = false;
                 if (btn_Enable.Enabled) btn_Enable.Enabled = false;
                 if (tb_OffX.Enabled) tb_OffX.Enabled = false;
                 if (btn_SaveFile.Enabled) btn_SaveFile.Enabled = false;
                 if (btn_LoadFile.Enabled) btn_LoadFile.Enabled = false;
+                if (trk_Seek.Enabled) trk_Seek.Enabled = false;
 
-                if (!btn_StartRecord.Enabled) btn_StartRecord.Enabled = true;
+                if (!btn_StopRecording.Enabled) btn_StopRecording.Enabled = true;
+                //if (!btn_StartRecord.Enabled) btn_StartRecord.Enabled = true;
                 if (!btn_duster.Enabled) btn_duster.Enabled = true;
                 if (!button2.Enabled) button2.Enabled = true;
                 if (!trk_thickness.Enabled) trk_thickness.Enabled = true;
@@ -108,12 +126,18 @@ namespace DBMControllerApp_TK.Forms
                 if (!btn_PlayPause.Enabled) btn_PlayPause.Enabled = true;
 
             }
-            else btn_StartRecord.Text = "Start Recording";
-            if (isPlaying)
+            //else
+            //{
+            //    if (!btn_StartRecord.Enabled) btn_StartRecord.Enabled = true;
+            //    if (btn_StopRecording.Enabled) btn_StopRecording.Enabled = false;
+            //    //btn_StartRecord.Text = "Start Recording";
+            //}
+            
+            else if (isPlaying)
             {
                 btn_StartPlay.Text = "Stop Playing";
                 
-                if(btn_StartRecord.Enabled) btn_StartRecord.Enabled = false;
+                if (btn_StartRecord.Enabled) btn_StartRecord.Enabled = false;
                 if (btn_duster.Enabled) btn_duster.Enabled = false;
                 if (button2.Enabled) button2.Enabled = false;
                 if (btn_Enable.Enabled) btn_Enable.Enabled = false;
@@ -125,10 +149,12 @@ namespace DBMControllerApp_TK.Forms
                 if (btn_LoadFile.Enabled) btn_LoadFile.Enabled = false;
 
                 if (!btn_PlayPause.Enabled) btn_PlayPause.Enabled = true;
+                if (!trk_Seek.Enabled) trk_Seek.Enabled = true;
             }
-            else btn_StartPlay.Text = "Start Playing";
-            if(!isPlaying && !isRecording)
+            //else btn_StartPlay.Text = "Start Playing";
+            else if(!isPlaying && !isRecording)
             {
+                btn_StartPlay.Text = "Start Playing";
                 if (!btn_StartPlay.Enabled) btn_StartPlay.Enabled = true;
                 if (!btn_Enable.Enabled) btn_Enable.Enabled = true;
                 if (!tb_OffX.Enabled) tb_OffX.Enabled = true;
@@ -142,6 +168,8 @@ namespace DBMControllerApp_TK.Forms
                 if (!btn_LoadFile.Enabled) btn_LoadFile.Enabled = true;
 
                 if (btn_PlayPause.Enabled) btn_PlayPause.Enabled = false;
+                if (trk_Seek.Enabled) trk_Seek.Enabled = false;
+                if (btn_StopRecording.Enabled) btn_StopRecording.Enabled = false;
             }
         }
 
@@ -156,8 +184,36 @@ namespace DBMControllerApp_TK.Forms
             {
                 drawLine(ref frame);
             }
+            if(isPlaying && !isPaused)
+            {
+                playAnim();
+            }
             suspendMove();
             updateControls();
+        }
+        private void playAnim()
+        {
+            if (Animation.videoFrames == null || Animation.videoFrames.Count - 1 < playIdx)
+            {
+                isPlaying = false;
+                isRecording = false;
+                isPaused = false;
+                return;
+            }
+            if(playIdx > -1)
+            {
+                currentJson = Animation.objList[playIdx];
+                if (currentJson.time <= currentTick)
+                {
+                    frame = Animation.videoFrames[playIdx];
+                    playIdx++;
+                }
+            }
+            else
+            {
+                clearBoard();
+            }
+            
         }
 
         private void drawHoverPoint(ref Mat hoverFrame)
@@ -186,6 +242,10 @@ namespace DBMControllerApp_TK.Forms
             else
             {
                 CvInvoke.Line(frame, prevPoint, currentPoint, new MCvScalar(0, 0, 0), (thickness * Utility.boardHeight) / 25);
+                if (isRecording)
+                {
+                    Animation.appendObj(currentPoint, currentTick, (thickness * Utility.boardHeight) / 75, Color.FromArgb(0, 0, 0), 1);
+                }
             }
         }
         
@@ -237,14 +297,24 @@ namespace DBMControllerApp_TK.Forms
         }
         private void btn_StartPlay_Click(object sender, EventArgs e)
         {
+            if (Animation.objList == null || Animation.objList.Count < 1) return;
             isPlaying = !isPlaying;
             if(isPlaying)
             {
+                //prevPoint = new Point();
+                //currentPoint = new Point();
+                currentTick = 0;
+                playIdx = 0;
+                Utility.boardWidth = Animation.width;
+                Utility.boardHeight = Animation.height;
+                tickResolution = Animation.tickResolution;
                 clearBoard();
+                Animation.prepareVideo();
+                trk_Seek.Maximum = (int)Animation.objList[Animation.objList.Count - 2].time;
             }
             isRecording = false;
             isPaused = false;
-            currentTick = 0;
+            //currentTick = 0;
             updateControls();
         }
         private void btn_Enable_Click(object sender, EventArgs e)
@@ -297,35 +367,23 @@ namespace DBMControllerApp_TK.Forms
             isRecording = !isRecording;
             if (isRecording)
             {
+                Animation.tickResolution = tickResolution;
+                Animation.width = Utility.boardWidth;
+                Animation.height = Utility.boardHeight;
                 Animation.objList.Clear();
+                currentTick = 0;
                 clearBoard();
             }
             //if (!isRecording) Animation.saveToFile(fullPath, tickResolution);
             isPlaying = false;
             isPaused = false;
-            currentTick = 0;
+            //currentTick = 0;
             updateControls();
         }
         private void btn_PlayPause_Click(object sender, EventArgs e)
         {
             isPaused = !isPaused;
             updateControls();
-        }
-        private void playAnimation()
-        {
-            //jsonObj obj = Animation.objList[currentPlayIdx];
-            
-            //hoverPoint = new Point(obj.x, obj.y);
-            //color = obj.color;
-            //thickness = obj.thickness;
-            //isTipDown = obj.isTipDown != 0;
-            //if(isTipDown)
-            //{
-            //    CvInvoke.Line(frame, prevPoint, hoverPoint, new MCvScalar(color.B, color.G, color.R), (thickness * Utility.boardHeight) / 100);
-            //}
-            
-            //ib_Preview.Image = frame;
-            //if(currentPlayIdx < Animation.objList.Count - 1) currentPlayIdx++;
         }
         private void appendEndPoint()
         {
@@ -365,6 +423,11 @@ namespace DBMControllerApp_TK.Forms
         {
             CvInvoke.Line(frame, new Point(0, Utility.boardHeight / 2), new Point(Utility.boardWidth, Utility.boardHeight / 2), new MCvScalar(0, 0, 0), Utility.boardHeight);
             ib_Preview.Image = frame;
+            if(isRecording)
+            {
+                Animation.appendObj(new Point(0, Utility.boardHeight / 2), currentTick, (thickness * Utility.boardHeight), Color.FromArgb(0, 0, 0), 1);
+                Animation.appendObj(new Point(Utility.boardWidth, Utility.boardHeight / 2), currentTick, (thickness * Utility.boardHeight), Color.FromArgb(0, 0, 0), 0);
+            }
         }
         private bool isMoved()
         {
@@ -384,6 +447,8 @@ namespace DBMControllerApp_TK.Forms
                 fullPath = openFileDialog.FileName;
                 Animation.loadFromFile(fullPath);
                 tickResolution = Animation.tickResolution;
+                Utility.boardWidth = Animation.width;
+                Utility.boardHeight = Animation.height;
             }
         }
 
@@ -394,8 +459,67 @@ namespace DBMControllerApp_TK.Forms
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 fullPath = saveFileDialog.FileName;
-                Animation.saveToFile(fullPath, tickResolution);
+                Animation.saveToFile(fullPath, Utility.boardWidth, Utility.boardHeight, tickResolution);
             }
+        }
+
+        private void btn_StopRecording_Click(object sender, EventArgs e)
+        {
+            isRecording = !isRecording;
+            if (isRecording)
+            {
+                Animation.tickResolution = tickResolution;
+                Animation.width = Utility.boardWidth;
+                Animation.height = Utility.boardHeight;
+                Animation.objList.Clear();
+                currentTick = 0;
+                clearBoard();
+            }
+            //if (!isRecording) Animation.saveToFile(fullPath, tickResolution);
+            isPlaying = false;
+            isPaused = false;
+            //currentTick = 0;
+            updateControls();
+        }
+
+        private void trk_Seek_ValueChanged(object sender, EventArgs e)
+        {
+            if(trk_Seek.Focused)
+            {
+                currentTick = trk_Seek.Value;
+                refreshPlayIdx();
+                playAnim();
+                updateControls();
+            }
+        }
+        private void refreshPlayIdx()
+        {
+            if(Animation.objList[0].time > currentTick)
+            {
+                playIdx = -1;
+                return;
+            }
+            int i;
+            for(i = 0; i < Animation.objList.Count; i++)
+            {
+                
+                if (Animation.objList[i].time >= currentTick)
+                {
+                    playIdx = i;
+                    return;
+                }
+            }
+        }
+
+        private void trk_Seek_MouseDown(object sender, MouseEventArgs e)
+        {
+            //timer.Stop();
+            isPaused = true;
+        }
+
+        private void trk_Seek_MouseUp(object sender, MouseEventArgs e)
+        {
+            //timer.Start();
         }
     }
 }

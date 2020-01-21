@@ -62,6 +62,7 @@
             this.btn_LoadFile = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.btn_StopRecording = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -78,19 +79,21 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Controls.Add(this.btn_StopRecording, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btn_PlayPause, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btn_StartPlay, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btn_StartRecord, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btn_PlayPause, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btn_StartPlay, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 333);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(519, 28);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -103,7 +106,7 @@
             this.btn_StartRecord.ForeColor = System.Drawing.Color.LightGray;
             this.btn_StartRecord.Location = new System.Drawing.Point(3, 3);
             this.btn_StartRecord.Name = "btn_StartRecord";
-            this.btn_StartRecord.Size = new System.Drawing.Size(167, 22);
+            this.btn_StartRecord.Size = new System.Drawing.Size(123, 22);
             this.btn_StartRecord.TabIndex = 7;
             this.btn_StartRecord.Text = "Start Recording";
             this.btn_StartRecord.UseVisualStyleBackColor = false;
@@ -116,9 +119,9 @@
             this.btn_PlayPause.FlatAppearance.BorderSize = 0;
             this.btn_PlayPause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_PlayPause.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_PlayPause.Location = new System.Drawing.Point(349, 3);
+            this.btn_PlayPause.Location = new System.Drawing.Point(390, 3);
             this.btn_PlayPause.Name = "btn_PlayPause";
-            this.btn_PlayPause.Size = new System.Drawing.Size(167, 22);
+            this.btn_PlayPause.Size = new System.Drawing.Size(126, 22);
             this.btn_PlayPause.TabIndex = 8;
             this.btn_PlayPause.Text = "Pause";
             this.btn_PlayPause.UseVisualStyleBackColor = false;
@@ -131,9 +134,9 @@
             this.btn_StartPlay.FlatAppearance.BorderSize = 0;
             this.btn_StartPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_StartPlay.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_StartPlay.Location = new System.Drawing.Point(176, 3);
+            this.btn_StartPlay.Location = new System.Drawing.Point(261, 3);
             this.btn_StartPlay.Name = "btn_StartPlay";
-            this.btn_StartPlay.Size = new System.Drawing.Size(167, 22);
+            this.btn_StartPlay.Size = new System.Drawing.Size(123, 22);
             this.btn_StartPlay.TabIndex = 9;
             this.btn_StartPlay.Text = "Start Playing";
             this.btn_StartPlay.UseVisualStyleBackColor = false;
@@ -400,6 +403,9 @@
             this.trk_Seek.Name = "trk_Seek";
             this.trk_Seek.Size = new System.Drawing.Size(436, 34);
             this.trk_Seek.TabIndex = 0;
+            this.trk_Seek.ValueChanged += new System.EventHandler(this.trk_Seek_ValueChanged);
+            this.trk_Seek.MouseDown += new System.Windows.Forms.MouseEventHandler(this.trk_Seek_MouseDown);
+            this.trk_Seek.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trk_Seek_MouseUp);
             // 
             // tb_Seek
             // 
@@ -413,11 +419,11 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 5;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.81564F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.27747F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.45087F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.68015F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.59923F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel4.Controls.Add(this.btn_duster, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.btn_SaveFile, 3, 0);
             this.tableLayoutPanel4.Controls.Add(this.button2, 1, 0);
@@ -429,7 +435,6 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(519, 28);
             this.tableLayoutPanel4.TabIndex = 3;
             // 
@@ -442,7 +447,7 @@
             this.btn_duster.ForeColor = System.Drawing.Color.LightGray;
             this.btn_duster.Location = new System.Drawing.Point(3, 3);
             this.btn_duster.Name = "btn_duster";
-            this.btn_duster.Size = new System.Drawing.Size(98, 22);
+            this.btn_duster.Size = new System.Drawing.Size(69, 22);
             this.btn_duster.TabIndex = 8;
             this.btn_duster.Text = "Duster";
             this.btn_duster.UseVisualStyleBackColor = false;
@@ -455,9 +460,9 @@
             this.btn_Enable.FlatAppearance.BorderSize = 0;
             this.btn_Enable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Enable.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_Enable.Location = new System.Drawing.Point(211, 3);
+            this.btn_Enable.Location = new System.Drawing.Point(149, 3);
             this.btn_Enable.Name = "btn_Enable";
-            this.btn_Enable.Size = new System.Drawing.Size(105, 22);
+            this.btn_Enable.Size = new System.Drawing.Size(158, 22);
             this.btn_Enable.TabIndex = 9;
             this.btn_Enable.Text = "Enable Device Input";
             this.btn_Enable.UseVisualStyleBackColor = false;
@@ -470,9 +475,9 @@
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.LightGray;
-            this.button2.Location = new System.Drawing.Point(107, 3);
+            this.button2.Location = new System.Drawing.Point(78, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 22);
+            this.button2.Size = new System.Drawing.Size(65, 22);
             this.button2.TabIndex = 10;
             this.button2.Text = "Clear";
             this.button2.UseVisualStyleBackColor = false;
@@ -504,9 +509,9 @@
             this.btn_SaveFile.FlatAppearance.BorderSize = 0;
             this.btn_SaveFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_SaveFile.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_SaveFile.Location = new System.Drawing.Point(322, 3);
+            this.btn_SaveFile.Location = new System.Drawing.Point(313, 3);
             this.btn_SaveFile.Name = "btn_SaveFile";
-            this.btn_SaveFile.Size = new System.Drawing.Size(91, 22);
+            this.btn_SaveFile.Size = new System.Drawing.Size(98, 22);
             this.btn_SaveFile.TabIndex = 11;
             this.btn_SaveFile.Text = "Save File";
             this.btn_SaveFile.UseVisualStyleBackColor = false;
@@ -519,9 +524,9 @@
             this.btn_LoadFile.FlatAppearance.BorderSize = 0;
             this.btn_LoadFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_LoadFile.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_LoadFile.Location = new System.Drawing.Point(419, 3);
+            this.btn_LoadFile.Location = new System.Drawing.Point(417, 3);
             this.btn_LoadFile.Name = "btn_LoadFile";
-            this.btn_LoadFile.Size = new System.Drawing.Size(97, 22);
+            this.btn_LoadFile.Size = new System.Drawing.Size(99, 22);
             this.btn_LoadFile.TabIndex = 12;
             this.btn_LoadFile.Text = "Load File";
             this.btn_LoadFile.UseVisualStyleBackColor = false;
@@ -534,6 +539,21 @@
             // openFileDialog
             // 
             this.openFileDialog.Filter = "Lecture file|*.dbm";
+            // 
+            // btn_StopRecording
+            // 
+            this.btn_StopRecording.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.btn_StopRecording.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_StopRecording.FlatAppearance.BorderSize = 0;
+            this.btn_StopRecording.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_StopRecording.ForeColor = System.Drawing.Color.LightGray;
+            this.btn_StopRecording.Location = new System.Drawing.Point(132, 3);
+            this.btn_StopRecording.Name = "btn_StopRecording";
+            this.btn_StopRecording.Size = new System.Drawing.Size(123, 22);
+            this.btn_StopRecording.TabIndex = 10;
+            this.btn_StopRecording.Text = "Stop Recording";
+            this.btn_StopRecording.UseVisualStyleBackColor = false;
+            this.btn_StopRecording.Click += new System.EventHandler(this.btn_StopRecording_Click);
             // 
             // Recorder
             // 
@@ -599,5 +619,6 @@
         private System.Windows.Forms.Button btn_LoadFile;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.Button btn_StopRecording;
     }
 }

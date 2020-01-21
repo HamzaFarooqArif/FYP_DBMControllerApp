@@ -49,11 +49,16 @@ namespace DBMControllerApp_TK
         {
             panelHomeSubmenu.Visible = false;
             panelSettingsSubmenu.Visible = false;
+            panelPlayerSubmenu.Visible = false;
         }
 
         private void hideHardwareSubmenu()
         {
             panelHardwareInputSubmenu.Visible = false;
+        }
+        private void hidePlayerSubmenu()
+        {
+            panelPlayerSubmenu.Visible = false;
         }
 
         private void showSubmenu(Panel submenu)
@@ -76,7 +81,9 @@ namespace DBMControllerApp_TK
         private void btnSettings_Click(object sender, EventArgs e)
         {
             showSubmenu(panelSettingsSubmenu);
+            showSubmenu(panelPlayerSubmenu);
             hideHardwareSubmenu();
+            hidePlayerSubmenu();
         }
         private void btnHardwareInput_Click(object sender, EventArgs e)
         {
@@ -164,6 +171,16 @@ namespace DBMControllerApp_TK
         private void button2_Click(object sender, EventArgs e)
         {
             splashScreen();
+        }
+
+        private void btn_Player_Click(object sender, EventArgs e)
+        {
+            panelPlayerSubmenu.Visible = !panelPlayerSubmenu.Visible;
+        }
+
+        private void btn_Display_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
