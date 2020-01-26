@@ -28,6 +28,7 @@ namespace DBMControllerApp_TK.Forms
         public int OPHeight;
         public Point tipOffset;
         private bool showDemo2d;
+        public double pressure;
         private delegate void SetTextDeleg(string text);
         public static OrientationSettings getInstance()
         {
@@ -169,7 +170,7 @@ namespace DBMControllerApp_TK.Forms
                 double rotX = (-double.Parse(data[3], System.Globalization.CultureInfo.InvariantCulture));
                 double rotY = (-double.Parse(data[2], System.Globalization.CultureInfo.InvariantCulture));
                 double rotZ = -double.Parse(data[1], System.Globalization.CultureInfo.InvariantCulture);
-                double pressure = double.Parse(data[4], System.Globalization.CultureInfo.InvariantCulture);
+                pressure = double.Parse(data[4], System.Globalization.CultureInfo.InvariantCulture);
 
                 demo3d.zRot = rotZ;
                 demo3d.xRot = rotX;

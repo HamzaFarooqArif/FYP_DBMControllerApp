@@ -20,7 +20,8 @@ namespace DBMControllerApp_TK.Utilities
             "Start the capture device first",
             "Are you sure you want to close the application?",
             "Please select a valid COM port",
-            "Settings Saved Successfully"
+            "Settings Saved Successfully",
+            "Load a lecture file first"
         });
         public static List<string> getCameraList()
         {

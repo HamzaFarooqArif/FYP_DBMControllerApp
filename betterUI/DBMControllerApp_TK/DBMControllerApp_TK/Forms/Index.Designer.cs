@@ -30,6 +30,9 @@
         {
             this.panelSideMenu = new System.Windows.Forms.Panel();
             this.panelSettingsSubmenu = new System.Windows.Forms.Panel();
+            this.panelPlayerSubmenu = new System.Windows.Forms.Panel();
+            this.btn_Display = new System.Windows.Forms.Button();
+            this.btn_Player = new System.Windows.Forms.Button();
             this.panelHardwareInputSubmenu = new System.Windows.Forms.Panel();
             this.btn_Filter = new System.Windows.Forms.Button();
             this.btnOrientationSettings = new System.Windows.Forms.Button();
@@ -46,11 +49,9 @@
             this.panelChildForm = new System.Windows.Forms.Panel();
             this.TLPForms = new System.Windows.Forms.TableLayoutPanel();
             this.ib_Splash = new System.Windows.Forms.PictureBox();
-            this.btn_Player = new System.Windows.Forms.Button();
-            this.panelPlayerSubmenu = new System.Windows.Forms.Panel();
-            this.btn_Display = new System.Windows.Forms.Button();
             this.panelSideMenu.SuspendLayout();
             this.panelSettingsSubmenu.SuspendLayout();
+            this.panelPlayerSubmenu.SuspendLayout();
             this.panelHardwareInputSubmenu.SuspendLayout();
             this.panelHomeSubmenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
@@ -58,7 +59,6 @@
             this.panelChildForm.SuspendLayout();
             this.TLPForms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ib_Splash)).BeginInit();
-            this.panelPlayerSubmenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelSideMenu
@@ -89,6 +89,47 @@
             this.panelSettingsSubmenu.Name = "panelSettingsSubmenu";
             this.panelSettingsSubmenu.Size = new System.Drawing.Size(200, 279);
             this.panelSettingsSubmenu.TabIndex = 4;
+            // 
+            // panelPlayerSubmenu
+            // 
+            this.panelPlayerSubmenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(50)))));
+            this.panelPlayerSubmenu.Controls.Add(this.btn_Display);
+            this.panelPlayerSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelPlayerSubmenu.Location = new System.Drawing.Point(0, 239);
+            this.panelPlayerSubmenu.Name = "panelPlayerSubmenu";
+            this.panelPlayerSubmenu.Size = new System.Drawing.Size(200, 40);
+            this.panelPlayerSubmenu.TabIndex = 5;
+            // 
+            // btn_Display
+            // 
+            this.btn_Display.FlatAppearance.BorderSize = 0;
+            this.btn_Display.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Display.ForeColor = System.Drawing.Color.LightGray;
+            this.btn_Display.Location = new System.Drawing.Point(0, 0);
+            this.btn_Display.Name = "btn_Display";
+            this.btn_Display.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            this.btn_Display.Size = new System.Drawing.Size(200, 40);
+            this.btn_Display.TabIndex = 3;
+            this.btn_Display.Text = "Display";
+            this.btn_Display.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Display.UseVisualStyleBackColor = true;
+            this.btn_Display.Click += new System.EventHandler(this.btn_Display_Click);
+            // 
+            // btn_Player
+            // 
+            this.btn_Player.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_Player.FlatAppearance.BorderSize = 0;
+            this.btn_Player.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Player.ForeColor = System.Drawing.Color.LightGray;
+            this.btn_Player.Location = new System.Drawing.Point(0, 199);
+            this.btn_Player.Name = "btn_Player";
+            this.btn_Player.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.btn_Player.Size = new System.Drawing.Size(200, 40);
+            this.btn_Player.TabIndex = 4;
+            this.btn_Player.Text = "Player";
+            this.btn_Player.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Player.UseVisualStyleBackColor = true;
+            this.btn_Player.Click += new System.EventHandler(this.btn_Player_Click);
             // 
             // panelHardwareInputSubmenu
             // 
@@ -220,7 +261,7 @@
             this.button2.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.button2.Size = new System.Drawing.Size(200, 40);
             this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
+            this.button2.Text = "Home Screen";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -316,47 +357,6 @@
             this.ib_Splash.TabIndex = 0;
             this.ib_Splash.TabStop = false;
             // 
-            // btn_Player
-            // 
-            this.btn_Player.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_Player.FlatAppearance.BorderSize = 0;
-            this.btn_Player.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Player.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_Player.Location = new System.Drawing.Point(0, 199);
-            this.btn_Player.Name = "btn_Player";
-            this.btn_Player.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btn_Player.Size = new System.Drawing.Size(200, 40);
-            this.btn_Player.TabIndex = 4;
-            this.btn_Player.Text = "Player";
-            this.btn_Player.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Player.UseVisualStyleBackColor = true;
-            this.btn_Player.Click += new System.EventHandler(this.btn_Player_Click);
-            // 
-            // panelPlayerSubmenu
-            // 
-            this.panelPlayerSubmenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(50)))));
-            this.panelPlayerSubmenu.Controls.Add(this.btn_Display);
-            this.panelPlayerSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelPlayerSubmenu.Location = new System.Drawing.Point(0, 239);
-            this.panelPlayerSubmenu.Name = "panelPlayerSubmenu";
-            this.panelPlayerSubmenu.Size = new System.Drawing.Size(200, 40);
-            this.panelPlayerSubmenu.TabIndex = 5;
-            // 
-            // btn_Display
-            // 
-            this.btn_Display.FlatAppearance.BorderSize = 0;
-            this.btn_Display.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Display.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_Display.Location = new System.Drawing.Point(0, 0);
-            this.btn_Display.Name = "btn_Display";
-            this.btn_Display.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
-            this.btn_Display.Size = new System.Drawing.Size(200, 40);
-            this.btn_Display.TabIndex = 3;
-            this.btn_Display.Text = "Display";
-            this.btn_Display.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Display.UseVisualStyleBackColor = true;
-            this.btn_Display.Click += new System.EventHandler(this.btn_Display_Click);
-            // 
             // Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -374,6 +374,7 @@
             this.panelSideMenu.ResumeLayout(false);
             this.panelSideMenu.PerformLayout();
             this.panelSettingsSubmenu.ResumeLayout(false);
+            this.panelPlayerSubmenu.ResumeLayout(false);
             this.panelHardwareInputSubmenu.ResumeLayout(false);
             this.panelHomeSubmenu.ResumeLayout(false);
             this.panelLogo.ResumeLayout(false);
@@ -382,7 +383,6 @@
             this.TLPForms.ResumeLayout(false);
             this.TLPForms.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ib_Splash)).EndInit();
-            this.panelPlayerSubmenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

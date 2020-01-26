@@ -23,6 +23,7 @@ namespace DBMControllerApp_TK.Forms
         //private int boardWidth;
         //private int boardHeight;
         public Point tipOffset;
+        public Point actualPosition;
         public static PositionSettings getInstance()
         {
             if (_instance == null)
@@ -79,7 +80,7 @@ namespace DBMControllerApp_TK.Forms
             markerVect.X = markerVect.X * sizeFactor;
             markerVect.Y = markerVect.Y * sizeFactor;
             markerVect.Z = markerVect.Z * sizeFactor;
-            Point actualPosition = new Point(drawVector(markerVect, position.X, position.Y).Item2.X, drawVector(markerVect, position.X, position.Y).Item2.Y);
+            actualPosition = new Point(drawVector(markerVect, position.X, position.Y).Item2.X, drawVector(markerVect, position.X, position.Y).Item2.Y);
             CvInvoke.Line(boardFrame, position, actualPosition, new MCvScalar(0, 0, 255), 2);
             if (markerVect.Z > 0) CvInvoke.Circle(boardFrame, position, Math.Abs((int)(markerVect.Z * sizeFactor)), new MCvScalar(0, 0, 255), 1);
             else CvInvoke.Circle(boardFrame, position, Math.Abs((int)(markerVect.Z * sizeFactor)), new MCvScalar(255, 0, 0), 1);

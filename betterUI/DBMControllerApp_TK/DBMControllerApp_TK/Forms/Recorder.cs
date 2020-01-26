@@ -176,6 +176,10 @@ namespace DBMControllerApp_TK.Forms
         private void timer_Tick(object sender, EventArgs e)
         {
             if (!isPaused && (isRecording || isPlaying)) currentTick++;
+            if (isHardwareEnabled)
+            {
+                hardwareDraw();
+            }
             if (!isPlaying && isMoved())
             {
                 drawHoverPoint(ref hoverFrame);
@@ -188,6 +192,7 @@ namespace DBMControllerApp_TK.Forms
             {
                 playAnim();
             }
+            
             suspendMove();
             updateControls();
         }
@@ -249,15 +254,7 @@ namespace DBMControllerApp_TK.Forms
             }
         }
         
-        private void ib_Preview_MouseMove(object sender, MouseEventArgs e)
-        {
-            if(!isHardwareEnabled && !isPlaying)
-            {
-                currentPoint.X = (int)Map(e.X, 0, ib_Preview.Width, 0, Utility.boardWidth);
-                currentPoint.Y = (int)Map(e.Y, 0, ib_Preview.Height, 0, Utility.boardHeight);
-                //updateControls();
-            }
-        }
+        
         private void trk_thickness_ValueChanged(object sender, EventArgs e)
         {
             if(trk_thickness.Focused)
@@ -297,7 +294,11 @@ namespace DBMControllerApp_TK.Forms
         }
         private void btn_StartPlay_Click(object sender, EventArgs e)
         {
-            if (Animation.objList == null || Animation.objList.Count < 1) return;
+            if (Animation.objList == null || Animation.objList.Count < 1)
+            {
+                MessageBox.Show(Utility.errorList[5]);
+                return;
+            }
             isPlaying = !isPlaying;
             if(isPlaying)
             {
@@ -324,19 +325,66 @@ namespace DBMControllerApp_TK.Forms
         }
         private void ib_Preview_MouseDown(object sender, MouseEventArgs e)
         {
-            if(!isPlaying)
+            if(!isHardwareEnabled)
             {
-                isTipDown = 1;
+                if (!isPlaying)
+                {
+                    isTipDown = 1;
+                }
             }
         }
         private void ib_Preview_MouseUp(object sender, MouseEventArgs e)
         {
-            if (!isPlaying)
+            if (!isHardwareEnabled)
             {
-                isTipDown = 0;
-                if(isRecording)
+                if (!isPlaying)
                 {
-                    appendEndPoint();
+                    isTipDown = 0;
+                    if (isRecording)
+                    {
+                        appendEndPoint();
+                    }
+                }
+            }
+        }
+        private void ib_Preview_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (!isHardwareEnabled && !isPlaying)
+            {
+                currentPoint.X = (int)Map(e.X, 0, ib_Preview.Width, 0, Utility.boardWidth);
+                currentPoint.Y = (int)Map(e.Y, 0, ib_Preview.Height, 0, Utility.boardHeight);
+                //updateControls();
+            }
+        }
+        private void ib_Preview_MouseEnter(object sender, EventArgs e)
+        {
+            if(!isHardwareEnabled)
+            {
+                isMouseOver = true;
+            }
+        }
+        private void ib_Preview_MouseLeave(object sender, EventArgs e)
+        {
+            if (!isHardwareEnabled)
+            {
+                isMouseOver = false;
+            }
+            //ib_Preview.Image = frame;
+        }
+        private void hardwareDraw()
+        {
+            isMouseOver = true;
+            if(!isPlaying)
+            {
+                currentPoint.X = PositionSettings.getInstance().actualPosition.X;
+                currentPoint.Y = PositionSettings.getInstance().actualPosition.Y;
+                if(OrientationSettings.getInstance().pressure > 100)
+                {
+                    isTipDown = 1;
+                }
+                else
+                {
+                    isTipDown = 0;
                 }
             }
         }
@@ -345,15 +393,7 @@ namespace DBMControllerApp_TK.Forms
             clearBoard();
             updateControls();
         }
-        private void ib_Preview_MouseEnter(object sender, EventArgs e)
-        {
-            isMouseOver = true;
-        }
-        private void ib_Preview_MouseLeave(object sender, EventArgs e)
-        {
-            isMouseOver = false;
-            //ib_Preview.Image = frame;
-        }
+        
         private void btn_Save_Click(object sender, EventArgs e)
         {
             saveSettings();
