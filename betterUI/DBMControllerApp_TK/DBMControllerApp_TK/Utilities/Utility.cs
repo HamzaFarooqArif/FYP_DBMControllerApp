@@ -12,8 +12,8 @@ namespace DBMControllerApp_TK.Utilities
 {
     class Utility
     {
-        public static int boardWidth = 480;
-        public static int boardHeight = 320;
+        public static int boardWidth = 1280;
+        public static int boardHeight = 1024;
 
         public static List<string> errorList = new List<string>(new string[] {
             "Select a valid capture device",
