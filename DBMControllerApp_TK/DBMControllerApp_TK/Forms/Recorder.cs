@@ -34,6 +34,7 @@ namespace DBMControllerApp_TK.Forms
         private bool isHardwareEnabled;
         private bool isMouseOver;
         private int isTipDown;
+        private bool makeTipDown;
         private int playIdx;
         private jsonObj currentJson;
         private string fullPath;
@@ -68,6 +69,7 @@ namespace DBMControllerApp_TK.Forms
             isHardwareEnabled = false;
             isMouseOver = false;
             isTipDown = 0;
+            makeTipDown = false;
             fullPath = @"C:\";
             Animation.objList = new List<jsonObj>();
             playIdx = 0;
@@ -75,6 +77,11 @@ namespace DBMControllerApp_TK.Forms
         }
         private void updateControls()
         {
+            if(makeTipDown)
+            {
+                makeTipDown = false;
+                isTipDown = 1;
+            }
             if (isMouseOver && !isPlaying) ib_Preview.Image = hoverFrame;
             else ib_Preview.Image = frame;
             if (!ib_Preview.FunctionalMode.Equals(ImageBox.FunctionalModeOption.Minimum)) ib_Preview.FunctionalMode = ImageBox.FunctionalModeOption.Minimum;
@@ -329,7 +336,11 @@ namespace DBMControllerApp_TK.Forms
             {
                 if (!isPlaying)
                 {
-                    isTipDown = 1;
+                    currentPoint.X = (int)Map(e.X, 0, ib_Preview.Width, 0, Utility.boardWidth);
+                    currentPoint.Y = (int)Map(e.Y, 0, ib_Preview.Height, 0, Utility.boardHeight);
+                    makeTipDown = true;
+                    //isTipDown = 1;
+                    //Console.WriteLine(currentPoint);
                 }
             }
         }
