@@ -54,3 +54,4 @@ E:\git\DBMControllerApp_TK\DBMControllerApp_TK\DBMControllerApp_TK\obj\Release\D
 E:\git\DBMControllerApp_TK\DBMControllerApp_TK\DBMControllerApp_TK\obj\Release\DBMControllerApp_TK.csproj.CopyComplete
 E:\git\DBMControllerApp_TK\DBMControllerApp_TK\DBMControllerApp_TK\obj\Release\DBMControllerApp_TK.exe
 E:\git\DBMControllerApp_TK\DBMControllerApp_TK\DBMControllerApp_TK\obj\Release\DBMControllerApp_TK.pdb
+E:\git\DBMControllerApp_TK\DBMControllerApp_TK\DBMControllerApp_TK\obj\Release\DBMControllerApp_TK.csprojAssemblyReference.cache
